@@ -127,7 +127,7 @@
         <p>iSard is a mobile application developed by <strong>Guillem Bruix</strong> ("we", "us", or "our"), based in the European Union.</p>
         <p>This Privacy Policy explains how we collect, use, and protect your information when you use the iSard app.</p>
         <p>If you have any questions, you can contact us at:</p>
-        <p class="contact-email">hola@isard.app</p>
+        <p class="contact-email"><span id="contact-email-1"></span></p>
 
         <h2>2. Data We Collect</h2>
         <p>We only collect data that is necessary to provide the core functionality of the app.</p>
@@ -261,12 +261,16 @@
 
         <h2>11. Contact</h2>
         <p>If you have any questions about this Privacy Policy:</p>
-        <p class="contact-email">hola@isard.app</p>
+        <p class="contact-email"><span id="contact-email-2"></span></p>
     </div>
 
     <footer>
         <img src="/iSardLogoBlack.svg" alt="iSard" class="footer-logo">
         <a href="/privacy" class="privacy-link">Privacy Policy</a>
     </footer>
+    <script>
+        (function(){var u='hola',d='isard.app',e=u+'@'+d;
+        document.querySelectorAll('[id^="contact-email"]').forEach(function(el){el.textContent=e;});})();
+    </script>
 </body>
 </html>

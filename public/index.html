@@ -70,6 +70,31 @@
             border: none;
         }
 
+        footer {
+            border-top: 1px solid #ccc;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .footer-logo {
+            height: 32px;
+            width: auto;
+        }
+
+        .privacy-link {
+            color: #1a1a2e;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .privacy-link:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 40px 16px 32px;
@@ -87,6 +112,10 @@
 
             .tagline {
                 font-size: 1rem;
+            }
+
+            footer {
+                padding: 20px 24px;
             }
         }
     </style>
@@ -112,6 +141,11 @@
             ></iframe>
         </div>
     </div>
+
+    <footer>
+        <a href="https://www.isard.app"><img src="/iSardLogoBlack.svg" alt="iSard" class="footer-logo"></a>
+        <a href="/privacy" class="privacy-link">Privacy Policy</a>
+    </footer>
 
     <!-- Brevo Conversations -->
     <script>

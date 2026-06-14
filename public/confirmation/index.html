@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +19,30 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+
+        .lang-nav {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 12px 24px 0;
+        }
+
+        .lang-select {
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+            color: #1a1a2e;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .lang-select:hover {
+            border-color: #999;
         }
 
         .content {
@@ -120,14 +144,38 @@
 <body>
     <div class="content">
         <img src="/iSard_icon.png" alt="iSard App Icon" class="app-icon">
-        <h1>Thank you for subscribing!</h1>
-        <p class="success">&#x2705; You have subscribed successfully</p>
-        <p class="message">Here is the TestFlight link to download iSard app beta version:</p>
+        <h1 data-i18n="heading">¡Gracias por suscribirte!</h1>
+        <p class="success" data-i18n="success">&#x2705; Te has suscrito correctamente</p>
+        <p class="message" data-i18n="message">Aquí tienes el enlace de TestFlight para descargar la versión beta de iSard:</p>
         <p class="testflight-link">&#x1F449; <a href="https://testflight.apple.com/join/sGNujsQW">https://testflight.apple.com/join/sGNujsQW</a></p>
     </div>
     <footer>
         <a href="https://www.isard.app"><img src="/iSardLogoBlack.svg" alt="iSard" class="footer-logo"></a>
-        <a href="/privacy" class="privacy-link">Privacy Policy</a>
+        <a href="/privacy" class="privacy-link" data-i18n="privacy">Política de Privacidad</a>
     </footer>
+
+    <script src="/js/i18n.js"></script>
+    <script>
+        i18nInit({
+            es: {
+                heading: '¡Gracias por suscribirte!',
+                success: '&#x2705; Te has suscrito correctamente',
+                message: 'Aquí tienes el enlace de TestFlight para descargar la versión beta de iSard:',
+                privacy: 'Política de Privacidad'
+            },
+            ca: {
+                heading: 'Gràcies per subscriure\'t!',
+                success: '&#x2705; T\'has subscrit correctament',
+                message: 'Aquí tens l\'enllaç de TestFlight per descarregar la versió beta d\'iSard:',
+                privacy: 'Política de Privacitat'
+            },
+            en: {
+                heading: 'Thank you for subscribing!',
+                success: '&#x2705; You have subscribed successfully',
+                message: 'Here is the TestFlight link to download iSard app beta version:',
+                privacy: 'Privacy Policy'
+            }
+        });
+    </script>
 </body>
 </html>

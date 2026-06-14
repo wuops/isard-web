@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,12 +21,36 @@
             flex-direction: column;
         }
 
+        .lang-nav {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 12px 24px 0;
+        }
+
+        .lang-select {
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+            color: #1a1a2e;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .lang-select:hover {
+            border-color: #999;
+        }
+
         .content {
             flex: 1;
             max-width: 760px;
             width: 100%;
             margin: 0 auto;
-            padding: 60px 40px;
+            padding: 20px 40px 60px;
         }
 
         h1 {
@@ -105,7 +129,7 @@
 
         @media (max-width: 600px) {
             .content {
-                padding: 40px 24px;
+                padding: 20px 24px 40px;
             }
 
             h1 {
@@ -120,157 +144,379 @@
 </head>
 <body>
     <div class="content">
-        <h1>iSard Privacy Policy</h1>
-        <p class="last-updated">Last updated: April 2026</p>
+        <h1 data-i18n="title">Política de Privacidad de iSard</h1>
+        <p class="last-updated" data-i18n="updated">Última actualización: abril 2026</p>
 
-        <h2>1. Introduction</h2>
-        <p>iSard is a mobile application developed by <strong>Guillem Bruix</strong> ("we", "us", or "our"), based in the European Union.</p>
-        <p>This Privacy Policy explains how we collect, use, and protect your information when you use the iSard app.</p>
-        <p>If you have any questions, you can contact us at:</p>
+        <h2 data-i18n="s1_title">1. Introducción</h2>
+        <p data-i18n="s1_p1">iSard es una aplicación móvil desarrollada por <strong>Guillem Bruix</strong> ("nosotros", "nos" o "nuestro"), con sede en la Unión Europea.</p>
+        <p data-i18n="s1_p2">Esta Política de Privacidad explica cómo recopilamos, utilizamos y protegemos tu información cuando usas la app iSard.</p>
+        <p data-i18n="s1_p3">Si tienes alguna pregunta, puedes contactarnos en:</p>
         <p class="contact-email"><span id="contact-email-1"></span></p>
 
-        <h2>2. Data We Collect</h2>
-        <p>We only collect data that is necessary to provide the core functionality of the app.</p>
+        <h2 data-i18n="s2_title">2. Datos que Recopilamos</h2>
+        <p data-i18n="s2_intro">Solo recopilamos los datos necesarios para proporcionar la funcionalidad principal de la app.</p>
 
-        <h3>2.1 Location Data</h3>
-        <p>We collect your <strong>GPS location</strong> while using the app.</p>
-        <p>We may also collect location <strong>in the background</strong> when you are recording an activity.</p>
-        <p class="purpose-label">Purpose:</p>
-        <ul>
-            <li>Track routes</li>
-            <li>Calculate distance, pace, and activity metrics</li>
-            <li>Display your activity on maps</li>
-        </ul>
-
-        <h3>2.2 Activity Data</h3>
-        <p>We store information related to your activities, including:</p>
-        <ul>
-            <li>Distance</li>
-            <li>Duration</li>
-            <li>Pace</li>
-            <li>Route (GPS coordinates)</li>
-        </ul>
-        <p class="purpose-label">Purpose:</p>
-        <ul>
-            <li>Provide activity tracking features</li>
-            <li>Allow you to view and edit your activities</li>
-            <li>Generate shareable cards and replay videos</li>
+        <h3 data-i18n="s2_1_title">2.1 Datos de Ubicación</h3>
+        <p data-i18n="s2_1_p1">Recopilamos tu <strong>ubicación GPS</strong> mientras usas la app.</p>
+        <p data-i18n="s2_1_p2">También podemos recopilar la ubicación <strong>en segundo plano</strong> cuando estás registrando una actividad.</p>
+        <p class="purpose-label" data-i18n="purpose">Finalidad:</p>
+        <ul data-i18n="s2_1_list">
+            <li>Seguimiento de rutas</li>
+            <li>Cálculo de distancia, ritmo y métricas de actividad</li>
+            <li>Mostrar tu actividad en mapas</li>
         </ul>
 
-        <h3>2.3 Photos</h3>
-        <p>The app may request access to your photo library only when you choose to:</p>
-        <ul>
-            <li>Save images</li>
-            <li>Export content</li>
+        <h3 data-i18n="s2_2_title">2.2 Datos de Actividad</h3>
+        <p data-i18n="s2_2_p1">Almacenamos información relacionada con tus actividades, incluyendo:</p>
+        <ul data-i18n="s2_2_list1">
+            <li>Distancia</li>
+            <li>Duración</li>
+            <li>Ritmo</li>
+            <li>Ruta (coordenadas GPS)</li>
         </ul>
-        <p class="purpose-label">Purpose:</p>
-        <ul>
-            <li>Save generated images and videos to your device</li>
-        </ul>
-
-        <h3>2.4 Screen Recording</h3>
-        <p>The app may request permission to record your screen when exporting replay videos.</p>
-        <p class="purpose-label">Purpose:</p>
-        <ul>
-            <li>Generate a video of your activity replay</li>
-        </ul>
-        <p>Screen recording is:</p>
-        <ul>
-            <li>Only activated with your explicit action</li>
-            <li>Used only during the export process</li>
-            <li>Not stored by us</li>
+        <p class="purpose-label" data-i18n="purpose2">Finalidad:</p>
+        <ul data-i18n="s2_2_list2">
+            <li>Proporcionar funciones de seguimiento de actividades</li>
+            <li>Permitirte ver y editar tus actividades</li>
+            <li>Generar tarjetas compartibles y vídeos de repetición</li>
         </ul>
 
-        <h3>2.5 Crash Data</h3>
-        <p>We may receive anonymous crash reports via Apple.</p>
-        <p class="purpose-label">Purpose:</p>
-        <ul>
-            <li>Improve app stability and performance</li>
+        <h3 data-i18n="s2_3_title">2.3 Fotos</h3>
+        <p data-i18n="s2_3_p1">La app puede solicitar acceso a tu biblioteca de fotos solo cuando elijas:</p>
+        <ul data-i18n="s2_3_list">
+            <li>Guardar imágenes</li>
+            <li>Exportar contenido</li>
+        </ul>
+        <p class="purpose-label" data-i18n="purpose3">Finalidad:</p>
+        <ul data-i18n="s2_3_list2">
+            <li>Guardar imágenes y vídeos generados en tu dispositivo</li>
         </ul>
 
-        <h3>2.6 Device Information</h3>
-        <p>Basic device information (such as device model and OS version) may be processed by Apple as part of system services.</p>
-
-        <h2>3. Data Storage</h2>
-        <p>Your data is stored:</p>
-        <ul>
-            <li>On your device</li>
-            <li>In your personal iCloud account (via Apple services)</li>
+        <h3 data-i18n="s2_4_title">2.4 Grabación de Pantalla</h3>
+        <p data-i18n="s2_4_p1">La app puede solicitar permiso para grabar tu pantalla al exportar vídeos de repetición.</p>
+        <p class="purpose-label" data-i18n="purpose4">Finalidad:</p>
+        <ul data-i18n="s2_4_list1">
+            <li>Generar un vídeo de la repetición de tu actividad</li>
         </ul>
-        <p>We do not store your data on our own servers.</p>
-        <p>This means:</p>
-        <ul>
-            <li>You retain control of your data</li>
-            <li>Data is managed under Apple's privacy and security standards</li>
+        <p data-i18n="s2_4_p2">La grabación de pantalla:</p>
+        <ul data-i18n="s2_4_list2">
+            <li>Solo se activa con tu acción explícita</li>
+            <li>Se usa únicamente durante el proceso de exportación</li>
+            <li>No es almacenada por nosotros</li>
         </ul>
 
-        <h2>4. Third-Party Services</h2>
-        <p>We rely only on Apple services:</p>
-        <ul class="dashed">
-            <li>Apple iCloud → data synchronization</li>
-            <li>Apple Maps → map display</li>
-            <li>Apple Health Data → If you choose to enable Apple Health import, iSard may read workout data from Apple Health, including workout type, duration, distance, route location data, active energy, and heart rate when available. This data is used only to import your Apple Fitness / Apple Watch workouts into iSard so you can view them, design activity cards, and generate replay videos. iSard does not sell or share Apple Health data with third parties. Health data is stored locally on your device and may sync through your personal iCloud account if iCloud sync is enabled.</li>
-            <li>Apple system services → crash reporting</li>
-        </ul>
-        <p>We do not use:</p>
-        <ul>
-            <li>Third-party analytics (e.g., Firebase, AppsFlyer)</li>
-            <li>Advertising networks</li>
+        <h3 data-i18n="s2_5_title">2.5 Datos de Fallos</h3>
+        <p data-i18n="s2_5_p1">Podemos recibir informes anónimos de fallos a través de Apple.</p>
+        <p class="purpose-label" data-i18n="purpose5">Finalidad:</p>
+        <ul data-i18n="s2_5_list">
+            <li>Mejorar la estabilidad y el rendimiento de la app</li>
         </ul>
 
-        <h2>5. Legal Basis (GDPR)</h2>
-        <p>Under the General Data Protection Regulation (GDPR), we process your data based on:</p>
-        <ul>
-            <li><strong>Consent</strong> → for permissions (location, photos, screen recording)</li>
-            <li><strong>Contractual necessity</strong> → to provide core app functionality</li>
+        <h3 data-i18n="s2_6_title">2.6 Información del Dispositivo</h3>
+        <p data-i18n="s2_6_p1">La información básica del dispositivo (como el modelo y la versión del sistema operativo) puede ser procesada por Apple como parte de los servicios del sistema.</p>
+
+        <h2 data-i18n="s3_title">3. Almacenamiento de Datos</h2>
+        <p data-i18n="s3_p1">Tus datos se almacenan:</p>
+        <ul data-i18n="s3_list1">
+            <li>En tu dispositivo</li>
+            <li>En tu cuenta personal de iCloud (a través de los servicios de Apple)</li>
+        </ul>
+        <p data-i18n="s3_p2">No almacenamos tus datos en nuestros propios servidores.</p>
+        <p data-i18n="s3_p3">Esto significa:</p>
+        <ul data-i18n="s3_list2">
+            <li>Tú mantienes el control de tus datos</li>
+            <li>Los datos se gestionan bajo los estándares de privacidad y seguridad de Apple</li>
         </ul>
 
-        <h2>6. Data Sharing</h2>
-        <p>We do not sell, rent, or share your personal data with third parties.</p>
-        <p>Your data remains:</p>
-        <ul>
-            <li>On your device</li>
-            <li>Within your Apple iCloud account</li>
+        <h2 data-i18n="s4_title">4. Servicios de Terceros</h2>
+        <p data-i18n="s4_p1">Solo dependemos de los servicios de Apple:</p>
+        <ul class="dashed" data-i18n="s4_list1">
+            <li>Apple iCloud → sincronización de datos</li>
+            <li>Apple Maps → visualización de mapas</li>
+            <li>Apple Health Data → Si eliges activar la importación de Apple Health, iSard puede leer datos de entrenamiento de Apple Health, incluyendo tipo de entrenamiento, duración, distancia, datos de ubicación de la ruta, energía activa y frecuencia cardíaca cuando esté disponible. Estos datos se usan únicamente para importar tus entrenamientos de Apple Fitness / Apple Watch en iSard para que puedas verlos, diseñar tarjetas de actividad y generar vídeos de repetición. iSard no vende ni comparte datos de Apple Health con terceros. Los datos de salud se almacenan localmente en tu dispositivo y pueden sincronizarse a través de tu cuenta personal de iCloud si la sincronización de iCloud está activada.</li>
+            <li>Servicios del sistema Apple → informes de fallos</li>
+        </ul>
+        <p data-i18n="s4_p2">No utilizamos:</p>
+        <ul data-i18n="s4_list2">
+            <li>Analítica de terceros (p. ej., Firebase, AppsFlyer)</li>
+            <li>Redes publicitarias</li>
         </ul>
 
-        <h2>7. Data Retention</h2>
-        <p>Your data is stored:</p>
-        <ul>
-            <li>Until you delete it from the app</li>
-            <li>Or remove it from your iCloud account</li>
+        <h2 data-i18n="s5_title">5. Base Legal (RGPD)</h2>
+        <p data-i18n="s5_p1">Según el Reglamento General de Protección de Datos (RGPD), procesamos tus datos en base a:</p>
+        <ul data-i18n="s5_list">
+            <li><strong>Consentimiento</strong> → para permisos (ubicación, fotos, grabación de pantalla)</li>
+            <li><strong>Necesidad contractual</strong> → para proporcionar la funcionalidad principal de la app</li>
         </ul>
-        <p>You are in full control of deletion.</p>
 
-        <h2>8. Your Rights (EU Users)</h2>
-        <p>Under GDPR, you have the right to:</p>
-        <ul>
-            <li>Access your data</li>
-            <li>Correct your data</li>
-            <li>Delete your data</li>
-            <li>Restrict or object to processing</li>
+        <h2 data-i18n="s6_title">6. Compartición de Datos</h2>
+        <p data-i18n="s6_p1">No vendemos, alquilamos ni compartimos tus datos personales con terceros.</p>
+        <p data-i18n="s6_p2">Tus datos permanecen:</p>
+        <ul data-i18n="s6_list">
+            <li>En tu dispositivo</li>
+            <li>Dentro de tu cuenta de Apple iCloud</li>
         </ul>
-        <p>Since data is stored locally/iCloud:</p>
-        <p>You can manage or delete it directly from your device or iCloud settings.</p>
 
-        <h2>9. Children's Privacy</h2>
-        <p>iSard is <strong>not intended for users under 16 years of age</strong>, and we do not knowingly collect data from children.</p>
+        <h2 data-i18n="s7_title">7. Retención de Datos</h2>
+        <p data-i18n="s7_p1">Tus datos se almacenan:</p>
+        <ul data-i18n="s7_list">
+            <li>Hasta que los elimines de la app</li>
+            <li>O los elimines de tu cuenta de iCloud</li>
+        </ul>
+        <p data-i18n="s7_p2">Tú tienes el control total de la eliminación.</p>
 
-        <h2>10. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time.</p>
-        <p>If we make significant changes, we will notify users through the app or update the date above.</p>
+        <h2 data-i18n="s8_title">8. Tus Derechos (Usuarios de la UE)</h2>
+        <p data-i18n="s8_p1">Según el RGPD, tienes derecho a:</p>
+        <ul data-i18n="s8_list">
+            <li>Acceder a tus datos</li>
+            <li>Corregir tus datos</li>
+            <li>Eliminar tus datos</li>
+            <li>Restringir u oponerte al procesamiento</li>
+        </ul>
+        <p data-i18n="s8_p2">Dado que los datos se almacenan localmente/iCloud:</p>
+        <p data-i18n="s8_p3">Puedes gestionar o eliminar tus datos directamente desde tu dispositivo o la configuración de iCloud.</p>
 
-        <h2>11. Contact</h2>
-        <p>If you have any questions about this Privacy Policy:</p>
+        <h2 data-i18n="s9_title">9. Privacidad Infantil</h2>
+        <p data-i18n="s9_p1">iSard <strong>no está destinado a usuarios menores de 16 años</strong>, y no recopilamos conscientemente datos de menores.</p>
+
+        <h2 data-i18n="s10_title">10. Cambios en Esta Política</h2>
+        <p data-i18n="s10_p1">Podemos actualizar esta Política de Privacidad periódicamente.</p>
+        <p data-i18n="s10_p2">Si realizamos cambios significativos, notificaremos a los usuarios a través de la app o actualizaremos la fecha anterior.</p>
+
+        <h2 data-i18n="s11_title">11. Contacto</h2>
+        <p data-i18n="s11_p1">Si tienes alguna pregunta sobre esta Política de Privacidad:</p>
         <p class="contact-email"><span id="contact-email-2"></span></p>
     </div>
 
     <footer>
         <a href="https://www.isard.app"><img src="/iSardLogoBlack.svg" alt="iSard" class="footer-logo"></a>
-        <a href="/privacy" class="privacy-link">Privacy Policy</a>
+        <a href="/privacy" class="privacy-link" data-i18n="footer_privacy">Política de Privacidad</a>
     </footer>
+
     <script>
         (function(){var u='hola',d='isard.app',e=u+'@'+d;
         document.querySelectorAll('[id^="contact-email"]').forEach(function(el){el.textContent=e;});})();
+    </script>
+    <script src="/js/i18n.js"></script>
+    <script>
+        i18nInit({
+            es: {
+                title: 'Política de Privacidad de iSard',
+                updated: 'Última actualización: abril 2026',
+                s1_title: '1. Introducción',
+                s1_p1: 'iSard es una aplicación móvil desarrollada por <strong>Guillem Bruix</strong> ("nosotros", "nos" o "nuestro"), con sede en la Unión Europea.',
+                s1_p2: 'Esta Política de Privacidad explica cómo recopilamos, utilizamos y protegemos tu información cuando usas la app iSard.',
+                s1_p3: 'Si tienes alguna pregunta, puedes contactarnos en:',
+                s2_title: '2. Datos que Recopilamos',
+                s2_intro: 'Solo recopilamos los datos necesarios para proporcionar la funcionalidad principal de la app.',
+                s2_1_title: '2.1 Datos de Ubicación',
+                s2_1_p1: 'Recopilamos tu <strong>ubicación GPS</strong> mientras usas la app.',
+                s2_1_p2: 'También podemos recopilar la ubicación <strong>en segundo plano</strong> cuando estás registrando una actividad.',
+                purpose: 'Finalidad:',
+                s2_1_list: '<li>Seguimiento de rutas</li><li>Cálculo de distancia, ritmo y métricas de actividad</li><li>Mostrar tu actividad en mapas</li>',
+                s2_2_title: '2.2 Datos de Actividad',
+                s2_2_p1: 'Almacenamos información relacionada con tus actividades, incluyendo:',
+                s2_2_list1: '<li>Distancia</li><li>Duración</li><li>Ritmo</li><li>Ruta (coordenadas GPS)</li>',
+                purpose2: 'Finalidad:',
+                s2_2_list2: '<li>Proporcionar funciones de seguimiento de actividades</li><li>Permitirte ver y editar tus actividades</li><li>Generar tarjetas compartibles y vídeos de repetición</li>',
+                s2_3_title: '2.3 Fotos',
+                s2_3_p1: 'La app puede solicitar acceso a tu biblioteca de fotos solo cuando elijas:',
+                s2_3_list: '<li>Guardar imágenes</li><li>Exportar contenido</li>',
+                purpose3: 'Finalidad:',
+                s2_3_list2: '<li>Guardar imágenes y vídeos generados en tu dispositivo</li>',
+                s2_4_title: '2.4 Grabación de Pantalla',
+                s2_4_p1: 'La app puede solicitar permiso para grabar tu pantalla al exportar vídeos de repetición.',
+                purpose4: 'Finalidad:',
+                s2_4_list1: '<li>Generar un vídeo de la repetición de tu actividad</li>',
+                s2_4_p2: 'La grabación de pantalla:',
+                s2_4_list2: '<li>Solo se activa con tu acción explícita</li><li>Se usa únicamente durante el proceso de exportación</li><li>No es almacenada por nosotros</li>',
+                s2_5_title: '2.5 Datos de Fallos',
+                s2_5_p1: 'Podemos recibir informes anónimos de fallos a través de Apple.',
+                purpose5: 'Finalidad:',
+                s2_5_list: '<li>Mejorar la estabilidad y el rendimiento de la app</li>',
+                s2_6_title: '2.6 Información del Dispositivo',
+                s2_6_p1: 'La información básica del dispositivo (como el modelo y la versión del sistema operativo) puede ser procesada por Apple como parte de los servicios del sistema.',
+                s3_title: '3. Almacenamiento de Datos',
+                s3_p1: 'Tus datos se almacenan:',
+                s3_list1: '<li>En tu dispositivo</li><li>En tu cuenta personal de iCloud (a través de los servicios de Apple)</li>',
+                s3_p2: 'No almacenamos tus datos en nuestros propios servidores.',
+                s3_p3: 'Esto significa:',
+                s3_list2: '<li>Tú mantienes el control de tus datos</li><li>Los datos se gestionan bajo los estándares de privacidad y seguridad de Apple</li>',
+                s4_title: '4. Servicios de Terceros',
+                s4_p1: 'Solo dependemos de los servicios de Apple:',
+                s4_list1: '<li>Apple iCloud → sincronización de datos</li><li>Apple Maps → visualización de mapas</li><li>Apple Health Data → Si eliges activar la importación de Apple Health, iSard puede leer datos de entrenamiento de Apple Health, incluyendo tipo de entrenamiento, duración, distancia, datos de ubicación de la ruta, energía activa y frecuencia cardíaca cuando esté disponible. Estos datos se usan únicamente para importar tus entrenamientos de Apple Fitness / Apple Watch en iSard para que puedas verlos, diseñar tarjetas de actividad y generar vídeos de repetición. iSard no vende ni comparte datos de Apple Health con terceros. Los datos de salud se almacenan localmente en tu dispositivo y pueden sincronizarse a través de tu cuenta personal de iCloud si la sincronización de iCloud está activada.</li><li>Servicios del sistema Apple → informes de fallos</li>',
+                s4_p2: 'No utilizamos:',
+                s4_list2: '<li>Analítica de terceros (p. ej., Firebase, AppsFlyer)</li><li>Redes publicitarias</li>',
+                s5_title: '5. Base Legal (RGPD)',
+                s5_p1: 'Según el Reglamento General de Protección de Datos (RGPD), procesamos tus datos en base a:',
+                s5_list: '<li><strong>Consentimiento</strong> → para permisos (ubicación, fotos, grabación de pantalla)</li><li><strong>Necesidad contractual</strong> → para proporcionar la funcionalidad principal de la app</li>',
+                s6_title: '6. Compartición de Datos',
+                s6_p1: 'No vendemos, alquilamos ni compartimos tus datos personales con terceros.',
+                s6_p2: 'Tus datos permanecen:',
+                s6_list: '<li>En tu dispositivo</li><li>Dentro de tu cuenta de Apple iCloud</li>',
+                s7_title: '7. Retención de Datos',
+                s7_p1: 'Tus datos se almacenan:',
+                s7_list: '<li>Hasta que los elimines de la app</li><li>O los elimines de tu cuenta de iCloud</li>',
+                s7_p2: 'Tú tienes el control total de la eliminación.',
+                s8_title: '8. Tus Derechos (Usuarios de la UE)',
+                s8_p1: 'Según el RGPD, tienes derecho a:',
+                s8_list: '<li>Acceder a tus datos</li><li>Corregir tus datos</li><li>Eliminar tus datos</li><li>Restringir u oponerte al procesamiento</li>',
+                s8_p2: 'Dado que los datos se almacenan localmente/iCloud:',
+                s8_p3: 'Puedes gestionar o eliminar tus datos directamente desde tu dispositivo o la configuración de iCloud.',
+                s9_title: '9. Privacidad Infantil',
+                s9_p1: 'iSard <strong>no está destinado a usuarios menores de 16 años</strong>, y no recopilamos conscientemente datos de menores.',
+                s10_title: '10. Cambios en Esta Política',
+                s10_p1: 'Podemos actualizar esta Política de Privacidad periódicamente.',
+                s10_p2: 'Si realizamos cambios significativos, notificaremos a los usuarios a través de la app o actualizaremos la fecha anterior.',
+                s11_title: '11. Contacto',
+                s11_p1: 'Si tienes alguna pregunta sobre esta Política de Privacidad:',
+                footer_privacy: 'Política de Privacidad'
+            },
+            ca: {
+                title: 'Política de Privacitat d\'iSard',
+                updated: 'Última actualització: abril 2026',
+                s1_title: '1. Introducció',
+                s1_p1: 'iSard és una aplicació mòbil desenvolupada per <strong>Guillem Bruix</strong> ("nosaltres", "ens" o "nostre"), amb seu a la Unió Europea.',
+                s1_p2: 'Aquesta Política de Privacitat explica com recopilem, utilitzem i protegim la teva informació quan fas servir l\'app iSard.',
+                s1_p3: 'Si tens alguna pregunta, pots contactar-nos a:',
+                s2_title: '2. Dades que Recopilem',
+                s2_intro: 'Només recopilem les dades necessàries per proporcionar la funcionalitat principal de l\'app.',
+                s2_1_title: '2.1 Dades d\'Ubicació',
+                s2_1_p1: 'Recopilem la teva <strong>ubicació GPS</strong> mentre fas servir l\'app.',
+                s2_1_p2: 'També podem recopilar la ubicació <strong>en segon pla</strong> quan estàs registrant una activitat.',
+                purpose: 'Finalitat:',
+                s2_1_list: '<li>Seguiment de rutes</li><li>Càlcul de distància, ritme i mètriques d\'activitat</li><li>Mostrar la teva activitat en mapes</li>',
+                s2_2_title: '2.2 Dades d\'Activitat',
+                s2_2_p1: 'Emmagatzemem informació relacionada amb les teves activitats, incloent:',
+                s2_2_list1: '<li>Distància</li><li>Durada</li><li>Ritme</li><li>Ruta (coordenades GPS)</li>',
+                purpose2: 'Finalitat:',
+                s2_2_list2: '<li>Proporcionar funcions de seguiment d\'activitats</li><li>Permetre\'t veure i editar les teves activitats</li><li>Generar targetes compartibles i vídeos de repetició</li>',
+                s2_3_title: '2.3 Fotos',
+                s2_3_p1: 'L\'app pot sol·licitar accés a la teva biblioteca de fotos només quan triïs:',
+                s2_3_list: '<li>Guardar imatges</li><li>Exportar contingut</li>',
+                purpose3: 'Finalitat:',
+                s2_3_list2: '<li>Guardar imatges i vídeos generats al teu dispositiu</li>',
+                s2_4_title: '2.4 Gravació de Pantalla',
+                s2_4_p1: 'L\'app pot sol·licitar permís per gravar la teva pantalla en exportar vídeos de repetició.',
+                purpose4: 'Finalitat:',
+                s2_4_list1: '<li>Generar un vídeo de la repetició de la teva activitat</li>',
+                s2_4_p2: 'La gravació de pantalla:',
+                s2_4_list2: '<li>Només s\'activa amb la teva acció explícita</li><li>S\'usa únicament durant el procés d\'exportació</li><li>No és emmagatzemada per nosaltres</li>',
+                s2_5_title: '2.5 Dades d\'Errors',
+                s2_5_p1: 'Podem rebre informes anònims d\'errors a través d\'Apple.',
+                purpose5: 'Finalitat:',
+                s2_5_list: '<li>Millorar l\'estabilitat i el rendiment de l\'app</li>',
+                s2_6_title: '2.6 Informació del Dispositiu',
+                s2_6_p1: 'La informació bàsica del dispositiu (com el model i la versió del sistema operatiu) pot ser processada per Apple com a part dels serveis del sistema.',
+                s3_title: '3. Emmagatzematge de Dades',
+                s3_p1: 'Les teves dades s\'emmagatzemen:',
+                s3_list1: '<li>Al teu dispositiu</li><li>Al teu compte personal d\'iCloud (a través dels serveis d\'Apple)</li>',
+                s3_p2: 'No emmagatzemem les teves dades als nostres propis servidors.',
+                s3_p3: 'Això significa:',
+                s3_list2: '<li>Tu mantens el control de les teves dades</li><li>Les dades es gestionen sota els estàndards de privacitat i seguretat d\'Apple</li>',
+                s4_title: '4. Serveis de Tercers',
+                s4_p1: 'Només depenem dels serveis d\'Apple:',
+                s4_list1: '<li>Apple iCloud → sincronització de dades</li><li>Apple Maps → visualització de mapes</li><li>Apple Health Data → Si tries activar la importació d\'Apple Health, iSard pot llegir dades d\'entrenament d\'Apple Health, incloent tipus d\'entrenament, durada, distància, dades d\'ubicació de la ruta, energia activa i freqüència cardíaca quan estigui disponible. Aquestes dades s\'usen únicament per importar els teus entrenaments d\'Apple Fitness / Apple Watch a iSard perquè puguis veure\'ls, dissenyar targetes d\'activitat i generar vídeos de repetició. iSard no ven ni comparteix dades d\'Apple Health amb tercers. Les dades de salut s\'emmagatzemen localment al teu dispositiu i es poden sincronitzar a través del teu compte personal d\'iCloud si la sincronització d\'iCloud està activada.</li><li>Serveis del sistema Apple → informes d\'errors</li>',
+                s4_p2: 'No utilitzem:',
+                s4_list2: '<li>Analítica de tercers (p. ex., Firebase, AppsFlyer)</li><li>Xarxes publicitàries</li>',
+                s5_title: '5. Base Legal (RGPD)',
+                s5_p1: 'Segons el Reglament General de Protecció de Dades (RGPD), processem les teves dades en base a:',
+                s5_list: '<li><strong>Consentiment</strong> → per a permisos (ubicació, fotos, gravació de pantalla)</li><li><strong>Necessitat contractual</strong> → per proporcionar la funcionalitat principal de l\'app</li>',
+                s6_title: '6. Compartició de Dades',
+                s6_p1: 'No venem, lloguem ni compartim les teves dades personals amb tercers.',
+                s6_p2: 'Les teves dades romanen:',
+                s6_list: '<li>Al teu dispositiu</li><li>Dins del teu compte d\'Apple iCloud</li>',
+                s7_title: '7. Retenció de Dades',
+                s7_p1: 'Les teves dades s\'emmagatzemen:',
+                s7_list: '<li>Fins que les eliminis de l\'app</li><li>O les eliminis del teu compte d\'iCloud</li>',
+                s7_p2: 'Tu tens el control total de l\'eliminació.',
+                s8_title: '8. Els Teus Drets (Usuaris de la UE)',
+                s8_p1: 'Segons el RGPD, tens dret a:',
+                s8_list: '<li>Accedir a les teves dades</li><li>Corregir les teves dades</li><li>Eliminar les teves dades</li><li>Restringir o oposar-te al processament</li>',
+                s8_p2: 'Atès que les dades s\'emmagatzemen localment/iCloud:',
+                s8_p3: 'Pots gestionar o eliminar les teves dades directament des del teu dispositiu o la configuració d\'iCloud.',
+                s9_title: '9. Privacitat Infantil',
+                s9_p1: 'iSard <strong>no està destinat a usuaris menors de 16 anys</strong>, i no recopilem conscientment dades de menors.',
+                s10_title: '10. Canvis en Aquesta Política',
+                s10_p1: 'Podem actualitzar aquesta Política de Privacitat periòdicament.',
+                s10_p2: 'Si realitzem canvis significatius, notificarem als usuaris a través de l\'app o actualitzarem la data anterior.',
+                s11_title: '11. Contacte',
+                s11_p1: 'Si tens alguna pregunta sobre aquesta Política de Privacitat:',
+                footer_privacy: 'Política de Privacitat'
+            },
+            en: {
+                title: 'iSard Privacy Policy',
+                updated: 'Last updated: April 2026',
+                s1_title: '1. Introduction',
+                s1_p1: 'iSard is a mobile application developed by <strong>Guillem Bruix</strong> ("we", "us", or "our"), based in the European Union.',
+                s1_p2: 'This Privacy Policy explains how we collect, use, and protect your information when you use the iSard app.',
+                s1_p3: 'If you have any questions, you can contact us at:',
+                s2_title: '2. Data We Collect',
+                s2_intro: 'We only collect data that is necessary to provide the core functionality of the app.',
+                s2_1_title: '2.1 Location Data',
+                s2_1_p1: 'We collect your <strong>GPS location</strong> while using the app.',
+                s2_1_p2: 'We may also collect location <strong>in the background</strong> when you are recording an activity.',
+                purpose: 'Purpose:',
+                s2_1_list: '<li>Track routes</li><li>Calculate distance, pace, and activity metrics</li><li>Display your activity on maps</li>',
+                s2_2_title: '2.2 Activity Data',
+                s2_2_p1: 'We store information related to your activities, including:',
+                s2_2_list1: '<li>Distance</li><li>Duration</li><li>Pace</li><li>Route (GPS coordinates)</li>',
+                purpose2: 'Purpose:',
+                s2_2_list2: '<li>Provide activity tracking features</li><li>Allow you to view and edit your activities</li><li>Generate shareable cards and replay videos</li>',
+                s2_3_title: '2.3 Photos',
+                s2_3_p1: 'The app may request access to your photo library only when you choose to:',
+                s2_3_list: '<li>Save images</li><li>Export content</li>',
+                purpose3: 'Purpose:',
+                s2_3_list2: '<li>Save generated images and videos to your device</li>',
+                s2_4_title: '2.4 Screen Recording',
+                s2_4_p1: 'The app may request permission to record your screen when exporting replay videos.',
+                purpose4: 'Purpose:',
+                s2_4_list1: '<li>Generate a video of your activity replay</li>',
+                s2_4_p2: 'Screen recording is:',
+                s2_4_list2: '<li>Only activated with your explicit action</li><li>Used only during the export process</li><li>Not stored by us</li>',
+                s2_5_title: '2.5 Crash Data',
+                s2_5_p1: 'We may receive anonymous crash reports via Apple.',
+                purpose5: 'Purpose:',
+                s2_5_list: '<li>Improve app stability and performance</li>',
+                s2_6_title: '2.6 Device Information',
+                s2_6_p1: 'Basic device information (such as device model and OS version) may be processed by Apple as part of system services.',
+                s3_title: '3. Data Storage',
+                s3_p1: 'Your data is stored:',
+                s3_list1: '<li>On your device</li><li>In your personal iCloud account (via Apple services)</li>',
+                s3_p2: 'We do not store your data on our own servers.',
+                s3_p3: 'This means:',
+                s3_list2: '<li>You retain control of your data</li><li>Data is managed under Apple\'s privacy and security standards</li>',
+                s4_title: '4. Third-Party Services',
+                s4_p1: 'We rely only on Apple services:',
+                s4_list1: '<li>Apple iCloud → data synchronization</li><li>Apple Maps → map display</li><li>Apple Health Data → If you choose to enable Apple Health import, iSard may read workout data from Apple Health, including workout type, duration, distance, route location data, active energy, and heart rate when available. This data is used only to import your Apple Fitness / Apple Watch workouts into iSard so you can view them, design activity cards, and generate replay videos. iSard does not sell or share Apple Health data with third parties. Health data is stored locally on your device and may sync through your personal iCloud account if iCloud sync is enabled.</li><li>Apple system services → crash reporting</li>',
+                s4_p2: 'We do not use:',
+                s4_list2: '<li>Third-party analytics (e.g., Firebase, AppsFlyer)</li><li>Advertising networks</li>',
+                s5_title: '5. Legal Basis (GDPR)',
+                s5_p1: 'Under the General Data Protection Regulation (GDPR), we process your data based on:',
+                s5_list: '<li><strong>Consent</strong> → for permissions (location, photos, screen recording)</li><li><strong>Contractual necessity</strong> → to provide core app functionality</li>',
+                s6_title: '6. Data Sharing',
+                s6_p1: 'We do not sell, rent, or share your personal data with third parties.',
+                s6_p2: 'Your data remains:',
+                s6_list: '<li>On your device</li><li>Within your Apple iCloud account</li>',
+                s7_title: '7. Data Retention',
+                s7_p1: 'Your data is stored:',
+                s7_list: '<li>Until you delete it from the app</li><li>Or remove it from your iCloud account</li>',
+                s7_p2: 'You are in full control of deletion.',
+                s8_title: '8. Your Rights (EU Users)',
+                s8_p1: 'Under GDPR, you have the right to:',
+                s8_list: '<li>Access your data</li><li>Correct your data</li><li>Delete your data</li><li>Restrict or object to processing</li>',
+                s8_p2: 'Since data is stored locally/iCloud:',
+                s8_p3: 'You can manage or delete it directly from your device or iCloud settings.',
+                s9_title: '9. Children\'s Privacy',
+                s9_p1: 'iSard is <strong>not intended for users under 16 years of age</strong>, and we do not knowingly collect data from children.',
+                s10_title: '10. Changes to This Policy',
+                s10_p1: 'We may update this Privacy Policy from time to time.',
+                s10_p2: 'If we make significant changes, we will notify users through the app or update the date above.',
+                s11_title: '11. Contact',
+                s11_p1: 'If you have any questions about this Privacy Policy:',
+                footer_privacy: 'Privacy Policy'
+            }
+        });
     </script>
 </body>
 </html>

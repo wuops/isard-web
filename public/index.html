@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,10 +23,34 @@
             align-items: center;
         }
 
+        .lang-nav {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 12px 24px 0;
+        }
+
+        .lang-select {
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+            color: #1a1a2e;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .lang-select:hover {
+            border-color: #999;
+        }
+
         .container {
             max-width: 700px;
             width: 100%;
-            padding: 60px 24px 40px;
+            padding: 20px 24px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -97,7 +121,7 @@
 
         @media (max-width: 600px) {
             .container {
-                padding: 40px 16px 32px;
+                padding: 20px 16px 32px;
             }
 
             .app-icon {
@@ -124,10 +148,10 @@
     <div class="container">
         <img src="/iSard_icon.png" alt="iSard App Icon" class="app-icon">
         <h1>iSard App</h1>
-        <p class="tagline">
-            iSard is a running, hiking and cycling tracker app that let you
-            record workout activities, design shareable cards, and export
-            replay 3D animation videos of your routes.
+        <p class="tagline" data-i18n="tagline">
+            iSard es una app de running, senderismo y ciclismo que te permite
+            registrar actividades deportivas, diseñar tarjetas compartibles y
+            exportar vídeos de animación 3D de tus rutas.
         </p>
         <div class="form-card">
             <iframe
@@ -144,8 +168,26 @@
 
     <footer>
         <a href="https://www.isard.app"><img src="/iSardLogoBlack.svg" alt="iSard" class="footer-logo"></a>
-        <a href="/privacy" class="privacy-link">Privacy Policy</a>
+        <a href="/privacy" class="privacy-link" data-i18n="privacy">Política de Privacidad</a>
     </footer>
+
+    <script src="/js/i18n.js"></script>
+    <script>
+        i18nInit({
+            es: {
+                tagline: 'iSard es una app de running, senderismo y ciclismo que te permite registrar actividades deportivas, diseñar tarjetas compartibles y exportar vídeos de animación 3D de tus rutas.',
+                privacy: 'Política de Privacidad'
+            },
+            ca: {
+                tagline: 'iSard és una app de running, senderisme i ciclisme que et permet registrar activitats esportives, dissenyar targetes compartibles i exportar vídeos d\'animació 3D de les teves rutes.',
+                privacy: 'Política de Privacitat'
+            },
+            en: {
+                tagline: 'iSard is a running, hiking and cycling tracker app that lets you record workout activities, design shareable cards, and export replay 3D animation videos of your routes.',
+                privacy: 'Privacy Policy'
+            }
+        });
+    </script>
 
     <!-- Brevo Conversations -->
     <script>

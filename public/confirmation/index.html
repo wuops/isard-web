@@ -19,64 +19,115 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
 
-        .container {
-            max-width: 600px;
-            width: 100%;
-            padding: 60px 24px;
+        .content {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
             text-align: center;
         }
 
         .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 24px;
-            margin-bottom: 24px;
+            width: 140px;
+            height: 140px;
+            border-radius: 28px;
+            margin-bottom: 32px;
         }
 
         h1 {
             font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: 40px;
+        }
+
+        .success {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 32px;
         }
 
         .message {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.6;
-            margin-bottom: 32px;
+            margin-bottom: 8px;
             color: #444;
         }
 
-        .back-link {
-            display: inline-block;
-            background: #1a1a2e;
-            color: #fff;
-            text-decoration: none;
-            padding: 14px 32px;
-            border-radius: 8px;
+        .testflight-link {
             font-size: 1rem;
-            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 32px;
         }
 
-        .back-link:hover {
-            background: #2a2a4e;
+        .testflight-link a {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        .testflight-link a:hover {
+            color: #1d4ed8;
+        }
+
+        footer {
+            border-top: 1px solid #ccc;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            height: 32px;
+            width: auto;
+        }
+
+        .privacy-link {
+            color: #1a1a2e;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .privacy-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .app-icon {
+                width: 100px;
+                height: 100px;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .success {
+                font-size: 1.1rem;
+            }
+
+            footer {
+                padding: 20px 24px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="content">
         <img src="/iSard_icon.png" alt="iSard App Icon" class="app-icon">
-        <h1>You're all set!</h1>
-        <p class="message">
-            Your subscription has been confirmed. Check your inbox for the TestFlight link to download iSard.
-        </p>
-        <a href="/" class="back-link">Back to iSard.app</a>
+        <h1>Thank you for subscribing!</h1>
+        <p class="success">&#x2705; You have subscribed successfully</p>
+        <p class="message">Here is the TestFlight link to download iSard app beta version:</p>
+        <p class="testflight-link">&#x1F449; <a href="https://testflight.apple.com/join/sGNujsQW">https://testflight.apple.com/join/sGNujsQW</a></p>
     </div>
+    <footer>
+        <img src="/iSardLogoBlack.svg" alt="iSard" class="footer-logo">
+        <a href="/privacy" class="privacy-link">Privacy Policy</a>
+    </footer>
 </body>
 </html>

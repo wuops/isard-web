@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iSard App — Running, Hiking & Cycling Tracker</title>
+    <meta name="description" content="iSard is a running, hiking and cycling tracker app that let you record workout activities, design shareable cards, and export replay 3D animation videos of your routes.">
+    <link rel="icon" type="image/png" href="/iSard_icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #e8eaf0;
+            color: #1a1a2e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            padding: 60px 24px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .app-icon {
+            width: 160px;
+            height: 160px;
+            border-radius: 32px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .tagline {
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 580px;
+        }
+
+        .form-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 0;
+            width: 100%;
+            max-width: 580px;
+            overflow: hidden;
+        }
+
+        .form-card iframe {
+            display: block;
+            width: 100%;
+            border: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 16px 32px;
+            }
+
+            .app-icon {
+                width: 120px;
+                height: 120px;
+                border-radius: 24px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/iSard_icon.png" alt="iSard App Icon" class="app-icon">
+        <h1>iSard App</h1>
+        <p class="tagline">
+            iSard is a running, hiking and cycling tracker app that let you
+            record workout activities, design shareable cards, and export
+            replay 3D animation videos of your routes.
+        </p>
+        <div class="form-card">
+            <iframe
+                width="540"
+                height="805"
+                src="https://e9c1e8e2.sibforms.com/serve/MUIFAEQVtlT1--gMGkHq44Ep6zGqHG-XMFOiy08_Z8tf2Ghv_4Gc3i5En8jbsJT7T8SLE9PwWtcs1PGt-LYy2R3juq5wZ9w-84OJR2IsmNdefszBpW_OEuZ5OeUJOl6DdzHRFby5UuTNodC22vCRc8BtnBJ-kbqDOYaaBL8Pcm9NT2_MLLOvkZ7nwA86tZ0gd0wg5DcUWAfqT_YCuQ=="
+                frameborder="0"
+                scrolling="auto"
+                allowfullscreen
+                style="display:block;margin-left:auto;margin-right:auto;max-width:100%;"
+            ></iframe>
+        </div>
+    </div>
+
+    <!-- Brevo Conversations -->
+    <script>
+        (function(d, w, c) {
+            w.BrevoConversationsID = '69e161ed30e28454ca00bd4d';
+            w[c] = w[c] || function() {
+                (w[c].q = w[c].q || []).push(arguments);
+            };
+            var s = d.createElement('script');
+            s.async = true;
+            s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
+            if (d.head) d.head.appendChild(s);
+        })(document, window, 'BrevoConversations');
+    </script>
+</body>
+</html>

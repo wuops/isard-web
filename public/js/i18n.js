@@ -50,11 +50,15 @@
 
     var target = document.querySelector('.header-lang');
     if (target) {
+      var langLabels = { es: 'Idioma:', ca: 'Idioma:', en: 'Language:' };
       var label = document.createElement('span');
       label.className = 'lang-label';
-      label.textContent = 'Language:';
+      label.textContent = langLabels[lang] || langLabels[DEFAULT];
       target.appendChild(label);
       target.appendChild(select);
+      select.addEventListener('change', function () {
+        label.textContent = langLabels[this.value] || langLabels[DEFAULT];
+      });
     } else {
       var nav = document.createElement('nav');
       nav.className = 'lang-nav';

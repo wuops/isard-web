@@ -6,6 +6,7 @@
     <title>iSard App — Running, Hiking & Cycling Tracker</title>
     <meta name="description" content="iSard is a running, hiking and cycling tracker app that let you record workout activities, design shareable cards, and export replay 3D animation videos of your routes.">
     <link rel="icon" type="image/png" href="/iSard_icon.png">
+    <link rel="stylesheet" href="/css/header.css">
     <style>
         * {
             margin: 0;
@@ -23,34 +24,10 @@
             align-items: center;
         }
 
-        .lang-nav {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            padding: 12px 24px 0;
-        }
-
-        .lang-select {
-            font-family: inherit;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 6px 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            background: #fff;
-            color: #1a1a2e;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .lang-select:hover {
-            border-color: #999;
-        }
-
         .container {
             max-width: 700px;
             width: 100%;
-            padding: 20px 24px 40px;
+            padding: 40px 24px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -330,6 +307,7 @@
         <a href="/privacy" class="privacy-link" data-i18n="privacy">Política de Privacidad</a>
     </footer>
 
+    <script src="/js/header.js"></script>
     <script src="/js/i18n.js"></script>
     <script>
         i18nInit({

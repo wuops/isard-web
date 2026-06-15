@@ -30,8 +30,6 @@
 
   function createSelector() {
     var lang = getLang();
-    var nav = document.createElement('nav');
-    nav.className = 'lang-nav';
     var select = document.createElement('select');
     select.className = 'lang-select';
     select.setAttribute('aria-label', 'Language');
@@ -46,10 +44,19 @@
     select.addEventListener('change', function () {
       setLang(this.value);
       applyTranslations(window.__i18n, this.value);
+      if (window.headerUpdateLang) window.headerUpdateLang(this.value);
       if (window.onLangChange) window.onLangChange(this.value);
     });
-    nav.appendChild(select);
-    document.body.insertBefore(nav, document.body.firstChild);
+
+    var target = document.querySelector('.header-lang');
+    if (target) {
+      target.appendChild(select);
+    } else {
+      var nav = document.createElement('nav');
+      nav.className = 'lang-nav';
+      nav.appendChild(select);
+      document.body.insertBefore(nav, document.body.firstChild);
+    }
   }
 
   function init(translations) {

@@ -1,0 +1,118 @@
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+}
+
+.header-logo img {
+    height: 28px;
+    width: auto;
+    display: block;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1a1a2e;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.header-lang .lang-select {
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    color: #1a1a2e;
+    cursor: pointer;
+    outline: none;
+}
+
+.header-lang .lang-select:hover {
+    border-color: #999;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #1a1a2e;
+    border-radius: 2px;
+    transition: 0.2s;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 600px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .header-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-bottom: 1px solid #e0e0e0;
+        flex-direction: column;
+        padding: 16px 24px;
+        gap: 16px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+    }
+
+    .header-nav.open {
+        display: flex;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        padding: 4px 0;
+    }
+}

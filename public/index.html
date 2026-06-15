@@ -119,6 +119,66 @@
             text-decoration: underline;
         }
 
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-top: 1px solid #ccc;
+            padding: 16px 24px;
+            z-index: 9999;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+        }
+
+        .cookie-content {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .cookie-content p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #444;
+            margin: 0;
+        }
+
+        .cookie-content a {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .cookie-accept, .cookie-reject {
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cookie-accept {
+            background: #1a1a2e;
+            color: #fff;
+        }
+
+        .cookie-reject {
+            background: transparent;
+            color: #666;
+            border: 1px solid #ccc;
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 20px 16px 32px;
@@ -140,6 +200,11 @@
 
             footer {
                 padding: 20px 24px;
+            }
+
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
@@ -189,18 +254,6 @@
         });
     </script>
 
-    <!-- Brevo Conversations -->
-    <script>
-        (function(d, w, c) {
-            w.BrevoConversationsID = '69e161ed30e28454ca00bd4d';
-            w[c] = w[c] || function() {
-                (w[c].q = w[c].q || []).push(arguments);
-            };
-            var s = d.createElement('script');
-            s.async = true;
-            s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
-            if (d.head) d.head.appendChild(s);
-        })(document, window, 'BrevoConversations');
-    </script>
+    <script src="/js/cookies.js"></script>
 </body>
 </html>

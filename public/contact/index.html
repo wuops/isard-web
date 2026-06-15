@@ -63,14 +63,24 @@
             text-decoration: underline;
         }
 
-        .chat-container {
+        #chat-area {
             width: 100%;
             max-width: 800px;
+        }
+
+        .chat-container {
+            width: 100%;
             height: 580px;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             background: #fff;
+        }
+
+        #conversations-wrapper iframe {
+            width: 100% !important;
+            min-width: 100% !important;
+            height: 100% !important;
         }
 
         .chat-consent {
@@ -293,8 +303,11 @@
                 font-size: 1.4rem;
             }
 
-            .chat-container {
+            #chat-area {
                 max-width: 100%;
+            }
+
+            .chat-container {
                 height: 460px;
                 border-radius: 0;
             }
@@ -371,6 +384,19 @@
             s.async = true;
             s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
             document.head.appendChild(s);
+
+            var container = document.getElementById('conversations-wrapper');
+            var observer = new MutationObserver(function() {
+                container.style.width = '100%';
+                container.style.minWidth = '100%';
+                var iframe = container.querySelector('iframe');
+                if (iframe) {
+                    iframe.style.width = '100%';
+                    iframe.style.minWidth = '100%';
+                    iframe.style.height = '100%';
+                }
+            });
+            observer.observe(container, { childList: true, subtree: true, attributes: true });
         }
 
         function showConsentBox() {

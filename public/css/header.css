@@ -39,6 +39,17 @@
     text-decoration: underline;
 }
 
+.header-lang {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.header-lang .lang-label {
+    font-size: 0.85rem;
+    color: #666;
+}
+
 .header-lang .lang-select {
     font-family: inherit;
     font-size: 0.85rem;

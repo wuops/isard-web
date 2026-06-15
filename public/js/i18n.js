@@ -50,6 +50,10 @@
 
     var target = document.querySelector('.header-lang');
     if (target) {
+      var label = document.createElement('span');
+      label.className = 'lang-label';
+      label.textContent = 'Language:';
+      target.appendChild(label);
       target.appendChild(select);
     } else {
       var nav = document.createElement('nav');

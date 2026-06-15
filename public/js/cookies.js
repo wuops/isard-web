@@ -126,6 +126,17 @@
     });
   }
 
+  function rebuildBanner(lang) {
+    var existing = document.querySelector('.cookie-banner');
+    if (!existing) return;
+    existing.remove();
+    showBanner();
+  }
+
+  window.onLangChange = function (lang) {
+    rebuildBanner(lang);
+  };
+
   var consent = getConsent();
   if (consent === 'accepted') {
     loadBrevo();

@@ -46,6 +46,7 @@
     select.addEventListener('change', function () {
       setLang(this.value);
       applyTranslations(window.__i18n, this.value);
+      if (window.onLangChange) window.onLangChange(this.value);
     });
     nav.appendChild(select);
     document.body.insertBefore(nav, document.body.firstChild);

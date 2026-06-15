@@ -24,18 +24,13 @@
         '</button>' +
         '<nav class="header-nav">' +
           '<a href="/" class="nav-link" data-nav="home">' + t.home + '</a>' +
-          '<a href="mailto:" class="nav-link" id="nav-contact" data-nav="contact">' + t.contact + '</a>' +
+          '<a href="/contact" class="nav-link" data-nav="contact">' + t.contact + '</a>' +
           '<a href="/privacy" class="nav-link" data-nav="privacy">' + t.privacy + '</a>' +
           '<div class="header-lang"></div>' +
         '</nav>' +
       '</div>';
 
     document.body.insertBefore(header, document.body.firstChild);
-
-    // Obfuscate contact email
-    var contactLink = document.getElementById('nav-contact');
-    var u = 'hola', d = 'isard.app';
-    contactLink.href = 'mai' + 'lto:' + u + '@' + d;
 
     // Hamburger toggle
     var hamburger = header.querySelector('.hamburger');

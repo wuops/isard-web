@@ -27,6 +27,7 @@
           '<a href="/contact" class="nav-link" data-nav="contact">' + t.contact + '</a>' +
           '<a href="/privacy" class="nav-link" data-nav="privacy">' + t.privacy + '</a>' +
           '<div class="header-lang"></div>' +
+          '<button class="theme-toggle" onclick="themeToggle()" aria-label="Toggle theme"><span class="theme-toggle-icon"></span></button>' +
         '</nav>' +
       '</div>';
 

@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact — iSard App</title>
     <link rel="icon" type="image/png" href="/iSard_icon.png">
+    <link rel="stylesheet" href="/css/theme.css">
     <link rel="stylesheet" href="/css/header.css">
+    <script src="/js/theme.js"></script>
     <style>
         * {
             margin: 0;
@@ -15,8 +17,8 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #EFF2F7;
-            color: #1a1a2e;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -39,7 +41,7 @@
 
         .subtitle {
             font-size: 1rem;
-            color: #444;
+            color: var(--text-secondary);
             margin-bottom: 32px;
             text-align: center;
             max-width: 480px;
@@ -48,13 +50,13 @@
 
         .email-line {
             font-size: 0.95rem;
-            color: #666;
+            color: var(--text-muted);
             margin-bottom: 32px;
             text-align: center;
         }
 
         .email-line a {
-            color: #1a1a2e;
+            color: var(--text-primary);
             font-weight: 600;
             text-decoration: none;
         }
@@ -73,8 +75,8 @@
             height: 580px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            background: #fff;
+            box-shadow: 0 2px 12px var(--shadow);
+            background: var(--bg-surface);
         }
 
         #conversations-wrapper iframe {
@@ -86,17 +88,17 @@
         .chat-consent {
             width: 100%;
             max-width: 800px;
-            background: #fff;
+            background: var(--bg-surface);
             border-radius: 12px;
             padding: 40px 32px;
             text-align: center;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 12px var(--shadow);
         }
 
         .chat-consent p {
             font-size: 0.95rem;
             line-height: 1.6;
-            color: #444;
+            color: var(--text-secondary);
             margin-bottom: 20px;
         }
 
@@ -107,17 +109,17 @@
             padding: 12px 28px;
             border-radius: 8px;
             border: none;
-            background: #1a1a2e;
-            color: #fff;
+            background: var(--btn-bg);
+            color: var(--btn-text);
             cursor: pointer;
         }
 
         .chat-consent button:hover {
-            background: #2a2a4e;
+            background: var(--btn-hover);
         }
 
         footer {
-            border-top: 1px solid #ccc;
+            border-top: 1px solid var(--border-color);
             padding: 24px 40px 80px;
             display: flex;
             justify-content: space-between;
@@ -130,7 +132,7 @@
         }
 
         .privacy-link {
-            color: #1a1a2e;
+            color: var(--text-primary);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
@@ -145,11 +147,11 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: #fff;
-            border-top: 1px solid #e0e0e0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-light);
             padding: 16px 24px;
             z-index: 9999;
-            box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 -2px 8px var(--shadow);
         }
 
         .cookie-content {
@@ -164,12 +166,12 @@
         .cookie-content p {
             font-size: 0.85rem;
             line-height: 1.5;
-            color: #444;
+            color: var(--text-secondary);
             margin: 0;
         }
 
         .cookie-content a {
-            color: #1a1a2e;
+            color: var(--text-primary);
             text-decoration: underline;
         }
 
@@ -189,19 +191,19 @@
         }
 
         .cookie-accept {
-            background: #1a1a2e;
-            color: #fff;
+            background: var(--btn-bg);
+            color: var(--btn-text);
             border: none;
         }
 
         .cookie-settings-btn {
             background: transparent;
-            color: #1a1a2e;
-            border: 1px solid #ccc;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
         }
 
         .cookie-settings-btn:hover {
-            border-color: #999;
+            border-color: var(--text-muted);
         }
 
         .cookie-settings-content {
@@ -237,7 +239,7 @@
 
         .cookie-option-desc {
             font-size: 0.8rem;
-            color: #666;
+            color: var(--text-muted);
         }
 
         .cookie-toggle {
@@ -257,7 +259,7 @@
             position: absolute;
             cursor: pointer;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #ccc;
+            background-color: var(--toggle-slider-bg);
             border-radius: 24px;
             transition: 0.2s;
         }
@@ -269,13 +271,13 @@
             width: 18px;
             left: 3px;
             bottom: 3px;
-            background-color: #fff;
+            background-color: var(--bg-surface);
             border-radius: 50%;
             transition: 0.2s;
         }
 
         .cookie-toggle input:checked + .cookie-slider {
-            background-color: #2563eb;
+            background-color: var(--accent);
         }
 
         .cookie-toggle input:checked + .cookie-slider::before {
@@ -289,8 +291,8 @@
 
         .cookie-save {
             margin-top: 12px;
-            background: #1a1a2e;
-            color: #fff;
+            background: var(--btn-bg);
+            color: var(--btn-text);
             border: none;
         }
 

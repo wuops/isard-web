@@ -15,9 +15,14 @@
             background: #000;
         }
 
+        /* The form lives in a cross-origin iframe, so its internal padding
+           (.sib-form 12px + .sib-form-block 16px per side) can't be styled
+           from here. Crop 12px per side so content sits ~16px from the
+           edges, matching the app's margins. */
         iframe {
             display: block;
-            width: 100%;
+            width: calc(100% + 24px);
+            margin-left: -12px;
             height: 100%;
             border: none;
         }

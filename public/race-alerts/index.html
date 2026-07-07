@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="/css/header.css">
     <script src="/js/theme.js"></script>
     <script>
-        // Spanish visitors get the Spanish form at /race-alerts-es; this URL stays EN/CA
+        // ES/CA visitors get their own form pages; this URL stays EN
         (function () {
             try {
                 var l = localStorage.getItem('isard-lang') || 'es';
                 if (l === 'es') location.replace('/race-alerts-es');
+                if (l === 'ca') location.replace('/race-alerts-ca');
             } catch (e) {}
         })();
     </script>
@@ -322,6 +323,7 @@
             window.onLangChange = function (lang) {
                 if (prev) prev(lang);
                 if (lang === 'es') window.location.href = '/race-alerts-es';
+                if (lang === 'ca') window.location.href = '/race-alerts-ca';
             };
         })();
     </script>

@@ -12,7 +12,8 @@
         (function () {
             try {
                 var l = localStorage.getItem('isard-lang');
-                if (l === 'en' || l === 'ca') location.replace('/race-alerts');
+                if (l === 'en') location.replace('/race-alerts');
+                if (l === 'ca') location.replace('/race-alerts-ca');
             } catch (e) {}
         })();
     </script>
@@ -299,6 +300,16 @@
                 heading: 'Alertas de Carreras',
                 subtitle: 'Suscríbete a nuestra newsletter de alertas de carreras y no te pierdas ninguna.',
                 privacy: 'Política de Privacidad'
+            },
+            ca: {
+                heading: 'Alertes de Curses',
+                subtitle: 'Subscriu-te a la nostra newsletter d\'alertes de curses i no te\'n perdis cap.',
+                privacy: 'Política de Privacitat'
+            },
+            en: {
+                heading: 'Race Alerts',
+                subtitle: 'Subscribe to our race alerts newsletter and never miss a race.',
+                privacy: 'Privacy Policy'
             }
         });
     </script>
@@ -306,12 +317,13 @@
     <script src="/js/cookies.js"></script>
     <script>
         // Chained after cookies.js, which overwrites window.onLangChange.
-        // EN/CA live on /race-alerts; this page only serves the Spanish form.
+        // EN lives on /race-alerts, CA on /race-alerts-ca; this page only serves the Spanish form.
         (function () {
             var prev = window.onLangChange;
             window.onLangChange = function (lang) {
                 if (prev) prev(lang);
-                if (lang !== 'es') window.location.href = '/race-alerts';
+                if (lang === 'en') window.location.href = '/race-alerts';
+                if (lang === 'ca') window.location.href = '/race-alerts-ca';
             };
         })();
     </script>

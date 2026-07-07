@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Race Alerts — iSard App</title>
+    <title>Alertas de Carreras — iSard App</title>
     <link rel="icon" type="image/png" href="/iSard_icon.png">
     <link rel="stylesheet" href="/css/theme.css">
     <link rel="stylesheet" href="/css/header.css">
     <script src="/js/theme.js"></script>
     <script>
-        // Spanish visitors get the Spanish form at /race-alerts-es; this URL stays EN/CA
         (function () {
             try {
-                var l = localStorage.getItem('isard-lang') || 'es';
-                if (l === 'es') location.replace('/race-alerts-es');
+                var l = localStorage.getItem('isard-lang');
+                if (l === 'en' || l === 'ca') location.replace('/race-alerts');
             } catch (e) {}
         })();
     </script>
@@ -277,8 +276,8 @@
         <div class="form-card">
             <iframe
                 width="540"
-                height="450"
-                src="https://e9c1e8e2.sibforms.com/v2/serve/MUIFAOhGN5KSP7i1cJh87f19yvTVbcn8Wc9AV8rPCvoFaYTpQhJfpUYFo1GdyadeQFYbgkHWX0bUtCxEjSDTers97XSjQB58mLVD3UoNkMngg6AX5tuszQUIQBrWCRpTdH5vLgwC200_zeenZbJhGqxRZh9AjwpTUx2df6M8f0f4TNN8-P9vNsnyneAzirXYYS2K9Pym_eJbmnO0fg=="
+                height="305"
+                src="https://e9c1e8e2.sibforms.com/v2/serve/MUIFAEr3hYTUrtHfJpzScxP1KDoPSfi24SHdN9rhwljU7LXC8L9_2burwCNZoCkgmexadg2c76u1V9Iox6XFv1PywW3YFuB9ZcRxM2LAAj5ARyU9J-G6KQCNqmOxDZIu0XDRst7FD4gKAmXvwKmYR8MAJLBAqmhWfBYaDFfvrpR-qvCrbDAi4uzDTbhHCENhM5P66jdVgfNeg-gXDw=="
                 frameborder="0"
                 scrolling="auto"
                 allowfullscreen
@@ -300,28 +299,19 @@
                 heading: 'Alertas de Carreras',
                 subtitle: 'Suscríbete a nuestra newsletter de alertas de carreras y no te pierdas ninguna.',
                 privacy: 'Política de Privacidad'
-            },
-            ca: {
-                heading: 'Alertes de Curses',
-                subtitle: 'Subscriu-te a la nostra newsletter d\'alertes de curses i no te\'n perdis cap.',
-                privacy: 'Política de Privacitat'
-            },
-            en: {
-                heading: 'Race Alerts',
-                subtitle: 'Subscribe to our race alerts newsletter and never miss a race.',
-                privacy: 'Privacy Policy'
             }
         });
     </script>
 
     <script src="/js/cookies.js"></script>
     <script>
-        // Chained after cookies.js, which overwrites window.onLangChange
+        // Chained after cookies.js, which overwrites window.onLangChange.
+        // EN/CA live on /race-alerts; this page only serves the Spanish form.
         (function () {
             var prev = window.onLangChange;
             window.onLangChange = function (lang) {
                 if (prev) prev(lang);
-                if (lang === 'es') window.location.href = '/race-alerts-es';
+                if (lang !== 'es') window.location.href = '/race-alerts';
             };
         })();
     </script>

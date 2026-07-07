@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Alertes de Curses — iSard App</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* The form lives in a cross-origin iframe, so its internal padding
+           (.sib-form 12px + .sib-form-block 16px per side) can't be styled
+           from here. Crop 12px per side so content sits ~16px from the
+           edges, matching the app's margins. */
+        iframe {
+            display: block;
+            width: calc(100% + 24px);
+            margin-left: -12px;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- TODO: replace src with the Catalan Brevo form URL once the form is duplicated in Brevo -->
+    <iframe
+        src="about:blank"
+        frameborder="0"
+        scrolling="auto"
+        allowfullscreen
+    ></iframe>
+</body>
+</html>

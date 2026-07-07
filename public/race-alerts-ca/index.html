@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertes de Curses — iSard App</title>
+    <link rel="icon" type="image/png" href="/iSard_icon.png">
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <script src="/js/theme.js"></script>
+    <script>
+        (function () {
+            try {
+                var l = localStorage.getItem('isard-lang');
+                if (l === 'en') location.replace('/race-alerts');
+                if (l === 'es') location.replace('/race-alerts-es');
+            } catch (e) {}
+        })();
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 24px 60px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            text-align: center;
+            max-width: 480px;
+            line-height: 1.5;
+        }
+
+        .form-card {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            padding: 0;
+            width: 100%;
+            max-width: 580px;
+            overflow: hidden;
+        }
+
+        .form-card iframe {
+            display: block;
+            width: 100%;
+            border: none;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 24px 40px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            height: 32px;
+            width: auto;
+        }
+
+        .privacy-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .privacy-link:hover {
+            text-decoration: underline;
+        }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-light);
+            padding: 16px 24px;
+            z-index: 9999;
+            box-shadow: 0 -2px 8px var(--shadow);
+        }
+
+        .cookie-content {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .cookie-content p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .cookie-content a {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .cookie-accept, .cookie-settings-btn, .cookie-save {
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .cookie-accept {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+        }
+
+        .cookie-settings-btn {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .cookie-settings-btn:hover {
+            border-color: var(--text-muted);
+        }
+
+        .cookie-settings-content {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .cookie-settings-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .cookie-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            gap: 16px;
+        }
+
+        .cookie-option-text {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+        }
+
+        .cookie-option-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .cookie-option-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .cookie-toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .cookie-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .cookie-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--toggle-slider-bg);
+            border-radius: 24px;
+            transition: 0.2s;
+        }
+
+        .cookie-slider::before {
+            content: "";
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--bg-surface);
+            border-radius: 50%;
+            transition: 0.2s;
+        }
+
+        .cookie-toggle input:checked + .cookie-slider {
+            background-color: var(--accent);
+        }
+
+        .cookie-toggle input:checked + .cookie-slider::before {
+            transform: translateX(20px);
+        }
+
+        .cookie-toggle.disabled .cookie-slider {
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        .cookie-save {
+            margin-top: 12px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 24px 16px 40px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            footer {
+                padding: 20px 24px 80px;
+            }
+
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1 data-i18n="heading">Alertes de Curses</h1>
+        <p class="subtitle" data-i18n="subtitle">Subscriu-te a la nostra newsletter d'alertes de curses i no te'n perdis cap.</p>
+        <div class="form-card">
+            <!-- TODO: replace src with the Catalan Brevo form URL once the form is duplicated in Brevo -->
+            <iframe
+                width="540"
+                height="305"
+                src="about:blank"
+                frameborder="0"
+                scrolling="auto"
+                allowfullscreen
+                style="display:block;margin-left:auto;margin-right:auto;max-width:100%;"
+            ></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <a href="https://www.isard.app"><img src="/iSardLogoBlack.svg" alt="iSard" class="footer-logo"></a>
+        <a href="/privacy" class="privacy-link" data-i18n="privacy">Política de Privacitat</a>
+    </footer>
+
+    <script src="/js/header.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script>
+        i18nInit({
+            ca: {
+                heading: 'Alertes de Curses',
+                subtitle: 'Subscriu-te a la nostra newsletter d\'alertes de curses i no te\'n perdis cap.',
+                privacy: 'Política de Privacitat'
+            }
+        });
+    </script>
+
+    <script src="/js/cookies.js"></script>
+    <script>
+        // Chained after cookies.js, which overwrites window.onLangChange.
+        // EN lives on /race-alerts, ES on /race-alerts-es; this page only serves the Catalan form.
+        (function () {
+            var prev = window.onLangChange;
+            window.onLangChange = function (lang) {
+                if (prev) prev(lang);
+                if (lang === 'en') window.location.href = '/race-alerts';
+                if (lang === 'es') window.location.href = '/race-alerts-es';
+            };
+        })();
+    </script>
+</body>
+</html>

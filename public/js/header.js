@@ -1,8 +1,8 @@
 (function () {
   var menuTexts = {
-    es: { home: 'Inicio', races: 'Alertas de Carreras', contact: 'Contacto', privacy: 'Política de Privacidad' },
-    ca: { home: 'Inici', races: 'Alertes de Curses', contact: 'Contacte', privacy: 'Política de Privacitat' },
-    en: { home: 'Home', races: 'Race Alerts', contact: 'Contact', privacy: 'Privacy Policy' }
+    es: { home: 'Inicio', calendar: 'Calendario', races: 'Alertas de Carreras', contact: 'Contacto', privacy: 'Política de Privacidad' },
+    ca: { home: 'Inici', calendar: 'Calendari', races: 'Alertes de Curses', contact: 'Contacte', privacy: 'Política de Privacitat' },
+    en: { home: 'Home', calendar: 'Calendar', races: 'Race Alerts', contact: 'Contact', privacy: 'Privacy Policy' }
   };
 
   function getLang() {
@@ -24,6 +24,7 @@
         '</button>' +
         '<nav class="header-nav">' +
           '<a href="/" class="nav-link" data-nav="home">' + t.home + '</a>' +
+          '<a href="/race-calendar" class="nav-link" data-nav="calendar">' + t.calendar + '</a>' +
           '<a href="/race-alerts" class="nav-link" data-nav="races">' + t.races + '</a>' +
           '<a href="/contact" class="nav-link" data-nav="contact">' + t.contact + '</a>' +
           '<a href="/privacy" class="nav-link" data-nav="privacy">' + t.privacy + '</a>' +

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de carreras — iSard</title>
+    <meta name="description" content="Calendario de carreras de ruta, montaña, ciclismo y marchas en España y Andorra.">
+    <link rel="icon" type="image/png" href="/iSard_icon.png">
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/race-calendar.css">
+    <script src="/js/theme.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <main class="rc-main">
+        <div class="rc-head">
+            <h1 class="rc-title" data-i18n="heading">Calendario de carreras</h1>
+            <p class="rc-subtitle" data-i18n="subtitle">Carreras de ruta, montaña, ciclismo y marchas en España y Andorra.</p>
+        </div>
+        <div id="rc-root"></div>
+    </main>
+
+    <script src="/js/header.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script src="/js/race-data.js"></script>
+    <script src="/js/cookies.js"></script>
+    <script src="/js/race-calendar.js"></script>
+</body>
+</html>

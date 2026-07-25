@@ -1,0 +1,130 @@
+/*
+ * iSard design tokens — website.
+ * See docs/DESIGN_TOKENS.md. Import once, globally.
+ *
+ * Dark is the default (matches the iOS app). Light mode is opt-in via
+ * <html data-theme="light"> — wire it to your existing theme toggle.
+ * Sport colors are keyed on the data's `sport` value (road_running, …),
+ * so localization never changes a color.
+ */
+
+:root {
+  /* ---- brand ---- */
+  --isard-green: #D5FF5F;   /* THE accent — buttons, active states, links */
+  --isard-black: #000000;
+  --on-accent:   #0B0B0B;   /* text/icons placed ON a lime surface */
+
+  /* ---- sport (on dark) ---- */
+  --sport-road_running: #FF3D00;  /* iSardRun   */
+  --sport-trail_running:#3CFFD0;  /* iSardTrail */
+  --sport-cycling:      #DA1C5C;  /* iSardBike  */
+  --sport-hiking:       #30B0C7;  /* iSardHike  */
+  --sport-other:        #A4A4A4;  /* iSardOther — fallback/unknown */
+
+  /* ---- surfaces & text (dark, default) ---- */
+  --bg:         #000000;
+  --surface:    #1C1C1E;
+  --surface-2:  #2C2C2E;
+  --text:       #FFFFFF;
+  --text-muted: #A4A4A4;
+  --border:     rgba(255, 255, 255, 0.08);
+
+  /* accent as *text/link* on the dark canvas */
+  --link: var(--isard-green);
+
+  /* ---- shape ---- */
+  --radius-card: 16px;
+  --radius-chip: 12px;
+  --radius-pill: 999px;
+}
+
+/* Light mode — still on-brand: lime accent, brand sport hues (darkened for
+   legibility on white). Not a generic blue theme. */
+:root[data-theme="light"] {
+  --sport-road_running: #D63400;
+  --sport-trail_running:#0F9E7A;
+  --sport-cycling:      #C2154E;
+  --sport-hiking:       #1E8DA0;
+  --sport-other:        #6B6F66;
+
+  --bg:         #F5F5F7;
+  --surface:    #FFFFFF;
+  --surface-2:  #EFEFF2;
+  --text:       #0B0B0B;
+  --text-muted: #5B5B60;
+  --border:     rgba(0, 0, 0, 0.10);
+
+  /* lime is invisible as text on white — use dark ink for links in light mode,
+     but keep the lime *fill* on buttons (with dark label). */
+  --link: #1A2420;
+}
+
+/* If you prefer following the OS setting instead of a manual toggle, mirror the
+   light block under: @media (prefers-color-scheme: light) { :root { … } } */
+
+/* ---- helpers ---- */
+
+/* Map a race's sport to its color:  <span class="sport" data-sport="cycling">  */
+.sport[data-sport="road_running"]  { --sport: var(--sport-road_running); }
+.sport[data-sport="trail_running"] { --sport: var(--sport-trail_running); }
+.sport[data-sport="cycling"]       { --sport: var(--sport-cycling); }
+.sport[data-sport="hiking"]        { --sport: var(--sport-hiking); }
+.sport                              { --sport: var(--sport-other); }
+
+/* ---- component recipes (copy/adapt into your components) ---- */
+
+.btn-primary {
+  background: var(--isard-green);
+  color: var(--on-accent);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.btn-secondary {              /* the "Info" button */
+  background: transparent;
+  color: var(--isard-green);
+  border: 1.5px solid var(--isard-green);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+:root[data-theme="light"] .btn-secondary {
+  color: #1A2420;
+  border-color: #1A2420;
+}
+
+.badge-open {                 /* "Inscripcions obertes / Abiertas / Open" */
+  background: var(--isard-green);
+  color: var(--on-accent);
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  color: var(--text);
+}
+
+/* Sport icon circle for a race row: color-tinted disc + full-color glyph. */
+.sport-badge {
+  --sport: var(--sport-other);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--sport) 18%, transparent);
+  color: var(--sport);
+}
+
+.filter-chip            { background: var(--surface-2); color: var(--text); border-radius: var(--radius-pill); }
+.filter-chip[aria-pressed="true"] { background: var(--isard-green); color: var(--on-accent); }

@@ -4,7 +4,7 @@
   function getPreferred() {
     var stored = localStorage.getItem(STORAGE_KEY);
     if (stored === 'dark' || stored === 'light') return stored;
-    return 'light';
+    return 'dark'; // brand default (matches the iOS app)
   }
 
   function apply(theme) {

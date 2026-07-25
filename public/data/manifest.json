@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "version": "2026-07-25",
+  "generatedAt": "2026-07-25T16:58:51+00:00",
+  "count": 1993,
+  "contentHash": "9787bdee6a",
+  "file": "races.9787bdee6a.json",
+  "languages": [
+    "ca",
+    "es",
+    "en"
+  ],
+  "labelsFile": "labels.50f15d00d6.json",
+  "sports": {
+    "cycling": 87,
+    "hiking": 82,
+    "road_running": 1078,
+    "trail_running": 746
+  },
+  "territories": [
+    "Andalucía",
+    "Andorra",
+    "Aragón",
+    "Canarias",
+    "Cantabria",
+    "Castilla y León",
+    "Castilla-La Mancha",
+    "Cataluña",
+    "Ceuta",
+    "Comunidad Foral de Navarra",
+    "Comunidad Valenciana",
+    "Comunidad de Madrid",
+    "Extremadura",
+    "Galicia",
+    "Illes Balears",
+    "La Rioja",
+    "Melilla",
+    "País Vasco",
+    "Principado de Asturias",
+    "Región de Murcia"
+  ],
+  "scope": {
+    "startDate": "2026-07-01",
+    "endDate": "2028-01-31",
+    "countries": [
+      "ES",
+      "AD"
+    ]
+  },
+  "description": "A consolidated calendar of known road-running, trail-running, cycling and hiking events in Spain and Andorra, from the current month through the following 18 months, collected from the configured sources. Not an exhaustive list."
+}

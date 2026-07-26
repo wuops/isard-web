@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "2026-07-25",
-  "generatedAt": "2026-07-25T16:58:51+00:00",
+  "version": "2026-07-26",
+  "generatedAt": "2026-07-26T13:10:44+02:00",
   "count": 1993,
   "contentHash": "9787bdee6a",
   "file": "races.9787bdee6a.json",
@@ -10,7 +10,7 @@
     "es",
     "en"
   ],
-  "labelsFile": "labels.50f15d00d6.json",
+  "labelsFile": "labels.cd0db8845e.json",
   "sports": {
     "cycling": 87,
     "hiking": 82,

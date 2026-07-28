@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "version": "2026-07-26.2",
-  "generatedAt": "2026-07-28T13:14:13+02:00",
+  "version": "2026-07-26.3",
+  "generatedAt": "2026-07-28T15:45:46+02:00",
   "count": 1990,
-  "contentHash": "d5e60a33b5",
-  "file": "races.d5e60a33b5.json",
+  "contentHash": "1a10e79fc3",
+  "file": "races.1a10e79fc3.json",
   "languages": [
     "ca",
     "es",

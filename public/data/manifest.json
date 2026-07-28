@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "version": "2026-07-26",
-  "generatedAt": "2026-07-26T13:10:44+02:00",
-  "count": 1993,
-  "contentHash": "9787bdee6a",
-  "file": "races.9787bdee6a.json",
+  "version": "2026-07-26.1",
+  "generatedAt": "2026-07-28T12:20:36+02:00",
+  "count": 1990,
+  "contentHash": "65ea150366",
+  "file": "races.65ea150366.json",
   "languages": [
     "ca",
     "es",
@@ -14,7 +14,7 @@
   "sports": {
     "cycling": 87,
     "hiking": 82,
-    "road_running": 1078,
+    "road_running": 1075,
     "trail_running": 746
   },
   "territories": [
@@ -28,8 +28,8 @@
     "Cataluña",
     "Ceuta",
     "Comunidad Foral de Navarra",
-    "Comunidad Valenciana",
     "Comunidad de Madrid",
+    "Comunitat Valenciana",
     "Extremadura",
     "Galicia",
     "Illes Balears",

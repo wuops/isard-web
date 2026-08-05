@@ -3,6 +3,13 @@
   var DEFAULT = 'es';
 
   function getLang() {
+    try {
+      var param = new URLSearchParams(window.location.search).get('lang');
+      if (param && SUPPORTED.indexOf(param) !== -1) {
+        localStorage.setItem('isard-lang', param);
+        return param;
+      }
+    } catch (e) {}
     var stored = localStorage.getItem('isard-lang');
     if (stored && SUPPORTED.indexOf(stored) !== -1) return stored;
     return DEFAULT;

@@ -6,6 +6,10 @@
   };
 
   function getLang() {
+    try {
+      var param = new URLSearchParams(window.location.search).get('lang');
+      if (param && menuTexts[param]) return param;
+    } catch (e) {}
     var stored = localStorage.getItem('isard-lang');
     return (stored && menuTexts[stored]) ? stored : 'es';
   }

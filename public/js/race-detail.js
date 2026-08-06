@@ -62,7 +62,7 @@
 
     var map = window.L.map(el, {
       scrollWheelZoom: false, zoomControl: true, attributionControl: true
-    }).setView([lat, lon], 13);
+    }).setView([lat, lon], 6); // country-level default: whole of Spain in view
 
     var attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' +
       ' contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';

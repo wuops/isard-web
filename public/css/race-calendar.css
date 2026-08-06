@@ -31,10 +31,45 @@
   top: 57px; /* below the sticky site header */
   z-index: 500;
   background: var(--bg-page);
-  padding: 16px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border-light);
   margin-bottom: 20px;
 }
+
+/* Show/hide filters toggle */
+.rc-filters-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.rc-filters-toggle:hover { border-color: var(--text-muted); }
+.rc-filters--open .rc-filters-toggle { border-color: var(--isard-green); }
+
+.rc-ficon { display: inline-flex; }
+.rc-ficon svg { width: 15px; height: 15px; display: block; }
+.rc-chevron { transition: transform 0.25s ease; }
+.rc-filters--open .rc-chevron { transform: rotate(180deg); }
+
+/* Collapsible body — animate 0fr↔1fr so it eases to its natural height. */
+.rc-filters-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s ease;
+}
+.rc-filters--open .rc-filters-body { grid-template-rows: 1fr; }
+.rc-filters-inner { overflow: hidden; min-height: 0; }
+.rc-filters-body .rc-filter-row { padding-top: 14px; }
 
 .rc-filter-row {
   display: flex;
@@ -216,7 +251,7 @@
 }
 
 .rc-card:hover {
-  border-color: var(--text-muted);
+  border-color: var(--isard-green);
 }
 
 /* Sport avatar: tinted disc + full-colour glyph (tokens .sport-badge recipe).
@@ -306,7 +341,6 @@
 
 .rc-card:hover .rc-namelink {
   color: var(--accent);
-  text-decoration: underline;
 }
 
 .rc-place {
@@ -426,18 +460,30 @@
 .rc-fav {
   position: relative; /* sit above the stretched card link */
   z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.2rem;
   line-height: 1;
   padding: 2px;
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
+.rc-fav svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+
+.rc-fav:hover {
+  color: var(--text-primary);
+}
+
 .rc-fav[aria-pressed="true"] {
-  color: #eab308;
+  color: var(--isard-green);
 }
 
 /* ---- States -------------------------------------------------------------- */

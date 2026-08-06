@@ -510,21 +510,9 @@
       ]),
       el('div', { class: 'rc-place', text: place }),
       tags,
-      distances ? el('div', { class: 'rc-distances', text: distances }) : null,
-      cardFoot(r)
+      distances ? el('div', { class: 'rc-distances', text: distances }) : null
     ];
     return el('div', { class: 'rc-body' }, kids);
-  }
-
-  function cardFoot(r) {
-    var href = r.links.registration || r.links.official;
-    if (!href) return null;
-    var isRegister = (r.links.registration && r.registration.status === 'open');
-    var label = isRegister ? t('register') : t('moreInfo');
-    var cls = 'rc-btn ' + (isRegister ? 'rc-btn--primary' : 'rc-btn--secondary');
-    return el('div', { class: 'rc-foot' }, [
-      el('a', { class: cls, href: href, target: '_blank', rel: 'noopener', text: label + ' →' })
-    ]);
   }
 
   function cmpStr(a, b) { return a.localeCompare(b, state.lang); }

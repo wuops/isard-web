@@ -113,6 +113,17 @@
     return '<svg viewBox="' + icon.vb + '" aria-hidden="true" focusable="false"><path fill="currentColor" d="' + icon.d + '"/></svg>';
   }
 
+  // Meta-row glyphs — Font Awesome Free 6 solid (same set as the sport icons),
+  // replacing OS emoji so the date/location marks match the minimalist brand.
+  var META_ICONS = {
+    calendar: { vb: '0 0 448 512', d: 'M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z' },
+    location: { vb: '0 0 384 512', d: 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z' }
+  };
+  function metaIcon(name) {
+    var i = META_ICONS[name];
+    return '<svg viewBox="' + i.vb + '" aria-hidden="true" focusable="false"><path fill="currentColor" d="' + i.d + '"/></svg>';
+  }
+
   // ---- content blocks (localized, re-rendered on language switch) ------------
 
   function renderHeader(race, labels, lang, slug) {
@@ -129,9 +140,9 @@
             '</div>';
     html += '<h1 class="rd-title">' + esc(displayName(race, lang)) + '</h1>';
     html += '<div class="rd-meta">';
-    html += '<div class="rd-meta-row"><span class="rd-meta-ico">🗓</span><span>' + esc(fullDate(labels, race, lang)) + '</span></div>';
+    html += '<div class="rd-meta-row"><span class="rd-meta-ico">' + metaIcon('calendar') + '</span><span>' + esc(fullDate(labels, race, lang)) + '</span></div>';
     var place = placeLine(race);
-    if (place) html += '<div class="rd-meta-row"><span class="rd-meta-ico">📍</span><span>' + esc(place) + '</span></div>';
+    if (place) html += '<div class="rd-meta-row"><span class="rd-meta-ico">' + metaIcon('location') + '</span><span>' + esc(place) + '</span></div>';
     html += '</div>';
     return html;
   }

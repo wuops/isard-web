@@ -65,7 +65,15 @@
   font-size: 0.98rem;
   color: var(--text-secondary);
 }
-.rd-meta-ico { font-size: 0.95rem; width: 20px; text-align: center; opacity: 0.9; }
+.rd-meta-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+.rd-meta-ico svg { width: 15px; height: 15px; display: block; }
 
 /* ---- Map (Leaflet + CARTO Positron/Dark Matter) -------------------------- */
 .rd-map {
@@ -87,6 +95,10 @@
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
 }
 .leaflet-container { font: inherit; }
+/* Let the attribution sit directly on the map (drop Leaflet's white box). */
+.leaflet-container .leaflet-control-attribution {
+  background: transparent;
+}
 
 /* ---- Sections ------------------------------------------------------------ */
 .rd-section {

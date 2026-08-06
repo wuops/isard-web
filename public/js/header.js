@@ -1,8 +1,8 @@
 (function () {
   var menuTexts = {
-    es: { home: 'Inicio', calendar: 'Calendario', races: 'Alertas de Carreras', contact: 'Contacto', privacy: 'Política de Privacidad' },
-    ca: { home: 'Inici', calendar: 'Calendari', races: 'Alertes de Curses', contact: 'Contacte', privacy: 'Política de Privacitat' },
-    en: { home: 'Home', calendar: 'Calendar', races: 'Race Alerts', contact: 'Contact', privacy: 'Privacy Policy' }
+    es: { home: 'Inicio', calendar: 'Carreras', races: 'Alertas de Carreras', contact: 'Contacto', privacy: 'Política de Privacidad' },
+    ca: { home: 'Inici', calendar: 'Curses', races: 'Alertes de Curses', contact: 'Contacte', privacy: 'Política de Privacitat' },
+    en: { home: 'Home', calendar: 'Races', races: 'Race Alerts', contact: 'Contact', privacy: 'Privacy Policy' }
   };
 
   function getLang() {

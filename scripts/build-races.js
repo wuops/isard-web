@@ -43,16 +43,13 @@ var esc = RaceDetail.esc;
 // Safe to embed inside <script> / <script type=ld+json>: neutralise `</`.
 function jsonInline(obj) { return JSON.stringify(obj).replace(/</g, '\\u003c'); }
 
+// Themed Leaflet map (CARTO Positron light / Dark Matter dark) initialised
+// client-side from these data attributes by race-detail.js. No coords → no map.
 function mapEmbed(race) {
   var loc = race.location;
   if (loc.lat == null || loc.lon == null) return '';
-  var dLat = 0.06, dLon = 0.08;
-  var bbox = [loc.lon - dLon, loc.lat - dLat, loc.lon + dLon, loc.lat + dLat]
-    .map(function (n) { return n.toFixed(5); }).join(',');
-  var src = 'https://www.openstreetmap.org/export/embed.html?bbox=' + bbox +
-    '&layer=mapnik&marker=' + loc.lat.toFixed(5) + ',' + loc.lon.toFixed(5);
-  return '<div class="rd-map"><iframe title="map" loading="lazy" ' +
-    'referrerpolicy="no-referrer-when-downgrade" src="' + esc(src) + '"></iframe></div>';
+  return '<div class="rd-map" id="rd-map" data-lat="' + loc.lat + '" data-lon="' + loc.lon +
+    '" data-sport="' + esc(race.sport) + '"></div>';
 }
 
 var AVAILABILITY = {
@@ -149,6 +146,7 @@ function page(race) {
 '  <link rel="stylesheet" href="/css/tokens.css">\n' +
 '  <link rel="stylesheet" href="/css/theme.css">\n' +
 '  <link rel="stylesheet" href="/css/header.css">\n' +
+'  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css">\n' +
 '  <link rel="stylesheet" href="/css/race-detail.css">\n' +
 '  <script src="/js/theme.js"></script>\n' +
 '  <script type="application/ld+json">' + jsonLd(race, canonical) + '</script>\n' +
@@ -165,6 +163,7 @@ function page(race) {
 '    <div id="rd-body">' + body + '</div>\n' +
 '  </main>\n' +
 '  <script>window.__RACE__=' + jsonInline(race) + ';window.__LABELS__=' + jsonInline(trimmedLabels) + ';window.__SLUG__=' + JSON.stringify(slug) + ';</script>\n' +
+'  <script src="/vendor/leaflet/leaflet.js"></script>\n' +
 '  <script src="/js/header.js"></script>\n' +
 '  <script src="/js/i18n.js"></script>\n' +
 '  <script src="/js/race-detail-render.js"></script>\n' +

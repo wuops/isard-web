@@ -42,14 +42,19 @@ a {
   color: var(--link);
 }
 
-/* The wordmark art is black; invert it to read on the dark canvas (default),
-   and leave it as-is in light mode. */
-.header-logo img,
+/* The footer wordmark art is black; invert it to read on the dark canvas
+   (default), and leave it as-is in light mode. */
 .footer-logo {
   filter: invert(1);
 }
 
-:root[data-theme="light"] .header-logo img,
 :root[data-theme="light"] .footer-logo {
   filter: none;
+}
+
+/* The header wordmark ships lime (iSardLogoLime.svg) and reads as-is on the
+   dark canvas (default). On the white light-mode header lime is illegible, so
+   render it as dark ink there instead. */
+:root[data-theme="light"] .header-logo img {
+  filter: brightness(0);
 }

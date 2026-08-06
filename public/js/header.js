@@ -22,7 +22,7 @@
     header.className = 'site-header';
     header.innerHTML =
       '<div class="header-inner">' +
-        '<a href="/" class="header-logo"><img src="/iSardLogoBlack.svg" alt="iSard"></a>' +
+        '<a href="/" class="header-logo"><img src="/iSardLogoLime.svg" alt="iSard"></a>' +
         '<button class="hamburger" aria-label="Menu">' +
           '<span></span><span></span><span></span>' +
         '</button>' +

@@ -28,7 +28,9 @@
 
 .rc-filters {
   position: sticky;
-  top: 57px; /* below the sticky site header */
+  /* Flush under the sticky site header (its real height is measured into
+     --rc-header-h); the -1px overlap avoids a hairline gap. */
+  top: calc(var(--rc-header-h, 53px) - 1px);
   z-index: 500;
   background: var(--bg-page);
   padding: 12px 0;
@@ -515,8 +517,6 @@
 
 @media (max-width: 600px) {
   .rc-main { padding: 20px 16px 60px; }
-  .rc-title { font-size: 1.5rem; }
-  .rc-filters { top: 57px; }
   .rc-list { grid-template-columns: 1fr; }
   .rc-select, .rc-search { min-width: 0; width: 100%; }
   .rc-field { flex: 1 1 100%; }

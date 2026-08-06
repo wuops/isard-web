@@ -133,10 +133,22 @@
     return n;
   }
 
+  // Keep the sticky filter bar flush under the (variable-height) site header,
+  // so no transparent gap lets scrolling cards show through.
+  function syncHeaderOffset() {
+    var header = document.querySelector('.site-header');
+    if (header) {
+      document.documentElement.style.setProperty('--rc-header-h', header.offsetHeight + 'px');
+    }
+  }
+
   // ---- boot -----------------------------------------------------------------
   function boot() {
     var root = document.getElementById('rc-root');
     if (!root) return;
+    syncHeaderOffset();
+    window.addEventListener('resize', syncHeaderOffset);
+    window.addEventListener('load', syncHeaderOffset);
     buildLangDict(); // language selector + static chrome before data arrives
     root.appendChild(el('div', { class: 'rc-status', text: t('loading') }));
 
@@ -406,15 +418,19 @@
       }
     }, [el('option', { value: 'all', text: t('allTerritories') })]);
 
+    // Each community is a selectable option (whole community); its provinces
+    // are listed indented beneath it — no separate "Toda la comunidad" entry.
     Object.keys(byComm).sort(cmpStr).forEach(function (comm) {
-      var group = el('optgroup', { label: comm });
-      var commVal = 'comm:' + comm;
-      group.appendChild(el('option', { value: commVal, text: t('wholeRegion'), selected: sel && state.territory.type === 'comm' && state.territory.value === comm ? 'selected' : null }));
+      sel.appendChild(el('option', {
+        value: 'comm:' + comm, text: comm,
+        selected: state.territory.type === 'comm' && state.territory.value === comm ? 'selected' : null
+      }));
       Object.keys(byComm[comm]).sort(cmpStr).forEach(function (prov) {
-        var pv = 'prov:' + prov;
-        group.appendChild(el('option', { value: pv, text: prov, selected: state.territory.type === 'prov' && state.territory.value === prov ? 'selected' : null }));
+        sel.appendChild(el('option', {
+          value: 'prov:' + prov, text: '   ' + prov,
+          selected: state.territory.type === 'prov' && state.territory.value === prov ? 'selected' : null
+        }));
       });
-      sel.appendChild(group);
     });
     return sel;
   }
@@ -504,11 +520,15 @@
     var tags = el('div', { class: 'rc-tags' }, [
       el('span', { class: 'rc-sportchip', 'data-sport': r.sport, text: RaceData.sportLabel(labels, r, state.lang) })
     ]);
-    // registration status badge (skip "" unknown)
+    // registration status badge (skip "" unknown). "open" gets the fuller
+    // "Inscripciones abiertas" label — a bare "Abiertas" reads ambiguously.
     if (r.registration.status) {
+      var regText = r.registration.status === 'open'
+        ? t('regOpen')
+        : RaceData.registrationLabel(labels, r, state.lang);
       tags.appendChild(el('span', {
         class: 'rc-badge rc-badge--' + r.registration.status,
-        text: RaceData.registrationLabel(labels, r, state.lang)
+        text: regText
       }));
     }
     // date-status badge (skip confirmed)

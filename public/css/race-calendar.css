@@ -348,6 +348,11 @@
   color: var(--text-secondary);
 }
 
+.rc-carddate {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
 .rc-tags {
   display: flex;
   flex-wrap: wrap;

@@ -504,12 +504,6 @@
     var tags = el('div', { class: 'rc-tags' }, [
       el('span', { class: 'rc-sportchip', 'data-sport': r.sport, text: RaceData.sportLabel(labels, r, state.lang) })
     ]);
-    // In "popular" order there are no day headers, so surface the date per card.
-    if (state.sort === 'popular') {
-      var p = RaceData.dateParts(labels, r, state.lang);
-      var dateText = r.date ? (p.day + ' ' + p.month + ' ' + p.year) : (r.expectedYear ? String(r.expectedYear) : t('tbc'));
-      tags.appendChild(el('span', { class: 'rc-datepill', text: dateText }));
-    }
     // registration status badge (skip "" unknown)
     if (r.registration.status) {
       tags.appendChild(el('span', {
@@ -543,6 +537,11 @@
     });
     favBtn.innerHTML = heartSvg(isFav);
 
+    var dateText = r.date
+      ? RaceData.formatRaceDate(labels, r, state.lang)
+      : (r.expectedYear ? String(r.expectedYear) : t('tbc'));
+
+    // Order: title, sport badge, date, location, distances.
     var kids = [
       el('div', { class: 'rc-name-row' }, [
         el('h3', { class: 'rc-name' }, [
@@ -554,8 +553,9 @@
         ]),
         favBtn
       ]),
-      el('div', { class: 'rc-place', text: place }),
       tags,
+      el('div', { class: 'rc-carddate', text: dateText }),
+      el('div', { class: 'rc-place', text: place }),
       distances ? el('div', { class: 'rc-distances', text: distances }) : null
     ];
     return el('div', { class: 'rc-body' }, kids);

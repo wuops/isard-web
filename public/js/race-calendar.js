@@ -74,6 +74,7 @@
   };
 
   /** @type {Race[]} */ var races = [];
+  /** @type {{[id:string]:string}} */ var slugMap = {};
   /** @type {Labels} */ var labels;
   /** @type {{[k:string]:{[p:string]:boolean}}} */ var byComm = {};
   /** @type {Race[]} */ var filtered = [];
@@ -127,6 +128,7 @@
     RaceData.load().then(function (data) {
       races = data.races;
       labels = data.labels;
+      if (window.RaceDetail) slugMap = window.RaceDetail.buildSlugMap(races);
       indexTerritories();
       render();
     }).catch(function (err) {
@@ -497,7 +499,13 @@
 
     var kids = [
       el('div', { class: 'rc-name-row' }, [
-        el('h3', { class: 'rc-name', text: RaceData.displayName(r, state.lang) }),
+        el('h3', { class: 'rc-name' }, [
+          el('a', {
+            class: 'rc-namelink',
+            href: '/races/' + (slugMap[r.id] || r.slug),
+            text: RaceData.displayName(r, state.lang)
+          })
+        ]),
         favBtn
       ]),
       el('div', { class: 'rc-place', text: place }),

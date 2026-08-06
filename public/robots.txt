@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://isard.app/sitemap.xml

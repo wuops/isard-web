@@ -1,0 +1,9 @@
+{
+  "name": "isard-web",
+  "private": true,
+  "version": "1.0.0",
+  "description": "iSard marketing site + race calendar (static). Race detail pages are generated at build time.",
+  "scripts": {
+    "build": "node scripts/build-races.js"
+  }
+}

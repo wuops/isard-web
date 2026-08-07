@@ -163,13 +163,28 @@
   padding: 13px 4px;
   font-size: 0.98rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--accent); /* brand lime (dark-ink on light theme via --link) */
   text-decoration: none;
   border-bottom: 1px solid var(--border-light);
 }
+/* Underline just the label, not the trailing ↗ arrow. */
+.rd-link > span:first-child { text-decoration: underline; text-underline-offset: 3px; }
 .rd-link:last-child { border-bottom: none; }
-.rd-link:hover { color: var(--accent); }
-.rd-link-arrow { color: var(--text-muted); font-size: 0.9rem; }
+.rd-link:hover { opacity: 0.8; }
+.rd-link-arrow { color: var(--accent); font-size: 0.9rem; }
+
+/* Internal links up to the distance hub(s) this race belongs to. */
+.rd-hublinks { display: flex; flex-wrap: wrap; gap: 10px; }
+.rd-hublink {
+  padding: 8px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.rd-hublink:hover { border-color: var(--accent); color: var(--accent); }
 
 @media (max-width: 600px) {
   .rd-main { padding: 20px 16px 72px; }

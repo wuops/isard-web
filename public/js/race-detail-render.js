@@ -34,10 +34,21 @@
 
   // Page-chrome strings for the detail page (enum vocabulary comes from labels.json).
   var UI = {
-    ca: { back: 'Curses', distances: 'Distàncies', registration: 'Inscripció', status: 'Estat', links: 'Enllaços', register: 'Inscripció', official: 'Web oficial', results: 'Resultats', route: 'Recorregut', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', searchGoogle: 'Cerca la cursa a Google', tbc: 'Data per confirmar', viewMap: 'Veure el mapa', organizer: 'Organitza', price: 'Preu' },
-    es: { back: 'Carreras', distances: 'Distancias', registration: 'Inscripción', status: 'Estado', links: 'Enlaces', register: 'Inscripción', official: 'Sitio oficial', results: 'Resultados', route: 'Recorrido', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', searchGoogle: 'Busca la carrera en Google', tbc: 'Fecha por confirmar', viewMap: 'Ver el mapa', organizer: 'Organiza', price: 'Precio' },
-    en: { back: 'Races', distances: 'Distances', registration: 'Registration', status: 'Status', links: 'Links', register: 'Register', official: 'Official site', results: 'Results', route: 'Route', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', searchGoogle: 'Search race on Google', tbc: 'Date to be confirmed', viewMap: 'View the map', organizer: 'Organiser', price: 'Price' }
+    ca: { back: 'Curses', distances: 'Distàncies', registration: 'Inscripció', status: 'Estat', links: 'Enllaços', register: 'Inscripció', official: 'Web oficial', results: 'Resultats', route: 'Recorregut', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', searchGoogle: 'Cerca la cursa a Google', tbc: 'Data per confirmar', viewMap: 'Veure el mapa', organizer: 'Organitza', price: 'Preu', moreRaces: 'Curses de la mateixa distància' },
+    es: { back: 'Carreras', distances: 'Distancias', registration: 'Inscripción', status: 'Estado', links: 'Enlaces', register: 'Inscripción', official: 'Sitio oficial', results: 'Resultados', route: 'Recorrido', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', searchGoogle: 'Busca la carrera en Google', tbc: 'Fecha por confirmar', viewMap: 'Ver el mapa', organizer: 'Organiza', price: 'Precio', moreRaces: 'Carreras de la misma distancia' },
+    en: { back: 'Races', distances: 'Distances', registration: 'Registration', status: 'Status', links: 'Links', register: 'Register', official: 'Official site', results: 'Results', route: 'Route', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', searchGoogle: 'Search race on Google', tbc: 'Date to be confirmed', viewMap: 'View the map', organizer: 'Organiser', price: 'Price', moreRaces: 'Races at the same distance' }
   };
+
+  // Distance hubs a race links up to (mirrors scripts/hubs.js). Kept here so the
+  // shared renderer can build the links in both the build and the browser.
+  var HUB_PREFIX = { es: 'carreras', ca: 'curses', en: 'races' };
+  var DIST_HUBS = [
+    { key: 'has5k',           slug: { es: '5k', ca: '5k', en: '5k' },                                 label: { es: '5K', ca: '5K', en: '5K' } },
+    { key: 'has10k',          slug: { es: '10k', ca: '10k', en: '10k' },                               label: { es: '10K', ca: '10K', en: '10K' } },
+    { key: 'hasHalfMarathon', slug: { es: 'media-maraton', ca: 'mitja-marato', en: 'half-marathon' },  label: { es: 'Media maratón', ca: 'Mitja marató', en: 'Half marathon' } },
+    { key: 'hasMarathon',     slug: { es: 'maraton', ca: 'marato', en: 'marathon' },                    label: { es: 'Maratón', ca: 'Marató', en: 'Marathon' } },
+    { key: 'hasUltra',        slug: { es: 'ultra', ca: 'ultra', en: 'ultra' },                          label: { es: 'Ultra', ca: 'Ultra', en: 'Ultra' } }
+  ];
 
   function esc(s) {
     return String(s == null ? '' : s)
@@ -208,7 +219,23 @@
       out += section(t.organizer, '<div class="rd-row"><span>' + esc(race.organizer.name) + '</span></div>');
     }
 
+    out += distanceHubLinks(race, lang);
+
     return out;
+  }
+
+  // Links up to the distance hub(s) this race belongs to — internal linking that
+  // ties every race into the hub graph. Only distances the race actually offers.
+  function distanceHubLinks(race, lang) {
+    var df = race.distanceFilters;
+    if (!df) return '';
+    var prefix = HUB_PREFIX[lang] || HUB_PREFIX.es;
+    var chips = DIST_HUBS.filter(function (h) { return df[h.key]; }).map(function (h) {
+      var href = '/' + lang + '/' + prefix + '/' + h.slug[lang];
+      return '<a class="rd-hublink" href="' + esc(href) + '">' + esc(h.label[lang]) + '</a>';
+    });
+    if (!chips.length) return '';
+    return section(UI[lang].moreRaces, '<div class="rd-hublinks">' + chips.join('') + '</div>');
   }
 
   function section(title, inner) {

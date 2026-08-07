@@ -8,8 +8,8 @@
       "destination": "https://www.isard.app/:path*",
       "permanent": true
     },
-    { "source": "/", "destination": "/es/", "permanent": true },
-    { "source": "/race-calendar", "destination": "/es/race-calendar", "permanent": true },
-    { "source": "/races/:slug*", "destination": "/es/races/:slug*", "permanent": true }
+    { "source": "/", "destination": "https://www.isard.app/es/", "permanent": true },
+    { "source": "/race-calendar", "destination": "https://www.isard.app/es/race-calendar", "permanent": true },
+    { "source": "/races/:slug*", "destination": "https://www.isard.app/es/races/:slug*", "permanent": true }
   ]
 }

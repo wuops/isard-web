@@ -181,7 +181,17 @@
   }
 
   // ---- filtering + sorting --------------------------------------------------
+  // Local calendar date as YYYY-MM-DD, so it lines up with race.date strings.
+  function todayISO() {
+    var d = new Date();
+    var m = d.getMonth() + 1, day = d.getDate();
+    return d.getFullYear() + '-' + (m < 10 ? '0' + m : m) + '-' + (day < 10 ? '0' + day : day);
+  }
+
   function matches(r) {
+    // Hide races that already happened (before today) from the default list.
+    // A search still surfaces them, so past races stay findable by name/town.
+    if (!state.search && r.date && r.date < todayISO()) return false;
     if (state.sports.size && !state.sports.has(r.sport)) return false;
     if (state.territory.type === 'comm' && r.location.autonomousCommunity !== state.territory.value) return false;
     if (state.territory.type === 'prov' && r.location.province !== state.territory.value) return false;

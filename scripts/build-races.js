@@ -16,6 +16,7 @@
 var fs = require('fs');
 var path = require('path');
 var RaceDetail = require('../public/js/race-detail-render.js');
+var HUBS = require('./hubs.js');
 
 var PUBLIC = path.join(__dirname, '..', 'public');
 var DATA = path.join(PUBLIC, 'data');
@@ -23,6 +24,7 @@ var OUT = path.join(PUBLIC, 'races');
 var SITE = 'https://www.isard.app';
 var DEFAULT_LANG = 'es';
 var LANGS = ['es', 'ca', 'en'];
+var HUB_MIN = 8; // minimum upcoming events for a hub to be indexable
 
 function readJson(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
 
@@ -318,6 +320,192 @@ function lastmod(ts) {
   return isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString();
 }
 
+// ---- content-rich hubs (prototype: distance hubs, see scripts/hubs.js) -------
+
+function hubUrl(hub, lang) {
+  return SITE + '/' + lang + '/' + HUBS.PREFIX[lang] + '/' + hub.slug[lang];
+}
+function hubPath(hub, lang) { return '/' + lang + '/' + HUBS.PREFIX[lang] + '/' + hub.slug[lang]; }
+
+function hubHreflang(hub) {
+  var out = LANGS.map(function (l) {
+    return '<link rel="alternate" hreflang="' + l + '" href="' + esc(hubUrl(hub, l)) + '">';
+  });
+  out.push('<link rel="alternate" hreflang="x-default" href="' + esc(hubUrl(hub, 'es')) + '">');
+  return out.join('\n  ');
+}
+
+function hubAlternatesXml(hub) {
+  var links = LANGS.map(function (l) {
+    return '    <xhtml:link rel="alternate" hreflang="' + l + '" href="' + esc(hubUrl(hub, l)) + '"/>';
+  });
+  links.push('    <xhtml:link rel="alternate" hreflang="x-default" href="' + esc(hubUrl(hub, 'es')) + '"/>');
+  return links.join('\n');
+}
+
+// Server-rendered event list (crawlable internal links into the race pages).
+function hubEventList(matched, lang, cap) {
+  var shown = matched.slice(0, cap);
+  var items = shown.map(function (r) {
+    var name = RaceDetail.displayName(r, lang);
+    var date = r.date ? RaceDetail.fullDate(labels, r, lang) : '';
+    var place = RaceDetail.placeLine(r) || '';
+    var meta = [date, place].filter(Boolean).join(' · ');
+    return '<li class="h-ev"><a class="h-ev-link" href="/' + lang + '/races/' + slugMap[r.id] + '">' +
+      '<span class="h-ev-name">' + esc(name) + '</span>' +
+      (meta ? '<span class="h-ev-meta">' + esc(meta) + '</span>' : '') + '</a></li>';
+  }).join('');
+  return { html: '<ol class="h-evlist">' + items + '</ol>', shown: shown };
+}
+
+function hubFaqHtml(faq) {
+  return '<div class="h-faq">' + faq.map(function (f) {
+    return '<details class="h-faq-item"><summary>' + esc(f.q) + '</summary>' +
+      '<div class="h-faq-a"><p>' + esc(f.a) + '</p></div></details>';
+  }).join('') + '</div>';
+}
+
+function hubRelatedHtml(hub, lang) {
+  return HUBS.distanceHubs.filter(function (h) { return h.id !== hub.id; }).map(function (h) {
+    return '<a class="h-chip" href="' + esc(hubPath(h, lang)) + '">' + esc(h.name[lang]) + '</a>';
+  }).join('');
+}
+
+function hubJsonLd(hub, lang, canonical, c, shown) {
+  var collection = {
+    '@type': 'CollectionPage', '@id': canonical + '#webpage', url: canonical,
+    name: c.h1, description: c.description, inLanguage: lang,
+    isPartOf: { '@id': SITE + '/#website' }
+  };
+  var itemList = {
+    '@type': 'ItemList',
+    itemListElement: shown.map(function (r, i) {
+      return { '@type': 'ListItem', position: i + 1, url: SITE + '/' + lang + '/races/' + slugMap[r.id], name: RaceDetail.displayName(r, lang) };
+    })
+  };
+  var breadcrumb = {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'iSard', item: SITE + '/' + lang + '/' },
+      { '@type': 'ListItem', position: 2, name: HUBS.CAL[lang], item: SITE + '/' + lang + '/race-calendar' },
+      { '@type': 'ListItem', position: 3, name: hub.name[lang], item: canonical }
+    ]
+  };
+  var faqPage = {
+    '@type': 'FAQPage',
+    mainEntity: c.faq.map(function (f) {
+      return { '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } };
+    })
+  };
+  return jsonInline({ '@context': 'https://schema.org', '@graph': [collection, itemList, breadcrumb, faqPage] });
+}
+
+var HUB_CSS = '\n' +
+'    .h-main { max-width: 900px; margin: 0 auto; padding: 24px 20px 80px; }\n' +
+'    .h-crumb { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }\n' +
+'    .h-crumb a { color: var(--text-muted); text-decoration: none; }\n' +
+'    .h-crumb a:hover { color: var(--text-primary); }\n' +
+'    .h-main h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }\n' +
+'    .h-lead { font-size: 1.05rem; line-height: 1.6; color: var(--text-muted); max-width: 720px; margin-bottom: 28px; }\n' +
+'    .h-section { margin: 32px 0; }\n' +
+'    .h-section h2 { font-size: 1.25rem; font-weight: 700; margin: 24px 0 12px; }\n' +
+'    .h-section p { line-height: 1.65; margin-bottom: 12px; }\n' +
+'    .h-evlist { list-style: none; display: grid; gap: 8px; margin: 0; padding: 0; }\n' +
+'    .h-ev-link { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 10px; text-decoration: none; color: var(--text-primary); transition: border-color 0.15s ease; }\n' +
+'    .h-ev-link:hover { border-color: var(--accent); }\n' +
+'    .h-ev-name { font-weight: 600; }\n' +
+'    .h-ev-meta { font-size: 0.85rem; color: var(--text-muted); }\n' +
+'    .h-more { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--accent); text-decoration: none; }\n' +
+'    .h-table-wrap { overflow-x: auto; }\n' +
+'    .h-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; margin: 8px 0; }\n' +
+'    .h-table th, .h-table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border-color); }\n' +
+'    .h-table th { font-weight: 700; }\n' +
+'    .h-faq-item { border: 1px solid var(--border-color); border-radius: 10px; padding: 4px 14px; margin-bottom: 8px; }\n' +
+'    .h-faq-item summary { cursor: pointer; font-weight: 600; padding: 10px 0; }\n' +
+'    .h-faq-a { padding-bottom: 10px; color: var(--text-muted); line-height: 1.6; }\n' +
+'    .h-related { display: flex; flex-wrap: wrap; gap: 10px; }\n' +
+'    .h-chip { padding: 8px 14px; border: 1px solid var(--border-color); border-radius: 999px; text-decoration: none; color: var(--text-primary); font-size: 0.9rem; font-weight: 600; }\n' +
+'    .h-chip:hover { border-color: var(--accent); }\n';
+
+function hubPage(hub, lang, matched, indexable) {
+  var c = hub.content[lang];
+  var canonical = hubUrl(hub, lang);
+  var list = hubEventList(matched, lang, 60);
+  var lead = c.lead.replace('{count}', String(matched.length));
+  var ogImage = SITE + '/iSard_icon.png';
+  var UI_MORE = { es: 'Ver todas en el calendario', ca: 'Veure-les totes al calendari', en: 'See all in the calendar' };
+  var robots = indexable ? '' : '  <meta name="robots" content="noindex,follow">\n';
+  var switchMap = {};
+  LANGS.forEach(function (l) { switchMap[l] = hubPath(hub, l); });
+
+  return '<!DOCTYPE html>\n' +
+'<html lang="' + lang + '">\n' +
+'<head>\n' +
+'  <meta charset="UTF-8">\n' +
+'  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+'  <title>' + esc(c.title) + '</title>\n' +
+'  <meta name="description" content="' + esc(c.description) + '">\n' +
+robots +
+'  <link rel="canonical" href="' + esc(canonical) + '">\n' +
+'  ' + hubHreflang(hub) + '\n' +
+'  <meta property="og:type" content="website">\n' +
+'  <meta property="og:site_name" content="iSard">\n' +
+'  <meta property="og:title" content="' + esc(c.title) + '">\n' +
+'  <meta property="og:description" content="' + esc(c.description) + '">\n' +
+'  <meta property="og:url" content="' + esc(canonical) + '">\n' +
+'  <meta property="og:image" content="' + esc(ogImage) + '">\n' +
+'  ' + ogLocaleTags(lang) + '\n' +
+'  <meta name="twitter:card" content="summary">\n' +
+'  <link rel="icon" type="image/png" href="/iSard_icon.png">\n' +
+'  <link rel="stylesheet" href="/css/tokens.css">\n' +
+'  <link rel="stylesheet" href="/css/theme.css">\n' +
+'  <link rel="stylesheet" href="/css/header.css">\n' +
+'  <script src="/js/theme.js"></script>\n' +
+'  <script type="application/ld+json">' + hubJsonLd(hub, lang, canonical, c, list.shown) + '</script>\n' +
+'  <style>\n' +
+'    * { margin: 0; padding: 0; box-sizing: border-box; }\n' +
+'    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;\n' +
+'           background-color: var(--bg-page); color: var(--text-primary); min-height: 100vh; }\n' +
+HUB_CSS +
+'  </style>\n' +
+'</head>\n' +
+'<body>\n' +
+'  <main class="h-main">\n' +
+'    <nav class="h-crumb" aria-label="Breadcrumb"><a href="/' + lang + '/">iSard</a> › <a href="/' + lang + '/race-calendar">' + esc(HUBS.CAL[lang]) + '</a> › <span>' + esc(hub.name[lang]) + '</span></nav>\n' +
+'    <h1>' + esc(c.h1) + '</h1>\n' +
+'    <p class="h-lead">' + esc(lead) + '</p>\n' +
+'    <section class="h-section"><h2>' + esc(c.listTitle) + '</h2>' + list.html +
+'      <a class="h-more" href="/' + lang + '/race-calendar">' + esc(UI_MORE[lang]) + ' →</a></section>\n' +
+'    <section class="h-section">' + c.body + '</section>\n' +
+'    <section class="h-section"><h2>' + esc(c.faqTitle) + '</h2>' + hubFaqHtml(c.faq) + '</section>\n' +
+'    <section class="h-section"><h2>' + esc(c.relatedTitle) + '</h2><div class="h-related">' + hubRelatedHtml(hub, lang) + '</div></section>\n' +
+'  </main>\n' +
+'  <script src="/js/header.js"></script>\n' +
+'  <script src="/js/i18n.js"></script>\n' +
+'  <script>if(window.i18nInit)i18nInit({});window.onLangChange=function(l){var u=' + jsonInline(switchMap) + ';if(u[l])window.location.assign(u[l]);};</script>\n' +
+'</body>\n' +
+'</html>\n';
+}
+
+function buildHubs() {
+  var pages = 0, indexed = [];
+  HUBS.distanceHubs.forEach(function (hub) {
+    var matched = races.filter(hub.filter).slice().sort(function (a, b) {
+      var da = a.date || '', db = b.date || '';
+      return da < db ? -1 : da > db ? 1 : 0;
+    });
+    var indexable = matched.length >= HUB_MIN;
+    LANGS.forEach(function (lang) {
+      var dir = path.join(PUBLIC, lang, HUBS.PREFIX[lang], hub.slug[lang]);
+      fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(path.join(dir, 'index.html'), hubPage(hub, lang, matched, indexable));
+      pages++;
+    });
+    if (indexable) indexed.push(hub);
+  });
+  return { pages: pages, indexed: indexed };
+}
+
 // The <xhtml:link> alternates block shared by every locale entry of one race.
 function raceAlternatesXml(slug) {
   var links = LANGS.map(function (l) {
@@ -337,7 +525,7 @@ function staticAlternatesXml(suffix) {
   return links.join('\n');
 }
 
-function writeSitemap(races) {
+function writeSitemap(races, indexedHubs) {
   var siteMod = lastmod(manifest.generatedAt);
   // Localized homepage + calendar (one <url> per locale, with alternates); the
   // legacy '/' and '/race-calendar' are omitted (they canonicalise to /es).
@@ -366,7 +554,16 @@ function writeSitemap(races) {
         '</loc><lastmod>' + mod + '</lastmod>\n' + alts + '\n  </url>');
     });
   });
-  var body = staticEntries.concat(raceEntries).join('\n');
+  // Indexable hubs (one <url> per locale, with alternates).
+  var hubEntries = [];
+  (indexedHubs || []).forEach(function (hub) {
+    var alts = hubAlternatesXml(hub);
+    LANGS.forEach(function (l) {
+      hubEntries.push('  <url><loc>' + esc(hubUrl(hub, l)) +
+        '</loc><lastmod>' + siteMod + '</lastmod>\n' + alts + '\n  </url>');
+    });
+  });
+  var body = staticEntries.concat(hubEntries).concat(raceEntries).join('\n');
   var xml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"' +
     ' xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + body + '\n</urlset>\n';
@@ -394,10 +591,12 @@ function main() {
     });
   });
   var staticN = buildStaticPages();
-  writeSitemap(races);
+  var hubs = buildHubs();
+  writeSitemap(races, hubs.indexed);
   console.log('[build-races] wrote ' + pages + ' race pages (' + races.length +
     ' races × ' + LANGS.length + ' locales) + ' + staticN +
-    ' localized static pages + sitemap.xml in ' +
+    ' localized static pages + ' + hubs.pages + ' hub pages (' +
+    hubs.indexed.length + '/' + HUBS.distanceHubs.length + ' indexable) + sitemap.xml in ' +
     ((Date.now() - start) / 1000).toFixed(1) + 's');
 }
 

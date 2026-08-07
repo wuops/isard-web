@@ -94,6 +94,8 @@ AI engines (ChatGPT, Claude, Perplexity, Gemini, AI Overviews, Copilot) reward *
 
 Threshold rule for every hub: **index only if it has ≥ ~8 upcoming, dated events** and a unique intro; otherwise `noindex,follow` (still linked, not in sitemap).
 
+> **[PROTOTYPE DONE — distance hubs]** A content-rich hub system now runs in the build: content in `scripts/hubs.js`, generator in `scripts/build-races.js`. It produces localized distance hubs — `/es/carreras/10k`, `/ca/curses/10k`, `/en/races/10k` (+ 5k, media-maratón / mitja-marató / half-marathon, maratón, ultra). Each is server-rendered with breadcrumb, H1, count-injected intro, an **SSR `ItemList`** of up to 60 upcoming events (localized links into the race pages), an editorial guide (the 10K flagship adds a pacing table), an FAQ (`<details>`), and related-hub chips — with `CollectionPage + ItemList + BreadcrumbList + FAQPage` schema, reciprocal `hreflang` + `x-default → es`, and a language switch that jumps to the sibling hub. The **`HUB_MIN = 8`** threshold gates indexing (below it → `noindex,follow` + excluded from sitemap); all 5 distance hubs clear it (10K = 611 events). The sitemap gained the 15 hub URLs with alternates. Verified: build (15 hub pages, valid JSON-LD, ItemList reflects the 60 shown), browser render + ES↔CA↔EN switch, 0 console errors. This is the **template to scale** to §6's remaining clusters. **Next:** event→hub links on race pages, homepage as a hub index, and location/sport hubs from the same generator.
+
 | # | Cluster | Intent | ES / CA / EN keyword | Page type | Funnel | CTA |
 |---|---|---|---|---|---|---|
 | 1 | Running calendar Spain | trans | "carreras populares España" / "curses populars" / "running races Spain" | Sport hub | ToFu | → alerts |

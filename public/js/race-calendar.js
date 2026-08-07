@@ -33,7 +33,7 @@
   var UI = {
     ca: {
       heading: 'Curses', subtitle: 'Curses d\'asfalt, trail, ciclisme i marxes de senderisme a Espanya i Andorra.',
-      search: 'Cerca per nom o població…', sport: 'Esport', territory: 'Territori', distance: 'Distància',
+      search: 'Cerca per nom o població…', searchLabel: 'Cerca', sport: 'Esport', territory: 'Territori', distance: 'Distància',
       month: 'Mes', allTerritories: 'Tots els territoris', wholeRegion: 'Tota la comunitat', allMonths: 'Tots els mesos',
       regOpen: 'Inscripcions obertes', favOnly: 'Preferides', reset: 'Reinicia', filters: 'Filtres',
       sortDate: 'Per data', sortPopular: 'Populars', count: '{n} curses', countOne: '1 cursa',
@@ -44,7 +44,7 @@
     },
     es: {
       heading: 'Carreras', subtitle: 'Carreras de asfalto, trail, ciclismo y marchas de senderismo en España y Andorra.',
-      search: 'Busca por nombre o población…', sport: 'Deporte', territory: 'Territorio', distance: 'Distancia',
+      search: 'Busca por nombre o población…', searchLabel: 'Buscar', sport: 'Deporte', territory: 'Territorio', distance: 'Distancia',
       month: 'Mes', allTerritories: 'Todos los territorios', wholeRegion: 'Toda la comunidad', allMonths: 'Todos los meses',
       regOpen: 'Inscripciones abiertas', favOnly: 'Favoritas', reset: 'Reiniciar', filters: 'Filtros',
       sortDate: 'Por fecha', sortPopular: 'Populares', count: '{n} carreras', countOne: '1 carrera',
@@ -55,7 +55,7 @@
     },
     en: {
       heading: 'Races', subtitle: 'Road, trail, cycling and hiking races across Spain and Andorra.',
-      search: 'Search by name or town…', sport: 'Sport', territory: 'Territory', distance: 'Distance',
+      search: 'Search by name or town…', searchLabel: 'Search', sport: 'Sport', territory: 'Territory', distance: 'Distance',
       month: 'Month', allTerritories: 'All territories', wholeRegion: 'Whole region', allMonths: 'All months',
       regOpen: 'Registration open', favOnly: 'Saved', reset: 'Reset', filters: 'Filters',
       sortDate: 'By date', sortPopular: 'Popular', count: '{n} races', countOne: '1 race',
@@ -339,11 +339,11 @@
     var row = el('div', { class: 'rc-filter-row' });
 
     // Search
-    row.appendChild(el('input', {
+    row.appendChild(field(t('searchLabel'), el('input', {
       class: 'rc-search', type: 'search', placeholder: t('search'), value: state.search,
       'aria-label': t('search'), autocomplete: 'off',
       oninput: function (e) { state.search = e.target.value.trim(); applyFilters(); refreshList(); }
-    }));
+    })));
 
     // Sport chips
     var sportChips = el('div', { class: 'rc-chips' });

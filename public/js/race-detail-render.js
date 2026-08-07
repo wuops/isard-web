@@ -34,9 +34,9 @@
 
   // Page-chrome strings for the detail page (enum vocabulary comes from labels.json).
   var UI = {
-    ca: { back: 'Curses', distances: 'Distàncies', registration: 'Inscripció', status: 'Estat', links: 'Enllaços', register: 'Inscripció', official: 'Web oficial', results: 'Resultats', route: 'Recorregut', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', tbc: 'Data per confirmar', viewMap: 'Veure el mapa', organizer: 'Organitza', price: 'Preu' },
-    es: { back: 'Carreras', distances: 'Distancias', registration: 'Inscripción', status: 'Estado', links: 'Enlaces', register: 'Inscripción', official: 'Sitio oficial', results: 'Resultados', route: 'Recorrido', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', tbc: 'Fecha por confirmar', viewMap: 'Ver el mapa', organizer: 'Organiza', price: 'Precio' },
-    en: { back: 'Races', distances: 'Distances', registration: 'Registration', status: 'Status', links: 'Links', register: 'Register', official: 'Official site', results: 'Results', route: 'Route', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', tbc: 'Date to be confirmed', viewMap: 'View the map', organizer: 'Organiser', price: 'Price' }
+    ca: { back: 'Curses', distances: 'Distàncies', registration: 'Inscripció', status: 'Estat', links: 'Enllaços', register: 'Inscripció', official: 'Web oficial', results: 'Resultats', route: 'Recorregut', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', searchGoogle: 'Cerca la cursa a Google', tbc: 'Data per confirmar', viewMap: 'Veure el mapa', organizer: 'Organitza', price: 'Preu' },
+    es: { back: 'Carreras', distances: 'Distancias', registration: 'Inscripción', status: 'Estado', links: 'Enlaces', register: 'Inscripción', official: 'Sitio oficial', results: 'Resultados', route: 'Recorrido', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', searchGoogle: 'Busca la carrera en Google', tbc: 'Fecha por confirmar', viewMap: 'Ver el mapa', organizer: 'Organiza', price: 'Precio' },
+    en: { back: 'Races', distances: 'Distances', registration: 'Registration', status: 'Status', links: 'Links', register: 'Register', official: 'Official site', results: 'Results', route: 'Route', gpx: 'GPX', instagram: 'Instagram', facebook: 'Facebook', searchGoogle: 'Search race on Google', tbc: 'Date to be confirmed', viewMap: 'View the map', organizer: 'Organiser', price: 'Price' }
   };
 
   function esc(s) {
@@ -192,7 +192,17 @@
       return '<a class="rd-link" href="' + esc(links[d[0]]) + '" target="_blank" rel="noopener nofollow">' +
         '<span>' + esc(d[1]) + '</span><span class="rd-link-arrow">↗</span></a>';
     }).join('');
-    if (linkRows) out += section(t.links, '<div class="rd-links">' + linkRows + '</div>');
+    if (linkRows) {
+      out += section(t.links, '<div class="rd-links">' + linkRows + '</div>');
+    } else if (!Object.keys(links).some(function (k) { return links[k]; })) {
+      // No links at all — offer a Google search so the race is still findable.
+      var loc = race.location || {};
+      var query = displayName(race, lang) + (loc.municipality ? ' ' + loc.municipality : (loc.province ? ' ' + loc.province : ''));
+      var googleUrl = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+      out += section(t.links, '<div class="rd-links"><a class="rd-link" href="' + esc(googleUrl) +
+        '" target="_blank" rel="noopener nofollow"><span>' + esc(t.searchGoogle) +
+        '</span><span class="rd-link-arrow">↗</span></a></div>');
+    }
 
     if (race.organizer && race.organizer.name) {
       out += section(t.organizer, '<div class="rd-row"><span>' + esc(race.organizer.name) + '</span></div>');

@@ -170,7 +170,7 @@
   background: var(--bg-surface);
   color: var(--text-primary);
   outline: none;
-  min-width: 200px;
+  min-width: 350px;
 }
 
 .rc-search:focus {
@@ -246,7 +246,7 @@
   display: flex;
   gap: 14px;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius-card);
   padding: 16px;
   transition: border-color 0.15s, background 0.15s;
@@ -254,6 +254,10 @@
 
 .rc-card:hover {
   border-color: var(--isard-green);
+}
+
+:root[data-theme="light"] .rc-card:hover {
+  border-color: #000;
 }
 
 /* Sport avatar: tinted disc + full-colour glyph (tokens .sport-badge recipe).

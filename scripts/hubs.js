@@ -323,4 +323,259 @@ var distanceHubs = [
   }
 ];
 
-module.exports = { PREFIX: PREFIX, CAL: CAL, distanceHubs: distanceHubs };
+// ---- sport hubs -------------------------------------------------------------
+// filter is by race.sport. Slug/label localized; content hand-written per locale.
+var sportHubs = [
+  {
+    id: 'asfalto', sport: 'road_running',
+    slug: { es: 'asfalto', ca: 'asfalt', en: 'road' },
+    name: { es: 'Asfalto', ca: 'Asfalt', en: 'Road' },
+    content: {
+      es: {
+        title: 'Carreras de asfalto en España y Andorra · calendario | iSard',
+        description: 'Calendario de carreras populares de asfalto en España y Andorra. Filtra por territorio, distancia, mes y estado de inscripción con iSard.',
+        h1: 'Carreras de asfalto en España y Andorra',
+        lead: 'Las carreras populares en ruta —de la 5K al maratón— son la base del calendario del corredor. iSard reúne {count} carreras de asfalto en España y Andorra.',
+        listTitle: 'Próximas carreras de asfalto', faqTitle: 'Preguntas frecuentes', relatedTitle: 'Explora más',
+        body: '<h2>Correr en asfalto</h2><p>El asfalto es la superficie de las carreras populares urbanas: circuitos medidos, ritmos rápidos y distancias que van de la 5K al maratón. Es donde se busca marca y donde se concentra la mayor oferta de pruebas cada temporada.</p>',
+        faq: [
+          { q: '¿Qué distancias hay en las carreras de asfalto?', a: 'Lo más habitual es 5K, 10K, media maratón (21K) y maratón (42K), además de millas y pruebas populares de distancias variadas.' },
+          { q: '¿Cómo veo las carreras de asfalto con inscripción abierta?', a: 'En el calendario de iSard puedes filtrar por estado de inscripción, territorio, distancia y mes.' }
+        ]
+      },
+      ca: {
+        title: 'Curses d\'asfalt a Espanya i Andorra · calendari | iSard',
+        description: 'Calendari de curses populars d\'asfalt a Espanya i Andorra. Filtra per territori, distància, mes i estat d\'inscripció amb iSard.',
+        h1: 'Curses d\'asfalt a Espanya i Andorra',
+        lead: 'Les curses populars en ruta —de la 5K a la marató— són la base del calendari del corredor. iSard reuneix {count} curses d\'asfalt a Espanya i Andorra.',
+        listTitle: 'Properes curses d\'asfalt', faqTitle: 'Preguntes freqüents', relatedTitle: 'Explora més',
+        body: '<h2>Córrer en asfalt</h2><p>L\'asfalt és la superfície de les curses populars urbanes: circuits mesurats, ritmes ràpids i distàncies que van de la 5K a la marató. És on es busca marca i on es concentra la major oferta de proves cada temporada.</p>',
+        faq: [
+          { q: 'Quines distàncies hi ha a les curses d\'asfalt?', a: 'El més habitual és 5K, 10K, mitja marató (21K) i marató (42K), a més de milles i proves populars de distàncies diverses.' },
+          { q: 'Com veig les curses d\'asfalt amb inscripció oberta?', a: 'Al calendari d\'iSard pots filtrar per estat d\'inscripció, territori, distància i mes.' }
+        ]
+      },
+      en: {
+        title: 'Road races in Spain and Andorra · calendar | iSard',
+        description: 'Calendar of road running races in Spain and Andorra. Filter by territory, distance, month and registration status with iSard.',
+        h1: 'Road races in Spain and Andorra',
+        lead: 'Road races —from the 5K to the marathon— are the backbone of the running calendar. iSard gathers {count} road races across Spain and Andorra.',
+        listTitle: 'Upcoming road races', faqTitle: 'Frequently asked questions', relatedTitle: 'Explore more',
+        body: '<h2>Running on the road</h2><p>Road is the surface of urban races: measured courses, fast paces and distances from the 5K to the marathon. It is where runners chase times and where most races are held each season.</p>',
+        faq: [
+          { q: 'What distances do road races have?', a: 'Most common are 5K, 10K, half marathon (21K) and marathon (42K), plus miles and popular races of varied distances.' },
+          { q: 'How do I find road races with open registration?', a: 'In the iSard calendar you can filter by registration status, territory, distance and month.' }
+        ]
+      }
+    }
+  },
+  {
+    id: 'trail', sport: 'trail_running',
+    slug: { es: 'trail', ca: 'trail', en: 'trail' },
+    name: { es: 'Trail', ca: 'Trail', en: 'Trail' },
+    content: {
+      es: {
+        title: 'Carreras de trail y montaña en España y Andorra · calendario | iSard',
+        description: 'Calendario de carreras de trail y montaña en España y Andorra. Filtra por territorio, distancia, mes y estado de inscripción con iSard.',
+        h1: 'Carreras de trail y montaña en España y Andorra',
+        lead: 'El trail lleva la carrera a la montaña: senderos, desnivel y paisaje. iSard reúne {count} carreras de trail en España y Andorra.',
+        listTitle: 'Próximas carreras de trail', faqTitle: 'Preguntas frecuentes', relatedTitle: 'Explora más',
+        body: '<h2>Correr por montaña</h2><p>El trail running se disputa por senderos y montaña, con distancias que van desde pruebas cortas hasta ultras. Aquí el desnivel acumulado es tan determinante como los kilómetros, y el terreno técnico marca el ritmo.</p>',
+        faq: [
+          { q: '¿Qué diferencia al trail del asfalto?', a: 'El trail se corre por montaña y terreno natural, con desnivel y superficies técnicas, mientras que el asfalto es en ruta y circuito urbano.' },
+          { q: '¿Cómo veo las carreras de trail con inscripción abierta?', a: 'En el calendario de iSard puedes filtrar por estado de inscripción, territorio, distancia y mes.' }
+        ]
+      },
+      ca: {
+        title: 'Curses de trail i muntanya a Espanya i Andorra · calendari | iSard',
+        description: 'Calendari de curses de trail i muntanya a Espanya i Andorra. Filtra per territori, distància, mes i estat d\'inscripció amb iSard.',
+        h1: 'Curses de trail i muntanya a Espanya i Andorra',
+        lead: 'El trail porta la cursa a la muntanya: senders, desnivell i paisatge. iSard reuneix {count} curses de trail a Espanya i Andorra.',
+        listTitle: 'Properes curses de trail', faqTitle: 'Preguntes freqüents', relatedTitle: 'Explora més',
+        body: '<h2>Córrer per muntanya</h2><p>El trail running es disputa per senders i muntanya, amb distàncies que van des de proves curtes fins a ultres. Aquí el desnivell acumulat és tan determinant com els quilòmetres, i el terreny tècnic marca el ritme.</p>',
+        faq: [
+          { q: 'Què diferencia el trail de l\'asfalt?', a: 'El trail es corre per muntanya i terreny natural, amb desnivell i superfícies tècniques, mentre que l\'asfalt és en ruta i circuit urbà.' },
+          { q: 'Com veig les curses de trail amb inscripció oberta?', a: 'Al calendari d\'iSard pots filtrar per estat d\'inscripció, territori, distància i mes.' }
+        ]
+      },
+      en: {
+        title: 'Trail and mountain races in Spain and Andorra · calendar | iSard',
+        description: 'Calendar of trail and mountain races in Spain and Andorra. Filter by territory, distance, month and registration status with iSard.',
+        h1: 'Trail and mountain races in Spain and Andorra',
+        lead: 'Trail takes racing to the mountains: paths, elevation and scenery. iSard gathers {count} trail races across Spain and Andorra.',
+        listTitle: 'Upcoming trail races', faqTitle: 'Frequently asked questions', relatedTitle: 'Explore more',
+        body: '<h2>Running in the mountains</h2><p>Trail running is held on paths and mountains, with distances from short races to ultras. Here cumulative elevation gain matters as much as the distance, and technical terrain sets the pace.</p>',
+        faq: [
+          { q: 'How is trail different from road?', a: 'Trail is run in the mountains and on natural terrain, with elevation and technical surfaces, while road is on urban courses.' },
+          { q: 'How do I find trail races with open registration?', a: 'In the iSard calendar you can filter by registration status, territory, distance and month.' }
+        ]
+      }
+    }
+  },
+  {
+    id: 'ciclismo', sport: 'cycling',
+    slug: { es: 'ciclismo', ca: 'ciclisme', en: 'cycling' },
+    name: { es: 'Ciclismo', ca: 'Ciclisme', en: 'Cycling' },
+    content: {
+      es: {
+        title: 'Marchas y pruebas de ciclismo en España y Andorra · calendario | iSard',
+        description: 'Calendario de marchas cicloturistas y pruebas de ciclismo en España y Andorra. Filtra por territorio, mes y estado de inscripción con iSard.',
+        h1: 'Ciclismo en España y Andorra',
+        lead: 'Marchas cicloturistas, gran fondo y pruebas en carretera y montaña. iSard reúne {count} eventos de ciclismo en España y Andorra.',
+        listTitle: 'Próximas pruebas de ciclismo', faqTitle: 'Preguntas frecuentes', relatedTitle: 'Explora más',
+        body: '<h2>Rodar en grupo</h2><p>El calendario ciclista incluye marchas cicloturistas, pruebas de gran fondo y eventos de carretera y BTT. Son citas para rodar largo, medirse en subidas o simplemente disfrutar de una ruta señalizada y con avituallamiento.</p>',
+        faq: [
+          { q: '¿Qué es una marcha cicloturista?', a: 'Es una prueba participativa por carretera, con recorrido señalizado y avituallamientos, en la que se rueda por distancias largas sin ser necesariamente competitiva.' },
+          { q: '¿Cómo veo las pruebas de ciclismo con inscripción abierta?', a: 'En el calendario de iSard puedes filtrar por estado de inscripción, territorio y mes.' }
+        ]
+      },
+      ca: {
+        title: 'Marxes i proves de ciclisme a Espanya i Andorra · calendari | iSard',
+        description: 'Calendari de marxes cicloturistes i proves de ciclisme a Espanya i Andorra. Filtra per territori, mes i estat d\'inscripció amb iSard.',
+        h1: 'Ciclisme a Espanya i Andorra',
+        lead: 'Marxes cicloturistes, gran fons i proves en carretera i muntanya. iSard reuneix {count} esdeveniments de ciclisme a Espanya i Andorra.',
+        listTitle: 'Properes proves de ciclisme', faqTitle: 'Preguntes freqüents', relatedTitle: 'Explora més',
+        body: '<h2>Rodar en grup</h2><p>El calendari ciclista inclou marxes cicloturistes, proves de gran fons i esdeveniments de carretera i BTT. Són cites per rodar llarg, mesurar-se a les pujades o simplement gaudir d\'una ruta senyalitzada i amb avituallament.</p>',
+        faq: [
+          { q: 'Què és una marxa cicloturista?', a: 'És una prova participativa per carretera, amb recorregut senyalitzat i avituallaments, en què es roda per distàncies llargues sense ser necessàriament competitiva.' },
+          { q: 'Com veig les proves de ciclisme amb inscripció oberta?', a: 'Al calendari d\'iSard pots filtrar per estat d\'inscripció, territori i mes.' }
+        ]
+      },
+      en: {
+        title: 'Cycling events in Spain and Andorra · calendar | iSard',
+        description: 'Calendar of cyclosportives and cycling events in Spain and Andorra. Filter by territory, month and registration status with iSard.',
+        h1: 'Cycling in Spain and Andorra',
+        lead: 'Cyclosportives, gran fondo and road and mountain events. iSard gathers {count} cycling events across Spain and Andorra.',
+        listTitle: 'Upcoming cycling events', faqTitle: 'Frequently asked questions', relatedTitle: 'Explore more',
+        body: '<h2>Riding together</h2><p>The cycling calendar includes cyclosportives, gran fondo events and road and MTB rides. They are dates to ride long, test yourself on the climbs or simply enjoy a signposted route with feed stations.</p>',
+        faq: [
+          { q: 'What is a cyclosportive?', a: 'It is a participative road event with a signposted route and feed stations, ridden over long distances without necessarily being competitive.' },
+          { q: 'How do I find cycling events with open registration?', a: 'In the iSard calendar you can filter by registration status, territory and month.' }
+        ]
+      }
+    }
+  },
+  {
+    id: 'senderismo', sport: 'hiking',
+    slug: { es: 'senderismo', ca: 'senderisme', en: 'hiking' },
+    name: { es: 'Senderismo', ca: 'Senderisme', en: 'Hiking' },
+    content: {
+      es: {
+        title: 'Marchas de senderismo y caminatas en España y Andorra · calendario | iSard',
+        description: 'Calendario de marchas de senderismo, caminatas y travesías en España y Andorra. Filtra por territorio, mes y estado de inscripción con iSard.',
+        h1: 'Marchas de senderismo en España y Andorra',
+        lead: 'Caminatas populares, marchas y travesías de montaña para todos los niveles. iSard reúne {count} marchas de senderismo en España y Andorra.',
+        listTitle: 'Próximas marchas de senderismo', faqTitle: 'Preguntas frecuentes', relatedTitle: 'Explora más',
+        body: '<h2>Caminar por naturaleza</h2><p>Las marchas de senderismo y caminatas populares recorren senderos, caminos y montaña a un ritmo accesible. Son una forma de disfrutar del paisaje y la actividad al aire libre sin la exigencia competitiva de una carrera.</p>',
+        faq: [
+          { q: '¿En qué se diferencia una marcha de senderismo de una carrera?', a: 'Una marcha se completa caminando a un ritmo accesible, sin clasificación competitiva; una carrera se corre y se cronometra.' },
+          { q: '¿Cómo veo las marchas con inscripción abierta?', a: 'En el calendario de iSard puedes filtrar por estado de inscripción, territorio y mes.' }
+        ]
+      },
+      ca: {
+        title: 'Marxes de senderisme i caminades a Espanya i Andorra · calendari | iSard',
+        description: 'Calendari de marxes de senderisme, caminades i travesses a Espanya i Andorra. Filtra per territori, mes i estat d\'inscripció amb iSard.',
+        h1: 'Marxes de senderisme a Espanya i Andorra',
+        lead: 'Caminades populars, marxes i travesses de muntanya per a tots els nivells. iSard reuneix {count} marxes de senderisme a Espanya i Andorra.',
+        listTitle: 'Properes marxes de senderisme', faqTitle: 'Preguntes freqüents', relatedTitle: 'Explora més',
+        body: '<h2>Caminar per la natura</h2><p>Les marxes de senderisme i caminades populars recorren senders, camins i muntanya a un ritme accessible. Són una manera de gaudir del paisatge i l\'activitat a l\'aire lliure sense l\'exigència competitiva d\'una cursa.</p>',
+        faq: [
+          { q: 'En què es diferencia una marxa de senderisme d\'una cursa?', a: 'Una marxa es completa caminant a un ritme accessible, sense classificació competitiva; una cursa es corre i es cronometra.' },
+          { q: 'Com veig les marxes amb inscripció oberta?', a: 'Al calendari d\'iSard pots filtrar per estat d\'inscripció, territori i mes.' }
+        ]
+      },
+      en: {
+        title: 'Hiking marches and walks in Spain and Andorra · calendar | iSard',
+        description: 'Calendar of hiking marches, walks and mountain crossings in Spain and Andorra. Filter by territory, month and registration status with iSard.',
+        h1: 'Hiking marches in Spain and Andorra',
+        lead: 'Popular walks, marches and mountain crossings for all levels. iSard gathers {count} hiking marches across Spain and Andorra.',
+        listTitle: 'Upcoming hiking marches', faqTitle: 'Frequently asked questions', relatedTitle: 'Explore more',
+        body: '<h2>Walking in nature</h2><p>Hiking marches and popular walks follow paths, tracks and mountains at an accessible pace. They are a way to enjoy the scenery and the outdoors without the competitive demand of a race.</p>',
+        faq: [
+          { q: 'How is a hiking march different from a race?', a: 'A march is completed at a walking, accessible pace with no competitive ranking; a race is run and timed.' },
+          { q: 'How do I find marches with open registration?', a: 'In the iSard calendar you can filter by registration status, territory and month.' }
+        ]
+      }
+    }
+  }
+];
+
+// ---- location hubs (autonomous communities) ---------------------------------
+// Single accent-free slug shared across locales (the /es|ca|en prefix already
+// makes the URLs distinct); display name is localized. `key` matches the exact
+// race.location.autonomousCommunity value.
+var COMMUNITIES = [
+  { key: 'Andalucía', slug: 'andalucia', name: { es: 'Andalucía', ca: 'Andalusia', en: 'Andalusia' } },
+  { key: 'Andorra', slug: 'andorra', name: { es: 'Andorra', ca: 'Andorra', en: 'Andorra' } },
+  { key: 'Aragón', slug: 'aragon', name: { es: 'Aragón', ca: 'Aragó', en: 'Aragon' } },
+  { key: 'Canarias', slug: 'canarias', name: { es: 'Canarias', ca: 'Canàries', en: 'Canary Islands' } },
+  { key: 'Cantabria', slug: 'cantabria', name: { es: 'Cantabria', ca: 'Cantàbria', en: 'Cantabria' } },
+  { key: 'Castilla y León', slug: 'castilla-y-leon', name: { es: 'Castilla y León', ca: 'Castella i Lleó', en: 'Castile and León' } },
+  { key: 'Castilla-La Mancha', slug: 'castilla-la-mancha', name: { es: 'Castilla-La Mancha', ca: 'Castella-la Manxa', en: 'Castile-La Mancha' } },
+  { key: 'Cataluña', slug: 'cataluna', name: { es: 'Cataluña', ca: 'Catalunya', en: 'Catalonia' } },
+  { key: 'Ceuta', slug: 'ceuta', name: { es: 'Ceuta', ca: 'Ceuta', en: 'Ceuta' } },
+  { key: 'Comunidad Foral de Navarra', slug: 'navarra', name: { es: 'Navarra', ca: 'Navarra', en: 'Navarre' } },
+  { key: 'Comunidad de Madrid', slug: 'madrid', name: { es: 'Madrid', ca: 'Madrid', en: 'Madrid' } },
+  { key: 'Comunitat Valenciana', slug: 'comunidad-valenciana', name: { es: 'Comunidad Valenciana', ca: 'Comunitat Valenciana', en: 'Valencian Community' } },
+  { key: 'Extremadura', slug: 'extremadura', name: { es: 'Extremadura', ca: 'Extremadura', en: 'Extremadura' } },
+  { key: 'Galicia', slug: 'galicia', name: { es: 'Galicia', ca: 'Galícia', en: 'Galicia' } },
+  { key: 'Illes Balears', slug: 'illes-balears', name: { es: 'Islas Baleares', ca: 'Illes Balears', en: 'Balearic Islands' } },
+  { key: 'La Rioja', slug: 'la-rioja', name: { es: 'La Rioja', ca: 'La Rioja', en: 'La Rioja' } },
+  { key: 'Melilla', slug: 'melilla', name: { es: 'Melilla', ca: 'Melilla', en: 'Melilla' } },
+  { key: 'País Vasco', slug: 'pais-vasco', name: { es: 'País Vasco', ca: 'País Basc', en: 'Basque Country' } },
+  { key: 'Principado de Asturias', slug: 'asturias', name: { es: 'Asturias', ca: 'Astúries', en: 'Asturias' } },
+  { key: 'Región de Murcia', slug: 'murcia', name: { es: 'Murcia', ca: 'Múrcia', en: 'Murcia' } }
+];
+
+// Templated, per-locale content for a community hub. `ctx` = { name, count, provinces }.
+function locationContent(lang, ctx) {
+  var name = ctx.name[lang];
+  var provs = ctx.provinces.join(', ');
+  var T = {
+    es: {
+      title: 'Carreras en ' + name + ' · calendario 2026 | iSard',
+      description: 'Calendario de carreras de asfalto, trail, ciclismo y senderismo en ' + name + '. Filtra por deporte, distancia, mes y estado de inscripción con iSard.',
+      h1: 'Carreras en ' + name,
+      lead: 'Encuentra tu próxima carrera en ' + name + '. iSard reúne {count} carreras de asfalto, trail, ciclismo y senderismo en ' + name + ', que puedes filtrar por deporte, distancia, mes y estado de inscripción.',
+      listTitle: 'Próximas carreras en ' + name, faqTitle: 'Preguntas frecuentes', relatedTitle: 'Explora más',
+      body: provs ? '<h2>Carreras por toda ' + name + '</h2><p>El calendario de ' + name + ' incluye pruebas en ' + provs + ', desde carreras populares de asfalto hasta trail de montaña, marchas cicloturistas y caminatas de senderismo.</p>' : '',
+      faq: [
+        { q: '¿Cuántas carreras hay en ' + name + '?', a: 'iSard recoge actualmente ' + ctx.count + ' carreras y marchas en ' + name + ' para los próximos meses. La cifra se actualiza a medida que se confirman nuevas pruebas.' },
+        { q: '¿Cómo veo las carreras de ' + name + ' con inscripción abierta?', a: 'En el calendario de iSard puedes filtrar por estado de inscripción, deporte, distancia y mes dentro de ' + name + '.' }
+      ]
+    },
+    ca: {
+      title: 'Curses a ' + name + ' · calendari 2026 | iSard',
+      description: 'Calendari de curses d\'asfalt, trail, ciclisme i senderisme a ' + name + '. Filtra per esport, distància, mes i estat d\'inscripció amb iSard.',
+      h1: 'Curses a ' + name,
+      lead: 'Troba la teva propera cursa a ' + name + '. iSard reuneix {count} curses d\'asfalt, trail, ciclisme i senderisme a ' + name + ', que pots filtrar per esport, distància, mes i estat d\'inscripció.',
+      listTitle: 'Properes curses a ' + name, faqTitle: 'Preguntes freqüents', relatedTitle: 'Explora més',
+      body: provs ? '<h2>Curses per tot ' + name + '</h2><p>El calendari de ' + name + ' inclou proves a ' + provs + ', des de curses populars d\'asfalt fins a trail de muntanya, marxes cicloturistes i caminades de senderisme.</p>' : '',
+      faq: [
+        { q: 'Quantes curses hi ha a ' + name + '?', a: 'iSard recull actualment ' + ctx.count + ' curses i marxes a ' + name + ' per als propers mesos. La xifra s\'actualitza a mesura que es confirmen noves proves.' },
+        { q: 'Com veig les curses de ' + name + ' amb inscripció oberta?', a: 'Al calendari d\'iSard pots filtrar per estat d\'inscripció, esport, distància i mes dins de ' + name + '.' }
+      ]
+    },
+    en: {
+      title: 'Races in ' + name + ' · 2026 calendar | iSard',
+      description: 'Calendar of road, trail, cycling and hiking races in ' + name + '. Filter by sport, distance, month and registration status with iSard.',
+      h1: 'Races in ' + name,
+      lead: 'Find your next race in ' + name + '. iSard gathers {count} road, trail, cycling and hiking races in ' + name + ', which you can filter by sport, distance, month and registration status.',
+      listTitle: 'Upcoming races in ' + name, faqTitle: 'Frequently asked questions', relatedTitle: 'Explore more',
+      body: provs ? '<h2>Races across ' + name + '</h2><p>The ' + name + ' calendar includes events in ' + provs + ', from road running races to mountain trail, cyclosportives and hiking marches.</p>' : '',
+      faq: [
+        { q: 'How many races are there in ' + name + '?', a: 'iSard currently lists ' + ctx.count + ' races and marches in ' + name + ' for the coming months. The number updates as new events are confirmed.' },
+        { q: 'How do I find races in ' + name + ' with open registration?', a: 'In the iSard calendar you can filter by registration status, sport, distance and month within ' + name + '.' }
+      ]
+    }
+  };
+  return T[lang] || T.es;
+}
+
+module.exports = {
+  PREFIX: PREFIX, CAL: CAL,
+  distanceHubs: distanceHubs,
+  sportHubs: sportHubs,
+  COMMUNITIES: COMMUNITIES,
+  locationContent: locationContent
+};

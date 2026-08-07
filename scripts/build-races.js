@@ -329,14 +329,25 @@ function hubUrl(hub, lang) {
 }
 function hubPath(hub, lang) { return '/' + lang + '/' + HUBS.PREFIX[lang] + '/' + hub.slug[lang]; }
 
-// Hub index injected into the localized homepage (replaces the <!--HUBS--> marker).
-var HOME_HUBS_TITLE = { es: 'Explora carreras por distancia', ca: 'Explora curses per distància', en: 'Browse races by distance' };
-function homeHubIndex(lang) {
-  var chips = HUBS.distanceHubs.map(function (h) {
+// Hub index injected into the localized homepage (replaces the <!--HUBS--> marker):
+// browse by distance, by sport, and by territory (top communities, set in main()).
+var HOME_HUBS_TITLE = {
+  distance: { es: 'Explora carreras por distancia', ca: 'Explora curses per distància', en: 'Browse races by distance' },
+  sport: { es: 'Explora por deporte', ca: 'Explora per esport', en: 'Browse by sport' },
+  location: { es: 'Explora por territorio', ca: 'Explora per territori', en: 'Browse by territory' }
+};
+var homeTopLocations = [];
+function homeHubGroup(title, hubs, lang) {
+  if (!hubs.length) return '';
+  var chips = hubs.map(function (h) {
     return '<a class="home-hub" href="' + esc(hubPath(h, lang)) + '">' + esc(h.name[lang]) + '</a>';
   }).join('');
-  return '<h2>' + esc(HOME_HUBS_TITLE[lang] || HOME_HUBS_TITLE.es) + '</h2>' +
-    '<div class="home-hub-links">' + chips + '</div>';
+  return '<h2>' + esc(title) + '</h2><div class="home-hub-links">' + chips + '</div>';
+}
+function homeHubIndex(lang) {
+  return homeHubGroup(HOME_HUBS_TITLE.distance[lang], HUBS.distanceHubs, lang) +
+    homeHubGroup(HOME_HUBS_TITLE.sport[lang], HUBS.sportHubs, lang) +
+    homeHubGroup(HOME_HUBS_TITLE.location[lang], homeTopLocations, lang);
 }
 
 function hubHreflang(hub) {
@@ -377,8 +388,8 @@ function hubFaqHtml(faq) {
   }).join('') + '</div>';
 }
 
-function hubRelatedHtml(hub, lang) {
-  return HUBS.distanceHubs.filter(function (h) { return h.id !== hub.id; }).map(function (h) {
+function hubRelatedHtml(hub, lang, relatedList) {
+  return relatedList.filter(function (h) { return h.id !== hub.id; }).map(function (h) {
     return '<a class="h-chip" href="' + esc(hubPath(h, lang)) + '">' + esc(h.name[lang]) + '</a>';
   }).join('');
 }
@@ -439,7 +450,7 @@ var HUB_CSS = '\n' +
 '    .h-chip { padding: 8px 14px; border: 1px solid var(--border-color); border-radius: 999px; text-decoration: none; color: var(--text-primary); font-size: 0.9rem; font-weight: 600; }\n' +
 '    .h-chip:hover { border-color: var(--accent); }\n';
 
-function hubPage(hub, lang, matched, indexable) {
+function hubPage(hub, lang, matched, indexable, relatedList) {
   var c = hub.content[lang];
   var canonical = hubUrl(hub, lang);
   var list = hubEventList(matched, lang, 60);
@@ -488,9 +499,9 @@ HUB_CSS +
 '    <p class="h-lead">' + esc(lead) + '</p>\n' +
 '    <section class="h-section"><h2>' + esc(c.listTitle) + '</h2>' + list.html +
 '      <a class="h-more" href="/' + lang + '/race-calendar">' + esc(UI_MORE[lang]) + ' →</a></section>\n' +
-'    <section class="h-section">' + c.body + '</section>\n' +
+(c.body ? '    <section class="h-section">' + c.body + '</section>\n' : '') +
 '    <section class="h-section"><h2>' + esc(c.faqTitle) + '</h2>' + hubFaqHtml(c.faq) + '</section>\n' +
-'    <section class="h-section"><h2>' + esc(c.relatedTitle) + '</h2><div class="h-related">' + hubRelatedHtml(hub, lang) + '</div></section>\n' +
+'    <section class="h-section"><h2>' + esc(c.relatedTitle) + '</h2><div class="h-related">' + hubRelatedHtml(hub, lang, relatedList) + '</div></section>\n' +
 '  </main>\n' +
 '  <script src="/js/header.js"></script>\n' +
 '  <script src="/js/i18n.js"></script>\n' +
@@ -499,21 +510,55 @@ HUB_CSS +
 '</html>\n';
 }
 
-function buildHubs() {
+function byDateAsc(a, b) { var x = a.date || '', y = b.date || ''; return x < y ? -1 : x > y ? 1 : 0; }
+
+// Attach matched (sorted) + indexable to a hub descriptor. `pre` skips re-filtering.
+function finalizeHub(d, pre) {
+  d.matched = (pre || races.filter(d.filter)).slice().sort(byDateAsc);
+  d.indexable = d.matched.length >= HUB_MIN;
+  return d;
+}
+
+// All hub descriptors: distance + sport (explicit content) and location
+// (templated content built from the community's real count + provinces).
+function buildHubDescriptors() {
+  var out = [];
+  HUBS.distanceHubs.forEach(function (h) {
+    out.push(finalizeHub({ id: h.id, family: 'distance', filter: h.filter, slug: h.slug, name: h.name, content: h.content }));
+  });
+  HUBS.sportHubs.forEach(function (h) {
+    var sport = h.sport;
+    out.push(finalizeHub({ id: 'sport-' + h.id, family: 'sport', filter: function (r) { return r.sport === sport; }, slug: h.slug, name: h.name, content: h.content }));
+  });
+  HUBS.COMMUNITIES.forEach(function (comm) {
+    var key = comm.key;
+    var matched = races.filter(function (r) { return r.location && r.location.autonomousCommunity === key; });
+    if (!matched.length) return;
+    var seen = {}, provinces = [];
+    matched.forEach(function (r) { var p = r.location.province; if (p && !seen[p]) { seen[p] = 1; provinces.push(p); } });
+    provinces.sort();
+    var ctx = { name: comm.name, count: matched.length, provinces: provinces.length >= 2 ? provinces : [] };
+    var content = {};
+    LANGS.forEach(function (l) { content[l] = HUBS.locationContent(l, ctx); });
+    out.push(finalizeHub({
+      id: 'loc-' + comm.slug, family: 'location',
+      filter: function (r) { return r.location && r.location.autonomousCommunity === key; },
+      slug: { es: comm.slug, ca: comm.slug, en: comm.slug }, name: comm.name, content: content
+    }, matched));
+  });
+  return out;
+}
+
+function writeHubPages(descriptors, relatedList) {
   var pages = 0, indexed = [];
-  HUBS.distanceHubs.forEach(function (hub) {
-    var matched = races.filter(hub.filter).slice().sort(function (a, b) {
-      var da = a.date || '', db = b.date || '';
-      return da < db ? -1 : da > db ? 1 : 0;
-    });
-    var indexable = matched.length >= HUB_MIN;
+  descriptors.forEach(function (d) {
     LANGS.forEach(function (lang) {
-      var dir = path.join(PUBLIC, lang, HUBS.PREFIX[lang], hub.slug[lang]);
+      var dir = path.join(PUBLIC, lang, HUBS.PREFIX[lang], d.slug[lang]);
       fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(path.join(dir, 'index.html'), hubPage(hub, lang, matched, indexable));
+      fs.writeFileSync(path.join(dir, 'index.html'), hubPage(d, lang, d.matched, d.indexable, relatedList));
       pages++;
     });
-    if (indexable) indexed.push(hub);
+    if (d.indexable) indexed.push(d);
   });
   return { pages: pages, indexed: indexed };
 }
@@ -602,13 +647,22 @@ function main() {
       pages++;
     });
   });
+  // Hub descriptors first, so the homepage index can list the top territories.
+  var descriptors = buildHubDescriptors();
+  homeTopLocations = descriptors
+    .filter(function (d) { return d.family === 'location' && d.indexable; })
+    .sort(function (a, b) { return b.matched.length - a.matched.length; })
+    .slice(0, 8);
+  // Every hub cross-links to the sport + distance hubs (connects the graph).
+  var relatedList = descriptors.filter(function (d) { return d.family === 'sport' || d.family === 'distance'; });
+
   var staticN = buildStaticPages();
-  var hubs = buildHubs();
+  var hubs = writeHubPages(descriptors, relatedList);
   writeSitemap(races, hubs.indexed);
   console.log('[build-races] wrote ' + pages + ' race pages (' + races.length +
     ' races × ' + LANGS.length + ' locales) + ' + staticN +
     ' localized static pages + ' + hubs.pages + ' hub pages (' +
-    hubs.indexed.length + '/' + HUBS.distanceHubs.length + ' indexable) + sitemap.xml in ' +
+    hubs.indexed.length + '/' + descriptors.length + ' indexable) + sitemap.xml in ' +
     ((Date.now() - start) / 1000).toFixed(1) + 's');
 }
 

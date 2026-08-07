@@ -42,10 +42,11 @@
     background: color-mix(in srgb, var(--text-primary) 8%, transparent);
 }
 
-/* Current page: brand-lime label. */
+/* Current page: brand-lime label on the same soft pill as the hover state. */
 .nav-link[aria-current="page"] {
     color: var(--accent);
     font-weight: 600;
+    background: color-mix(in srgb, var(--text-primary) 8%, transparent);
 }
 
 .nav-link:focus-visible,

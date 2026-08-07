@@ -39,15 +39,22 @@
 
     document.body.insertBefore(header, document.body.firstChild);
 
-    // Mark the active nav link for the current route. Race detail pages
-    // (/races/<slug>) count as the calendar section.
+    // Mark the active nav link for the current route. Sections span several
+    // paths: race detail pages (/races/<slug>) belong to the calendar, and the
+    // alerts link (/race-alerts) also covers its localized/status variants
+    // (/race-alerts-es, /race-alerts-confirmed, …).
     var path = window.location.pathname.replace(/\/+$/, '') || '/';
     var navItems = header.querySelectorAll('.nav-link');
     for (var n = 0; n < navItems.length; n++) {
       var href = (navItems[n].getAttribute('href') || '').replace(/\/+$/, '') || '/';
-      var active = href === '/'
-        ? path === '/'
-        : (path === href || (href === '/race-calendar' && path.indexOf('/races') === 0));
+      var active;
+      if (href === '/') {
+        active = path === '/';
+      } else if (href === '/race-calendar') {
+        active = path === href || path.indexOf('/races') === 0;
+      } else {
+        active = path === href || path.indexOf(href + '-') === 0 || path.indexOf(href + '/') === 0;
+      }
       if (active) navItems[n].setAttribute('aria-current', 'page');
     }
 

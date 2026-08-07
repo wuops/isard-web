@@ -236,6 +236,8 @@ function localizeStatic(src, spec, lang) {
   // Localize the calendar's JSON-LD URLs (CollectionPage url/@id + breadcrumb)
   // so structured data references the canonical locale URL, not a 301.
   html = html.replace(/https:\/\/www\.isard\.app\/race-calendar/g, SITE + '/' + lang + '/race-calendar');
+  // Inject the per-locale hub index into the homepage (no-op elsewhere).
+  html = html.replace('<!--HUBS-->', homeHubIndex(lang));
   html = applyI18nLeaf(html, spec.i18n[lang]);
   return html;
 }
@@ -326,6 +328,16 @@ function hubUrl(hub, lang) {
   return SITE + '/' + lang + '/' + HUBS.PREFIX[lang] + '/' + hub.slug[lang];
 }
 function hubPath(hub, lang) { return '/' + lang + '/' + HUBS.PREFIX[lang] + '/' + hub.slug[lang]; }
+
+// Hub index injected into the localized homepage (replaces the <!--HUBS--> marker).
+var HOME_HUBS_TITLE = { es: 'Explora carreras por distancia', ca: 'Explora curses per distància', en: 'Browse races by distance' };
+function homeHubIndex(lang) {
+  var chips = HUBS.distanceHubs.map(function (h) {
+    return '<a class="home-hub" href="' + esc(hubPath(h, lang)) + '">' + esc(h.name[lang]) + '</a>';
+  }).join('');
+  return '<h2>' + esc(HOME_HUBS_TITLE[lang] || HOME_HUBS_TITLE.es) + '</h2>' +
+    '<div class="home-hub-links">' + chips + '</div>';
+}
 
 function hubHreflang(hub) {
   var out = LANGS.map(function (l) {

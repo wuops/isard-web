@@ -173,13 +173,47 @@
         }
 
         .home-links a:first-child {
-            background: var(--accent);
-            color: var(--btn-text, #111);
-            border-color: var(--accent);
+            background: var(--btn-bg); /* lime fill in both themes (--accent is dark-ink on light) */
+            color: var(--btn-text);
+            border-color: var(--btn-bg);
         }
+        .home-links a:first-child:hover { background: var(--btn-hover); border-color: var(--btn-hover); }
 
         .home-links a:hover {
             border-color: var(--text-muted);
+        }
+
+        .home-hubs {
+            width: 100%;
+            max-width: 580px;
+            margin-top: 32px;
+        }
+
+        .home-hubs h2 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .home-hub-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .home-hub {
+            padding: 8px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .home-hub:hover {
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
         .form-card {
@@ -439,6 +473,10 @@
                 <a href="/race-calendar" data-i18n="cta_calendar">Ver calendario de carreras</a>
                 <a href="/race-alerts" data-i18n="cta_alerts">Crear alertas de carreras</a>
             </nav>
+        </section>
+
+        <section class="home-hubs" aria-label="Carreras por distancia">
+            <!--HUBS-->
         </section>
     </div>
 

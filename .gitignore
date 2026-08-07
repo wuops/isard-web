@@ -4,4 +4,7 @@ node_modules/
 
 # Generated at build time by scripts/build-races.js
 /public/races/
+/public/es/
+/public/ca/
+/public/en/
 /public/sitemap.xml

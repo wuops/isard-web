@@ -133,7 +133,7 @@
     var tagText = formatL && formatL !== sportL ? (sportL + ' · ' + formatL) : sportL;
 
     var html = '';
-    html += '<a class="rd-back" href="/race-calendar">← ' + esc(t.back) + '</a>';
+    html += '<a class="rd-back" href="/' + lang + '/race-calendar">← ' + esc(t.back) + '</a>';
     html += '<div class="rd-eyebrow" data-sport="' + esc(race.sport) + '">' +
               '<span class="rd-eyebrow-icon">' + iconSvg(race.sport) + '</span>' +
               '<span>' + esc(tagText) + '</span>' +

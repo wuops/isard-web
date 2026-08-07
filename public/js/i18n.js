@@ -10,6 +10,13 @@
         return param;
       }
     } catch (e) {}
+    // Server-rendered localized pages live under /es|ca|en/… — the path is the
+    // source of truth there. Persist it so subsequent unprefixed pages follow.
+    var seg = window.location.pathname.split('/')[1];
+    if (SUPPORTED.indexOf(seg) !== -1) {
+      try { localStorage.setItem('isard-lang', seg); } catch (e) {}
+      return seg;
+    }
     var stored = localStorage.getItem('isard-lang');
     if (stored && SUPPORTED.indexOf(stored) !== -1) return stored;
     return DEFAULT;

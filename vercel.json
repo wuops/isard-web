@@ -1,4 +1,15 @@
 {
   "buildCommand": "node scripts/build-races.js",
-  "outputDirectory": "public"
+  "outputDirectory": "public",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "isard.app" }],
+      "destination": "https://www.isard.app/:path*",
+      "permanent": true
+    },
+    { "source": "/", "destination": "/es/", "permanent": true },
+    { "source": "/race-calendar", "destination": "/es/race-calendar", "permanent": true },
+    { "source": "/races/:slug*", "destination": "/es/races/:slug*", "permanent": true }
+  ]
 }

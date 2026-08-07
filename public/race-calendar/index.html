@@ -3,14 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carreras — iSard</title>
-    <meta name="description" content="Carreras de asfalto, trail, ciclismo y marchas de senderismo en España y Andorra.">
+    <title>Calendario de carreras en España y Andorra — running, trail, ciclismo | iSard</title>
+    <meta name="description" content="Descubre carreras de asfalto, trail running, ciclismo y marchas de senderismo en España y Andorra. Filtra por deporte, territorio, distancia y mes, y crea alertas de carreras.">
+    <link rel="canonical" href="https://www.isard.app/es/race-calendar">
+    <link rel="alternate" hreflang="es" href="https://www.isard.app/es/race-calendar">
+    <link rel="alternate" hreflang="ca" href="https://www.isard.app/ca/race-calendar">
+    <link rel="alternate" hreflang="en" href="https://www.isard.app/en/race-calendar">
+    <link rel="alternate" hreflang="x-default" href="https://www.isard.app/es/race-calendar">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="iSard">
+    <meta property="og:title" content="Calendario de carreras en España y Andorra | iSard">
+    <meta property="og:description" content="Carreras de asfalto, trail, ciclismo y marchas de senderismo en España y Andorra. Filtra por deporte, territorio, distancia y mes.">
+    <meta property="og:url" content="https://www.isard.app/race-calendar">
+    <meta property="og:image" content="https://www.isard.app/iSard_icon.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ca_ES">
+    <meta property="og:locale:alternate" content="en">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calendario de carreras en España y Andorra | iSard">
+    <meta name="twitter:description" content="Carreras de running, trail, ciclismo y senderismo en España y Andorra. Filtra y crea alertas.">
+    <meta name="twitter:image" content="https://www.isard.app/iSard_icon.png">
     <link rel="icon" type="image/png" href="/iSard_icon.png">
     <link rel="stylesheet" href="/css/tokens.css">
     <link rel="stylesheet" href="/css/theme.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/race-calendar.css">
     <script src="/js/theme.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CollectionPage",
+          "@id": "https://www.isard.app/race-calendar#webpage",
+          "url": "https://www.isard.app/race-calendar",
+          "name": "Calendario de carreras en España y Andorra",
+          "description": "Calendario de carreras de asfalto, trail running, ciclismo y marchas de senderismo en España y Andorra, con filtros por deporte, territorio, distancia y mes.",
+          "inLanguage": "es",
+          "isPartOf": { "@id": "https://www.isard.app/#website" },
+          "about": { "@id": "https://www.isard.app/#app" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "iSard", "item": "https://www.isard.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Carreras", "item": "https://www.isard.app/race-calendar" }
+          ]
+        }
+      ]
+    }
+    </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -19,11 +61,37 @@
             color: var(--text-primary);
             min-height: 100vh;
         }
+        .rc-intro {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 20px 0;
+        }
+        .rc-intro h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .rc-intro p {
+            font-size: 1rem;
+            line-height: 1.55;
+            color: var(--text-muted);
+            max-width: 720px;
+        }
     </style>
 </head>
 <body>
     <main class="rc-main">
+        <div class="rc-intro">
+            <h1 data-i18n="heading">Carreras</h1>
+            <p data-i18n="subtitle">Carreras de asfalto, trail, ciclismo y marchas de senderismo en España y Andorra.</p>
+        </div>
         <div id="rc-root"></div>
+        <noscript>
+            <p style="max-width:1100px;margin:16px auto;padding:0 20px;">
+                Activa JavaScript para explorar y filtrar el calendario completo de carreras.
+                También puedes <a href="/race-alerts">crear alertas de carreras</a> para recibir avisos.
+            </p>
+        </noscript>
     </main>
 
     <script src="/js/header.js"></script>

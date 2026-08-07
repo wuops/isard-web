@@ -3,9 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iSard App — Running, Hiking & Cycling Tracker</title>
-    <meta name="description" content="iSard is a running, hiking and cycling tracker app that let you record workout activities, design shareable cards, and export replay 3D animation videos of your routes.">
+    <title>iSard — App de running, senderismo y ciclismo + carreras</title>
+    <meta name="description" content="iSard es la app para registrar running, trail, senderismo y ciclismo por GPS, crear tarjetas y vídeos 3D de tus rutas, y descubrir carreras en España y Andorra.">
+    <link rel="canonical" href="https://www.isard.app/es/">
+    <link rel="alternate" hreflang="es" href="https://www.isard.app/es/">
+    <link rel="alternate" hreflang="ca" href="https://www.isard.app/ca/">
+    <link rel="alternate" hreflang="en" href="https://www.isard.app/en/">
+    <link rel="alternate" hreflang="x-default" href="https://www.isard.app/es/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="iSard">
+    <meta property="og:title" content="iSard — App de running, senderismo y ciclismo + carreras">
+    <meta property="og:description" content="Registra running, trail, senderismo y ciclismo por GPS, crea tarjetas y vídeos 3D de tus rutas, y descubre carreras en España y Andorra.">
+    <meta property="og:url" content="https://www.isard.app/">
+    <meta property="og:image" content="https://www.isard.app/iSard_icon.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="ca_ES">
+    <meta property="og:locale:alternate" content="en">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="iSard — App de running, senderismo y ciclismo + carreras">
+    <meta name="twitter:description" content="Registra tus rutas por GPS, crea vídeos 3D y descubre carreras en España y Andorra.">
+    <meta name="twitter:image" content="https://www.isard.app/iSard_icon.png">
     <link rel="icon" type="image/png" href="/iSard_icon.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.isard.app/#organization",
+          "name": "iSard",
+          "url": "https://www.isard.app/",
+          "logo": "https://www.isard.app/iSard_icon.png"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.isard.app/#website",
+          "name": "iSard",
+          "url": "https://www.isard.app/",
+          "inLanguage": ["es", "ca", "en"],
+          "publisher": { "@id": "https://www.isard.app/#organization" }
+        },
+        {
+          "@type": "MobileApplication",
+          "@id": "https://www.isard.app/#app",
+          "name": "iSard",
+          "operatingSystem": "iOS",
+          "applicationCategory": "HealthApplication",
+          "url": "https://www.isard.app/",
+          "publisher": { "@id": "https://www.isard.app/#organization" },
+          "featureList": [
+            "GPS activity recording for running, trail running, hiking and cycling",
+            "Shareable workout and route cards",
+            "3D animated route-replay videos",
+            "Race calendar for Spain and Andorra",
+            "Race alerts"
+          ]
+        }
+      ]
+    }
+    </script>
     <link rel="stylesheet" href="/css/tokens.css">
     <link rel="stylesheet" href="/css/theme.css">
     <link rel="stylesheet" href="/css/header.css">
@@ -57,6 +113,73 @@
             text-align: center;
             margin-bottom: 40px;
             max-width: 580px;
+        }
+
+        .home-about {
+            width: 100%;
+            max-width: 580px;
+            margin-top: 40px;
+        }
+
+        .home-about h2 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .home-features {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+            margin: 0 0 24px;
+        }
+
+        .home-features li {
+            position: relative;
+            padding-left: 22px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+
+        .home-features li::before {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 0.6em;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .home-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .home-links a {
+            flex: 1 1 200px;
+            text-align: center;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            transition: border-color 0.15s ease, background 0.15s ease;
+        }
+
+        .home-links a:first-child {
+            background: var(--accent);
+            color: var(--btn-text, #111);
+            border-color: var(--accent);
+        }
+
+        .home-links a:hover {
+            border-color: var(--text-muted);
         }
 
         .form-card {
@@ -303,6 +426,20 @@
                 style="display:block;margin-left:auto;margin-right:auto;max-width:100%;"
             ></iframe>
         </div>
+
+        <section class="home-about" aria-labelledby="home-about-title">
+            <h2 id="home-about-title" data-i18n="about_title">¿Qué es iSard?</h2>
+            <ul class="home-features">
+                <li data-i18n="f_record">Registro por GPS de running, trail, senderismo y ciclismo.</li>
+                <li data-i18n="f_cards">Tarjetas de entrenamiento y ruta para compartir.</li>
+                <li data-i18n="f_video">Vídeos de animación 3D que reproducen tus rutas.</li>
+                <li data-i18n="f_races">Calendario de carreras y alertas para España y Andorra.</li>
+            </ul>
+            <nav class="home-links" aria-label="iSard">
+                <a href="/race-calendar" data-i18n="cta_calendar">Ver calendario de carreras</a>
+                <a href="/race-alerts" data-i18n="cta_alerts">Crear alertas de carreras</a>
+            </nav>
+        </section>
     </div>
 
     <footer>
@@ -316,15 +453,36 @@
         i18nInit({
             es: {
                 tagline: 'iSard es una app de running, senderismo y ciclismo que te permite registrar actividades deportivas, diseñar tarjetas compartibles y exportar vídeos de animación 3D de tus rutas.',
-                privacy: 'Política de Privacidad'
+                privacy: 'Política de Privacidad',
+                about_title: '¿Qué es iSard?',
+                f_record: 'Registro por GPS de running, trail, senderismo y ciclismo.',
+                f_cards: 'Tarjetas de entrenamiento y ruta para compartir.',
+                f_video: 'Vídeos de animación 3D que reproducen tus rutas.',
+                f_races: 'Calendario de carreras y alertas para España y Andorra.',
+                cta_calendar: 'Ver calendario de carreras',
+                cta_alerts: 'Crear alertas de carreras'
             },
             ca: {
                 tagline: 'iSard és una app de running, senderisme i ciclisme que et permet registrar activitats esportives, dissenyar targetes compartibles i exportar vídeos d\'animació 3D de les teves rutes.',
-                privacy: 'Política de Privacitat'
+                privacy: 'Política de Privacitat',
+                about_title: 'Què és iSard?',
+                f_record: 'Registre per GPS de running, trail, senderisme i ciclisme.',
+                f_cards: 'Targetes d\'entrenament i ruta per compartir.',
+                f_video: 'Vídeos d\'animació 3D que reprodueixen les teves rutes.',
+                f_races: 'Calendari de curses i alertes per a Espanya i Andorra.',
+                cta_calendar: 'Veure el calendari de curses',
+                cta_alerts: 'Crear alertes de curses'
             },
             en: {
                 tagline: 'iSard is a running, hiking and cycling tracker app that lets you record workout activities, design shareable cards, and export replay 3D animation videos of your routes.',
-                privacy: 'Privacy Policy'
+                privacy: 'Privacy Policy',
+                about_title: 'What is iSard?',
+                f_record: 'GPS recording for running, trail running, hiking and cycling.',
+                f_cards: 'Shareable workout and route cards.',
+                f_video: '3D animated videos that replay your routes.',
+                f_races: 'Race calendar and alerts for Spain and Andorra.',
+                cta_calendar: 'Browse the race calendar',
+                cta_alerts: 'Set up race alerts'
             }
         });
     </script>

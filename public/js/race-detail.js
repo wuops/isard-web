@@ -21,6 +21,10 @@
       var param = new URLSearchParams(window.location.search).get('lang');
       if (param && SUPPORTED.indexOf(param) !== -1) return param;
     } catch (e) {}
+    // /es|ca|en/races/<slug> declares its language in the path — trust it so the
+    // client hydration matches the server-rendered locale instead of overriding it.
+    var seg = window.location.pathname.split('/')[1];
+    if (SUPPORTED.indexOf(seg) !== -1) return seg;
     var stored = localStorage.getItem('isard-lang');
     return (stored && SUPPORTED.indexOf(stored) !== -1) ? stored : 'es';
   }
@@ -44,6 +48,14 @@
   var prev = window.onLangChange;
   window.onLangChange = function (lang) {
     if (prev) prev(lang);
+    if (SUPPORTED.indexOf(lang) === -1) { apply(lang); return; }
+    // Each locale is its own URL — switching language navigates to the sibling
+    // localized page so the URL, canonical and hreflang stay consistent.
+    var target = '/' + lang + '/races/' + slug;
+    if (window.location.pathname.replace(/\/+$/, '') !== target) {
+      window.location.assign(target);
+      return;
+    }
     apply(lang);
   };
 

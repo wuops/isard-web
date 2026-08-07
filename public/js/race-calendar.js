@@ -101,6 +101,14 @@
   }
 
   function getLang() {
+    try {
+      var p = new URLSearchParams(window.location.search).get('lang');
+      if (p === 'ca' || p === 'es' || p === 'en') return /** @type {Lang} */ (p);
+    } catch (e) {}
+    // Localized calendar lives at /<lang>/race-calendar — the path wins over any
+    // stored preference so the list matches the server-rendered heading.
+    var seg = window.location.pathname.split('/')[1];
+    if (seg === 'ca' || seg === 'es' || seg === 'en') return /** @type {Lang} */ (seg);
     var l = localStorage.getItem('isard-lang');
     return /** @type {Lang} */ ((l === 'ca' || l === 'es' || l === 'en') ? l : 'es');
   }
@@ -577,7 +585,7 @@
         el('h3', { class: 'rc-name' }, [
           el('a', {
             class: 'rc-namelink',
-            href: '/races/' + (slugMap[r.id] || r.slug),
+            href: '/' + state.lang + '/races/' + (slugMap[r.id] || r.slug),
             text: RaceData.displayName(r, state.lang)
           })
         ]),
@@ -593,10 +601,17 @@
 
   function cmpStr(a, b) { return a.localeCompare(b, state.lang); }
 
-  // Re-render everything on language change (names/labels/month names relocalize).
+  // Switching language moves to that locale's calendar URL so the path, canonical
+  // and hreflang stay consistent; if already there, just re-render in place.
   var prevLangHook = window.onLangChange;
   window.onLangChange = function (lang) {
     if (prevLangHook) prevLangHook(lang);
+    if (lang !== 'es' && lang !== 'ca' && lang !== 'en') return;
+    var target = '/' + lang + '/race-calendar';
+    if (window.location.pathname.replace(/\/+$/, '') !== target) {
+      window.location.assign(target);
+      return;
+    }
     state.lang = /** @type {Lang} */ (lang);
     if (races.length) render();
   };

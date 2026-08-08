@@ -167,9 +167,9 @@
             font-size: 0.95rem;
             font-weight: 600;
             text-decoration: none;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--text-primary); /* white stroke, always visible (secondary button) */
             color: var(--text-primary);
-            transition: border-color 0.15s ease, background 0.15s ease;
+            transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
         }
 
         .home-links a:first-child {
@@ -178,10 +178,6 @@
             border-color: var(--btn-bg);
         }
         .home-links a:first-child:hover { background: var(--btn-hover); border-color: var(--btn-hover); }
-
-        .home-links a:hover {
-            border-color: var(--text-muted);
-        }
 
         .home-hubs {
             width: 100%;
@@ -207,16 +203,17 @@
 
         .home-hub {
             padding: 8px 14px;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--text-primary); /* white stroke by default */
             border-radius: 999px;
             text-decoration: none;
             color: var(--text-primary);
             font-size: 0.9rem;
             font-weight: 600;
+            transition: border-color 0.15s ease, color 0.15s ease;
         }
 
         .home-hub:hover {
-            border-color: var(--accent);
+            border-color: var(--accent); /* isard lime on hover */
             color: var(--accent);
         }
 
@@ -466,7 +463,7 @@
         </div>
 
         <section class="home-about" aria-labelledby="home-about-title">
-            <h2 id="home-about-title" data-i18n="about_title">¿Qué es iSard?</h2>
+            <h2 id="home-about-title" data-i18n="about_title">¿Qué funciones ofrece la app de iSard?</h2>
             <ul class="home-features">
                 <li data-i18n="f_record">Registro por GPS de running, trail, senderismo y ciclismo.</li>
                 <li data-i18n="f_cards">Tarjetas de entrenamiento y ruta para compartir.</li>
@@ -496,7 +493,7 @@
             es: {
                 tagline: 'iSard es una app de running, senderismo y ciclismo que te permite registrar actividades deportivas, diseñar tarjetas compartibles y exportar vídeos de animación 3D de tus rutas.',
                 privacy: 'Política de Privacidad',
-                about_title: '¿Qué es iSard?',
+                about_title: '¿Qué funciones ofrece la app de iSard?',
                 f_record: 'Registro por GPS de running, trail, senderismo y ciclismo.',
                 f_cards: 'Tarjetas de entrenamiento y ruta para compartir.',
                 f_video: 'Vídeos de animación 3D que reproducen tus rutas.',
@@ -507,7 +504,7 @@
             ca: {
                 tagline: 'iSard és una app de running, senderisme i ciclisme que et permet registrar activitats esportives, dissenyar targetes compartibles i exportar vídeos d\'animació 3D de les teves rutes.',
                 privacy: 'Política de Privacitat',
-                about_title: 'Què és iSard?',
+                about_title: 'Quines funcions ofereix l\'app d\'iSard?',
                 f_record: 'Registre per GPS de running, trail, senderisme i ciclisme.',
                 f_cards: 'Targetes d\'entrenament i ruta per compartir.',
                 f_video: 'Vídeos d\'animació 3D que reprodueixen les teves rutes.',
@@ -518,7 +515,7 @@
             en: {
                 tagline: 'iSard is a running, hiking and cycling tracker app that lets you record workout activities, design shareable cards, and export replay 3D animation videos of your routes.',
                 privacy: 'Privacy Policy',
-                about_title: 'What is iSard?',
+                about_title: 'What features does the iSard app offer?',
                 f_record: 'GPS recording for running, trail running, hiking and cycling.',
                 f_cards: 'Shareable workout and route cards.',
                 f_video: '3D animated videos that replay your routes.',

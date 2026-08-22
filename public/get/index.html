@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Descarga iSard</title>
+<meta name="description" content="Descarga iSard para iPhone.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/iSard_icon.png" type="image/png">
+<style>
+  :root{
+    /* iSard brand tokens (mirrors /css/tokens.css) */
+    --bg:#000000; --surface:#1C1C1E; --surface-2:#2C2C2E; --border:rgba(255,255,255,.12);
+    --fg:#ffffff; --fg-2:rgba(255,255,255,.82); --fg-3:rgba(255,255,255,.6);
+    --accent:#D5FF5F; --accent-deep:#c2f03f; --on-accent:#0B0B0B;
+    --radius:14px; --radius-pill:9999px;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:var(--sans); color:var(--fg); background:#000000;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    min-height:100dvh; display:flex; flex-direction:column;
+    padding:max(24px,env(safe-area-inset-top)) 20px max(28px,env(safe-area-inset-bottom));
+  }
+  .wrap{margin:auto; width:100%; max-width:420px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:22px;}
+  .icon{width:96px;height:96px;border-radius:22px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.45))}
+  h1{font-size:30px;line-height:1.15;letter-spacing:-.02em;font-weight:800;margin:0}
+  p.sub{margin:0;color:var(--fg-2);font-size:16px;line-height:1.45;max-width:34ch}
+  .badge{display:inline-block;margin-top:2px;transition:transform .12s ease;text-decoration:none}
+  .badge:active{transform:scale(.96)}
+  .badge-svg{height:54px;width:auto;display:block}
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center;z-index:50;padding:16px;}
+  .overlay.show{display:flex;animation:fade .18s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .sheet{width:100%;max-width:420px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:22px 20px calc(20px + env(safe-area-inset-bottom));box-shadow:0 24px 60px rgba(0,0,0,.5);animation:rise .22s cubic-bezier(.2,.8,.2,1);}
+  @keyframes rise{from{transform:translateY(14px);opacity:.4}to{transform:translateY(0);opacity:1}}
+  .sheet h2{margin:0 0 6px;font-size:19px;font-weight:800;letter-spacing:-.01em}
+  .sheet p{margin:0 0 16px;color:var(--fg-2);font-size:14.5px;line-height:1.5}
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;cursor:pointer;font-family:inherit;font-size:16px;font-weight:700;padding:15px 18px;border-radius:var(--radius-pill);text-decoration:none;}
+  .btn-primary{background:var(--accent);color:var(--on-accent)}
+  .btn-primary:active{background:var(--accent-deep)}
+  .btn-ghost{background:var(--surface-2);color:var(--fg);margin-top:10px;font-weight:600}
+  .steps{text-align:left;background:var(--surface-2);border-radius:var(--radius);padding:14px 16px;margin:16px 0 0;color:var(--fg-2);font-size:13.5px;line-height:1.6;}
+  .steps b{color:var(--fg)}
+  .steps .kbd{display:inline-block;min-width:22px;text-align:center;font-weight:700;color:var(--fg);background:rgba(255,255,255,.1);border-radius:6px;padding:0 6px;margin:0 2px;}
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <img class="icon" src="/iSard_icon.png" alt="iSard" width="96" height="96">
+    <h1 id="title">Descarga iSard para iPhone</h1>
+    <p class="sub" id="subtitle">Registra tus rutas de running, senderismo y ciclismo, diseña tarjetas y exporta vídeos 3D de tus recorridos.</p>
+    <a class="badge" id="cta" href="#" aria-label="Descárgala en el App Store">
+      <svg class="badge-svg" viewBox="0 0 140 44" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="139" height="43" rx="9" fill="#ffffff"/>
+        <path transform="translate(13,10) scale(1)" fill="#000000" d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+        <text id="badgeTop" x="45" y="18" font-family="ui-sans-serif,system-ui,-apple-system,Helvetica,Arial,sans-serif" font-size="9" fill="#000000">Descárgala en el</text>
+        <text id="badgeMain" x="44" y="34" font-family="ui-sans-serif,system-ui,-apple-system,Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#000000">App Store</text>
+      </svg>
+    </a>
+  </main>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet">
+      <h2 id="sheetTitle">Ábrelo en tu navegador</h2>
+      <p id="sheetBody">Para instalar iSard, abre esta página en Safari — el enlace no puede abrirse dentro de Instagram.</p>
+      <a class="btn btn-primary" id="retryBtn" href="#">Abrir en el navegador</a>
+      <button class="btn btn-ghost" id="copyBtn" type="button">Copiar enlace</button>
+      <div class="steps" id="steps">
+        <b id="stepsTitle">O hazlo manualmente:</b><br>
+        <span id="stepsBody">Toca <span class="kbd">•••</span> arriba a la derecha y elige <b>“Abrir en el navegador”</b>.</span>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  "use strict";
+  /* ---------------------------------------------------------------------------
+   * PLACEHOLDER destination. iSard is not yet public on the App Store, so every
+   * language points at the marketing site for now. When the app goes live,
+   * replace these with the real apps.apple.com URL(s) — per language if desired.
+   * ------------------------------------------------------------------------- */
+  var APP_STORE = {
+    es: "https://isard.app/",
+    ca: "https://isard.app/",
+    en: "https://isard.app/"
+  };
+  var UA = navigator.userAgent || navigator.vendor || "";
+  function isIOS(){ return /iPad|iPhone|iPod/.test(UA) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); }
+  function isAndroid(){ return /Android/i.test(UA); }
+  function isInstagram(){ return /Instagram/i.test(UA); }
+  function isThreads(){ return /Barcelona/i.test(UA); }
+  function isFacebook(){ return /FBAN|FBAV|FB_IAB/i.test(UA); }
+  function isMessenger(){ return /Messenger/i.test(UA); }
+  function isInApp(){ return isInstagram() || isThreads() || isFacebook() || isMessenger(); }
+  function pickLang(){
+    var q = new URLSearchParams(location.search).get("lang");
+    if (q && APP_STORE[q]) return q;
+    var l = (navigator.language || "es").toLowerCase();
+    if (l.indexOf("ca") === 0) return "ca";
+    if (l.indexOf("en") === 0) return "en";
+    return "es";
+  }
+  var LANG = pickLang();
+  var STORE_URL = APP_STORE[LANG];
+  /* ---- Localised copy (es = primary, mirrors the site's tagline) ---- */
+  var T = {
+    es:{title:"Descarga iSard para iPhone",
+        sub:"Registra tus rutas de running, senderismo y ciclismo, diseña tarjetas y exporta vídeos 3D de tus recorridos.",
+        badgeTop:"Descárgala en el",cta:"Descárgala en el App Store",
+        sheetTitle:"Ábrelo en tu navegador",
+        sheetBody:"Para instalar iSard, abre esta página en Safari — el enlace no puede abrirse dentro de Instagram.",
+        retry:"Abrir en el navegador",copy:"Copiar enlace",copied:"Enlace copiado ✓",
+        stepsTitle:"O hazlo manualmente:",
+        steps:'Toca <span class="kbd">•••</span> arriba a la derecha y elige <b>“Abrir en el navegador”</b>.'},
+    ca:{title:"Instal·la iSard per a iPhone",
+        sub:"Registra les teves rutes de running, senderisme i ciclisme, dissenya targetes i exporta vídeos 3D dels teus recorreguts.",
+        badgeTop:"Baixa-la a l'",cta:"Baixa-la a l'App Store",
+        sheetTitle:"Obre-ho al teu navegador",
+        sheetBody:"Per instal·lar iSard, obre aquesta pàgina a Safari — l’enllaç no es pot obrir dins d’Instagram.",
+        retry:"Obrir al navegador",copy:"Copiar l’enllaç",copied:"Enllaç copiat ✓",
+        stepsTitle:"O fes-ho manualment:",
+        steps:'Toca <span class="kbd">•••</span> a dalt a la dreta i tria <b>“Obrir al navegador”</b>.'},
+    en:{title:"Get iSard for iPhone",
+        sub:"Record your runs, hikes and rides, design shareable cards and export 3D replay videos of your routes.",
+        badgeTop:"Download on the",cta:"Download on the App Store",
+        sheetTitle:"Open in your browser",
+        sheetBody:"To install iSard, open this page in Safari — the link can’t open inside Instagram.",
+        retry:"Open in browser",copy:"Copy link",copied:"Link copied ✓",
+        stepsTitle:"Or do it manually:",
+        steps:'Tap <span class="kbd">•••</span> at the top-right, then choose <b>“Open in browser”</b>.'}
+  };
+  var t = T[LANG];
+  document.documentElement.lang = LANG;
+  document.getElementById("title").textContent = t.title;
+  document.getElementById("subtitle").textContent = t.sub;
+  document.getElementById("badgeTop").textContent = t.badgeTop;
+  document.getElementById("cta").setAttribute("aria-label", t.cta);
+  document.getElementById("sheetTitle").textContent = t.sheetTitle;
+  document.getElementById("sheetBody").textContent = t.sheetBody;
+  document.getElementById("retryBtn").textContent = t.retry;
+  document.getElementById("copyBtn").textContent = t.copy;
+  document.getElementById("stepsTitle").textContent = t.stepsTitle;
+  document.getElementById("stepsBody").innerHTML = t.steps;
+  document.title = t.title;
+
+  var cta = document.getElementById("cta");
+  cta.setAttribute("href", STORE_URL);
+  var overlay = document.getElementById("overlay");
+  var fallbackTimer = null;
+  var escaped = false;
+  ["visibilitychange","pagehide","blur"].forEach(function(ev){
+    (ev === "visibilitychange" ? document : window).addEventListener(ev, function(){
+      if (ev === "visibilitychange" && !document.hidden) return;
+      escaped = true;
+    }, {passive:true});
+  });
+  function showModal(){ if (!escaped) overlay.classList.add("show"); }
+  function hideModal(){ overlay.classList.remove("show"); }
+  function breakoutIOS(){
+    if (isInstagram() || isThreads()){
+      location.href = "instagram://extbrowser/?url=" + encodeURIComponent(STORE_URL);
+    } else if (isFacebook() || isMessenger()){
+      window.open("x-safari-" + STORE_URL, "_blank");
+    } else {
+      window.open(STORE_URL, "_blank");
+    }
+  }
+  cta.addEventListener("click", function(e){
+    if (!isInApp()){ return; }
+    e.preventDefault();
+    escaped = false;
+    if (isIOS()){ breakoutIOS(); }
+    else if (isAndroid()){ window.open(STORE_URL, "_blank") || (location.href = STORE_URL); }
+    else { location.href = STORE_URL; }
+    clearTimeout(fallbackTimer);
+    fallbackTimer = setTimeout(showModal, 1500);
+  });
+  document.getElementById("retryBtn").addEventListener("click", function(e){
+    e.preventDefault();
+    escaped = false;
+    if (isIOS()) breakoutIOS(); else window.open(STORE_URL, "_blank");
+    clearTimeout(fallbackTimer);
+    fallbackTimer = setTimeout(function(){ if(!escaped) overlay.classList.add("show"); }, 1500);
+  });
+  document.getElementById("copyBtn").addEventListener("click", function(){
+    var btn = this;
+    function done(){ btn.textContent = t.copied; setTimeout(function(){ btn.textContent = t.copy; }, 1800); }
+    function fallbackCopy(){
+      var ta = document.createElement("textarea");
+      ta.value = STORE_URL; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch(_){}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(STORE_URL).then(done).catch(fallbackCopy);
+    } else { fallbackCopy(); }
+  });
+  overlay.addEventListener("click", function(e){ if (e.target === overlay) hideModal(); });
+})();
+</script>
+</body>
+</html>

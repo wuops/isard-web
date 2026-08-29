@@ -59,12 +59,20 @@
             line-height: 1.6;
             margin-bottom: 8px;
             color: var(--text-secondary);
+            max-width: 560px;
+        }
+
+        .message.instructions {
+            margin-top: 8px;
+            margin-bottom: 32px;
         }
 
         .testflight-link {
             font-size: 1rem;
             color: var(--text-primary);
             margin-bottom: 32px;
+            max-width: 560px;
+            word-break: break-word;
         }
 
         .testflight-link a {
@@ -73,7 +81,7 @@
         }
 
         .testflight-link a:hover {
-            color: #1d4ed8;
+            opacity: 0.85;
         }
 
         footer {
@@ -283,10 +291,15 @@
 <body>
     <div class="content">
         <img src="/iSard_icon.png" alt="iSard App Icon" class="app-icon">
-        <h1 data-i18n="heading">¡Gracias por suscribirte!</h1>
+        <h1 data-i18n="heading">¡Gracias por ser de los primeros en probar iSard!</h1>
         <p class="success" data-i18n="success">&#x2705; Te has suscrito correctamente</p>
-        <p class="message" data-i18n="message">Aquí tienes el enlace de TestFlight para descargar la versión beta de iSard:</p>
+        <p class="message" data-i18n="install">Instala la beta de iSard aquí:</p>
         <p class="testflight-link">&#x1F449; <a href="https://testflight.apple.com/join/sGNujsQW">https://testflight.apple.com/join/sGNujsQW</a></p>
+        <p class="message instructions" data-i18n="instructions">Sigue las instrucciones. Primero tendrás que instalar la app TestFlight de Apple. Después, desde ella, podrás instalar la beta de iSard. Recuerda que, mientras estés usando la versión beta, podrás suscribirte a iSard Pro sin pagar con dinero real.</p>
+        <p class="message" data-i18n="report">Puedes reportar errores, bugs o proponer nuevas funcionalidades en:</p>
+        <p class="testflight-link">&#x1F449; <a href="https://isard.featurebase.app/">https://isard.featurebase.app/</a></p>
+        <p class="message" data-i18n="contact">También puedes contactar directamente conmigo en:</p>
+        <p class="testflight-link">&#x1F449; <a href="/contact">https://www.isard.app/contact</a></p>
     </div>
     <footer>
         <a href="https://www.isard.app"><img src="/iSardLogoBlack.svg" alt="iSard" class="footer-logo"></a>
@@ -298,21 +311,30 @@
     <script>
         i18nInit({
             es: {
-                heading: '¡Gracias por suscribirte!',
+                heading: '¡Gracias por ser de los primeros en probar iSard!',
                 success: '&#x2705; Te has suscrito correctamente',
-                message: 'Aquí tienes el enlace de TestFlight para descargar la versión beta de iSard:',
+                install: 'Instala la beta de iSard aquí:',
+                instructions: 'Sigue las instrucciones. Primero tendrás que instalar la app TestFlight de Apple. Después, desde ella, podrás instalar la beta de iSard. Recuerda que, mientras estés usando la versión beta, podrás suscribirte a iSard Pro sin pagar con dinero real.',
+                report: 'Puedes reportar errores, bugs o proponer nuevas funcionalidades en:',
+                contact: 'También puedes contactar directamente conmigo en:',
                 privacy: 'Política de Privacidad'
             },
             ca: {
-                heading: 'Gràcies per subscriure\'t!',
+                heading: 'Gràcies per ser dels primers a provar iSard!',
                 success: '&#x2705; T\'has subscrit correctament',
-                message: 'Aquí tens l\'enllaç de TestFlight per descarregar la versió beta d\'iSard:',
+                install: 'Instal·la la beta d\'iSard aquí:',
+                instructions: 'Segueix les instruccions. Primer hauràs d\'instal·lar l\'app TestFlight d\'Apple. Després, des d\'ella, podràs instal·lar la beta d\'iSard. Recorda que, mentre estiguis fent servir la versió beta, podràs subscriure\'t a iSard Pro sense pagar amb diners reals.',
+                report: 'Pots reportar errors, bugs o proposar noves funcionalitats a:',
+                contact: 'També pots contactar directament amb mi a:',
                 privacy: 'Política de Privacitat'
             },
             en: {
-                heading: 'Thank you for subscribing!',
+                heading: 'Thank you for being one of the first to try iSard!',
                 success: '&#x2705; You have subscribed successfully',
-                message: 'Here is the TestFlight link to download iSard app beta version:',
+                install: 'Install the iSard beta here:',
+                instructions: 'Follow the instructions. First you\'ll need to install Apple\'s TestFlight app. Then, from it, you\'ll be able to install the iSard beta. Remember that, while you\'re using the beta version, you can subscribe to iSard Pro without paying real money.',
+                report: 'You can report errors, bugs or suggest new features at:',
+                contact: 'You can also contact me directly at:',
                 privacy: 'Privacy Policy'
             }
         });

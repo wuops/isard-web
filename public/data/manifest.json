@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "version": "2026-08-01",
-  "generatedAt": "2026-08-01T10:02:03+00:00",
-  "count": 1675,
-  "contentHash": "20244ff906",
-  "file": "races.20244ff906.json",
+  "version": "2026-09-01",
+  "generatedAt": "2026-09-01T13:03:17+00:00",
+  "count": 1448,
+  "contentHash": "23f10bb6d3",
+  "file": "races.23f10bb6d3.json",
   "languages": [
     "ca",
     "es",
@@ -12,10 +12,10 @@
   ],
   "labelsFile": "labels.cd0db8845e.json",
   "sports": {
-    "cycling": 34,
-    "hiking": 59,
-    "road_running": 922,
-    "trail_running": 660
+    "cycling": 6,
+    "hiking": 60,
+    "road_running": 705,
+    "trail_running": 677
   },
   "territories": [
     "Andalucía",
@@ -40,8 +40,8 @@
     "Región de Murcia"
   ],
   "scope": {
-    "startDate": "2026-08-01",
-    "endDate": "2028-02-29",
+    "startDate": "2026-09-01",
+    "endDate": "2028-03-31",
     "countries": [
       "ES",
       "AD"

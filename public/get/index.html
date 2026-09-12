@@ -79,14 +79,14 @@
 (function(){
   "use strict";
   /* ---------------------------------------------------------------------------
-   * PLACEHOLDER destination. iSard is not yet public on the App Store, so every
-   * language points at the marketing site for now. When the app goes live,
-   * replace these with the real apps.apple.com URL(s) — per language if desired.
+   * App Store destination. The id-only URL is region- and language-neutral —
+   * Apple auto-routes each visitor to their local store — so all languages share
+   * it. Split into per-region URLs here if that ever changes.
    * ------------------------------------------------------------------------- */
   var APP_STORE = {
-    es: "https://isard.app/",
-    ca: "https://isard.app/",
-    en: "https://isard.app/"
+    es: "https://apps.apple.com/app/id6762874327",
+    ca: "https://apps.apple.com/app/id6762874327",
+    en: "https://apps.apple.com/app/id6762874327"
   };
   var UA = navigator.userAgent || navigator.vendor || "";
   function isIOS(){ return /iPad|iPhone|iPod/.test(UA) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); }

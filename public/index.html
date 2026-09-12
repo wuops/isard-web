@@ -217,20 +217,34 @@
             color: var(--accent);
         }
 
-        .form-card {
-            background: var(--bg-surface);
-            border-radius: 12px;
-            padding: 0;
+        .download-cta {
             width: 100%;
-            max-width: 580px;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 8px;
         }
 
-        .form-card iframe {
-            display: block;
-            width: 100%;
-            border: none;
+        .appstore-badge {
+            display: inline-block;
+            text-decoration: none;
+            transition: transform 0.12s ease;
         }
+
+        .appstore-badge:active {
+            transform: scale(0.96);
+        }
+
+        .appstore-badge svg {
+            height: 56px;
+            width: auto;
+            display: block;
+        }
+
+        /* Apple guidance: white badge on dark backgrounds, black badge on light. */
+        .appstore-badge .badge-bg { fill: #ffffff; }
+        .appstore-badge .badge-fg { fill: #000000; }
+        :root[data-theme="light"] .appstore-badge .badge-bg { fill: #000000; }
+        :root[data-theme="light"] .appstore-badge .badge-fg { fill: #ffffff; }
 
         footer {
             border-top: 1px solid var(--border-color);
@@ -450,16 +464,15 @@
             registrar actividades deportivas, diseñar tarjetas compartibles y
             exportar vídeos de animación 3D de tus rutas.
         </p>
-        <div class="form-card">
-            <iframe
-                width="540"
-                height="805"
-                src="https://e9c1e8e2.sibforms.com/serve/MUIFAEQVtlT1--gMGkHq44Ep6zGqHG-XMFOiy08_Z8tf2Ghv_4Gc3i5En8jbsJT7T8SLE9PwWtcs1PGt-LYy2R3juq5wZ9w-84OJR2IsmNdefszBpW_OEuZ5OeUJOl6DdzHRFby5UuTNodC22vCRc8BtnBJ-kbqDOYaaBL8Pcm9NT2_MLLOvkZ7nwA86tZ0gd0wg5DcUWAfqT_YCuQ=="
-                frameborder="0"
-                scrolling="auto"
-                allowfullscreen
-                style="display:block;margin-left:auto;margin-right:auto;max-width:100%;"
-            ></iframe>
+        <div class="download-cta">
+            <a class="appstore-badge" href="https://apps.apple.com/app/id6762874327" aria-label="Download on the App Store">
+                <svg viewBox="0 0 140 44" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="badge-bg" x="0.5" y="0.5" width="139" height="43" rx="9"/>
+                    <path class="badge-fg" transform="translate(13,10)" d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                    <text class="badge-fg" data-i18n="badge_top" x="45" y="18" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9">Descárgala en el</text>
+                    <text class="badge-fg" x="44" y="34" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="600">App Store</text>
+                </svg>
+            </a>
         </div>
 
         <section class="home-about" aria-labelledby="home-about-title">
@@ -499,7 +512,8 @@
                 f_video: 'Vídeos de animación 3D que reproducen tus rutas.',
                 f_races: 'Calendario de carreras y alertas para España y Andorra.',
                 cta_calendar: 'Ver calendario de carreras',
-                cta_alerts: 'Crear alertas de carreras'
+                cta_alerts: 'Crear alertas de carreras',
+                badge_top: 'Descárgala en el'
             },
             ca: {
                 tagline: 'iSard és una app de running, senderisme i ciclisme que et permet registrar activitats esportives, dissenyar targetes compartibles i exportar vídeos d\'animació 3D de les teves rutes.',
@@ -510,7 +524,8 @@
                 f_video: 'Vídeos d\'animació 3D que reprodueixen les teves rutes.',
                 f_races: 'Calendari de curses i alertes per a Espanya i Andorra.',
                 cta_calendar: 'Veure el calendari de curses',
-                cta_alerts: 'Crear alertes de curses'
+                cta_alerts: 'Crear alertes de curses',
+                badge_top: 'Baixa-la a l\''
             },
             en: {
                 tagline: 'iSard is a running, hiking and cycling tracker app that lets you record workout activities, design shareable cards, and export replay 3D animation videos of your routes.',
@@ -521,7 +536,8 @@
                 f_video: '3D animated videos that replay your routes.',
                 f_races: 'Race calendar and alerts for Spain and Andorra.',
                 cta_calendar: 'Browse the race calendar',
-                cta_alerts: 'Set up race alerts'
+                cta_alerts: 'Set up race alerts',
+                badge_top: 'Download on the'
             }
         });
     </script>

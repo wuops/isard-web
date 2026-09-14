@@ -453,7 +453,20 @@
                 text-align: center;
             }
         }
-    </style>
+    
+        .footer-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+            text-align: right;
+        }
+
+        .footer-legal {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+</style>
 </head>
 <body>
     <div class="container">
@@ -496,7 +509,10 @@
 
     <footer>
         <a href="https://www.isard.app"><img src="/iSardLogoBlack.svg" alt="iSard" class="footer-logo"></a>
-        <a href="/privacy" class="privacy-link" data-i18n="privacy">Política de Privacidad</a>
+        <div class="footer-meta">
+            <a href="/privacy" class="privacy-link" data-i18n="privacy">Política de Privacidad</a>
+            <span class="footer-legal" data-i18n="footer_legal">iSard © 2026 · Desarrollado por BRUIX BARCELO GUILLEM</span>
+        </div>
     </footer>
 
     <script src="/js/header.js"></script>
@@ -506,6 +522,7 @@
             es: {
                 tagline: 'iSard es una app de running, senderismo y ciclismo que te permite registrar actividades deportivas, diseñar tarjetas compartibles y exportar vídeos de animación 3D de tus rutas.',
                 privacy: 'Política de Privacidad',
+                footer_legal: 'iSard © 2026 · Desarrollado por BRUIX BARCELO GUILLEM',
                 about_title: '¿Qué funciones ofrece la app de iSard?',
                 f_record: 'Registro por GPS de running, trail, senderismo y ciclismo.',
                 f_cards: 'Tarjetas de entrenamiento y ruta para compartir.',
@@ -518,6 +535,7 @@
             ca: {
                 tagline: 'iSard és una app de running, senderisme i ciclisme que et permet registrar activitats esportives, dissenyar targetes compartibles i exportar vídeos d\'animació 3D de les teves rutes.',
                 privacy: 'Política de Privacitat',
+                footer_legal: 'iSard © 2026 · Desenvolupat per BRUIX BARCELO GUILLEM',
                 about_title: 'Quines funcions ofereix l\'app d\'iSard?',
                 f_record: 'Registre per GPS de running, trail, senderisme i ciclisme.',
                 f_cards: 'Targetes d\'entrenament i ruta per compartir.',
@@ -530,6 +548,7 @@
             en: {
                 tagline: 'iSard is a running, hiking and cycling tracker app that lets you record workout activities, design shareable cards, and export replay 3D animation videos of your routes.',
                 privacy: 'Privacy Policy',
+                footer_legal: 'iSard © 2026 · Developed by BRUIX BARCELO GUILLEM',
                 about_title: 'What features does the iSard app offer?',
                 f_record: 'GPS recording for running, trail running, hiking and cycling.',
                 f_cards: 'Shareable workout and route cards.',

@@ -324,7 +324,20 @@
                 text-align: center;
             }
         }
-    </style>
+    
+        .footer-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+            text-align: right;
+        }
+
+        .footer-legal {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+</style>
 </head>
 <body>
     <div class="content">
@@ -336,7 +349,10 @@
 
     <footer>
         <a href="https://www.isard.app"><img src="/iSardLogoBlack.svg" alt="iSard" class="footer-logo"></a>
-        <a href="/privacy" class="privacy-link" data-i18n="privacy">Política de Privacidad</a>
+        <div class="footer-meta">
+            <a href="/privacy" class="privacy-link" data-i18n="privacy">Política de Privacidad</a>
+            <span class="footer-legal" data-i18n="footer_legal">iSard © 2026 · Desarrollado por BRUIX BARCELO GUILLEM</span>
+        </div>
     </footer>
 
     <script>
@@ -436,19 +452,22 @@
                 heading: 'Contacto',
                 subtitle: 'Escríbenos por el chat o envíanos un email. Te responderemos lo antes posible.',
                 email_label: 'Email: <a href="#" id="contact-email-link"><span id="contact-email"></span></a>',
-                privacy: 'Política de Privacidad'
+                privacy: 'Política de Privacidad',
+                footer_legal: 'iSard © 2026 · Desarrollado por BRUIX BARCELO GUILLEM'
             },
             ca: {
                 heading: 'Contacte',
                 subtitle: 'Escriu-nos pel xat o envia\'ns un email. Et respondrem el més aviat possible.',
                 email_label: 'Email: <a href="#" id="contact-email-link"><span id="contact-email"></span></a>',
-                privacy: 'Política de Privacitat'
+                privacy: 'Política de Privacitat',
+                footer_legal: 'iSard © 2026 · Desenvolupat per BRUIX BARCELO GUILLEM'
             },
             en: {
                 heading: 'Contact',
                 subtitle: 'Write to us via chat or send us an email. We\'ll get back to you as soon as possible.',
                 email_label: 'Email: <a href="#" id="contact-email-link"><span id="contact-email"></span></a>',
-                privacy: 'Privacy Policy'
+                privacy: 'Privacy Policy',
+                footer_legal: 'iSard © 2026 · Developed by BRUIX BARCELO GUILLEM'
             }
         });
 

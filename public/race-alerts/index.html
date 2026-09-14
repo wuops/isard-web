@@ -270,7 +270,20 @@
                 text-align: center;
             }
         }
-    </style>
+    
+        .footer-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+            text-align: right;
+        }
+
+        .footer-legal {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+</style>
 </head>
 <body>
     <div class="content">
@@ -291,7 +304,10 @@
 
     <footer>
         <a href="https://www.isard.app"><img src="/iSardLogoBlack.svg" alt="iSard" class="footer-logo"></a>
-        <a href="/privacy" class="privacy-link" data-i18n="privacy">Política de Privacidad</a>
+        <div class="footer-meta">
+            <a href="/privacy" class="privacy-link" data-i18n="privacy">Política de Privacidad</a>
+            <span class="footer-legal" data-i18n="footer_legal">iSard © 2026 · Desarrollado por BRUIX BARCELO GUILLEM</span>
+        </div>
     </footer>
 
     <script src="/js/header.js"></script>
@@ -301,17 +317,20 @@
             es: {
                 heading: 'Alertas de Carreras',
                 subtitle: 'Suscríbete a nuestra newsletter de alertas de carreras y no te pierdas ninguna.',
-                privacy: 'Política de Privacidad'
+                privacy: 'Política de Privacidad',
+                footer_legal: 'iSard © 2026 · Desarrollado por BRUIX BARCELO GUILLEM'
             },
             ca: {
                 heading: 'Alertes de Curses',
                 subtitle: 'Subscriu-te a la nostra newsletter d\'alertes de curses i no te\'n perdis cap.',
-                privacy: 'Política de Privacitat'
+                privacy: 'Política de Privacitat',
+                footer_legal: 'iSard © 2026 · Desenvolupat per BRUIX BARCELO GUILLEM'
             },
             en: {
                 heading: 'Race Alerts',
                 subtitle: 'Subscribe to our race alerts newsletter and never miss a race.',
-                privacy: 'Privacy Policy'
+                privacy: 'Privacy Policy',
+                footer_legal: 'iSard © 2026 · Developed by BRUIX BARCELO GUILLEM'
             }
         });
     </script>

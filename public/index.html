@@ -527,7 +527,7 @@
         <section class="hero">
             <div class="hero-media">
                 <div class="hero-media-inner">
-                    <iframe src="https://www.youtube-nocookie.com/embed/G9hzAspsK_c?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=G9hzAspsK_c&amp;cc_load_policy=0&amp;modestbranding=1" title="iSard app demo" allow="autoplay; accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div id="hero-yt-player" aria-label="iSard app demo"></div>
                 </div>
             </div>
             <div class="hero-content">
@@ -625,5 +625,43 @@
     </script>
 
     <script src="/js/cookies.js"></script>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // Muted autoplay makes YouTube force captions on, and cc_load_policy=0
+        // alone doesn't stop it — explicitly clear the caption track via the
+        // IFrame Player API instead (onReady isn't enough; it re-applies them
+        // once playback actually starts, so also clear on the PLAYING event).
+        function onYouTubeIframeAPIReady() {
+            var el = document.getElementById('hero-yt-player');
+            if (!el) return;
+            new YT.Player('hero-yt-player', {
+                host: 'https://www.youtube-nocookie.com',
+                videoId: 'G9hzAspsK_c',
+                playerVars: {
+                    autoplay: 1,
+                    mute: 1,
+                    loop: 1,
+                    playlist: 'G9hzAspsK_c',
+                    cc_load_policy: 0,
+                    modestbranding: 1,
+                    playsinline: 1,
+                    rel: 0
+                },
+                events: {
+                    onReady: function (e) {
+                        e.target.setOption('captions', 'track', {});
+                        e.target.mute();
+                        e.target.playVideo();
+                    },
+                    onStateChange: function (e) {
+                        if (e.data === YT.PlayerState.PLAYING) {
+                            e.target.setOption('captions', 'track', {});
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>

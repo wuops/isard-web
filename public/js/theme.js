@@ -1,12 +1,4 @@
 (function () {
-  var STORAGE_KEY = 'isard-theme';
-
-  function getPreferred() {
-    var stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === 'dark' || stored === 'light') return stored;
-    return 'dark'; // brand default (matches the iOS app)
-  }
-
   function apply(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     var btn = document.querySelector('.theme-toggle');
@@ -15,17 +7,18 @@
     if (icon) icon.textContent = theme === 'dark' ? '☀' : '☾';
   }
 
+  // Always dark by default — no OS/browser preference, no remembered choice.
+  // The toggle can still preview light mode, but it never persists: the next
+  // page load (or this one, on reload) always starts dark again.
   function toggle() {
-    var current = document.documentElement.getAttribute('data-theme') || 'light';
-    var next = current === 'dark' ? 'light' : 'dark';
-    localStorage.setItem(STORAGE_KEY, next);
-    apply(next);
+    var current = document.documentElement.getAttribute('data-theme') || 'dark';
+    apply(current === 'dark' ? 'light' : 'dark');
   }
 
-  apply(getPreferred());
+  apply('dark');
 
   document.addEventListener('DOMContentLoaded', function () {
-    apply(getPreferred());
+    apply('dark');
   });
 
   window.themeToggle = toggle;

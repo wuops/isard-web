@@ -62,7 +62,11 @@
   apply(getLang());
   initMap();
 
-  // ---- themed Leaflet map (CARTO Positron light / Dark Matter dark) ----------
+  // ---- themed Leaflet map (Esri Light/Dark Gray Canvas basemaps) -------------
+  // CARTO's free basemaps.cartocdn.com tiles now require an API key (every
+  // request returns a 200 OK "API KEY REQUIRED" placeholder image), so this
+  // uses Esri's still-free, no-key Canvas basemaps instead — visually the
+  // same minimalist light/dark style.
   function initMap() {
     var el = document.getElementById('rd-map');
     if (!el || !window.L) return;
@@ -76,12 +80,21 @@
       scrollWheelZoom: false, zoomControl: true, attributionControl: true
     }).setView([lat, lon], 6); // country-level default: whole of Spain in view
 
-    var attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' +
-      ' contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
-    var tileOpts = { maxZoom: 19, subdomains: 'abcd', attribution: attribution };
+    var attribution = 'Tiles &copy; <a href="https://www.esri.com/">Esri</a>' +
+      ' &mdash; Esri, HERE, Garmin, FAO, NOAA, USGS';
+    var tileOpts = { maxZoom: 19, attribution: attribution };
+    var refOpts = { maxZoom: 19 };
+    // Esri's Canvas basemaps split roads (Base) from place labels (Reference)
+    // into two tile layers — stack them so city/street names still show up.
     var layers = {
-      light: window.L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', tileOpts),
-      dark: window.L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', tileOpts)
+      light: window.L.layerGroup([
+        window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', tileOpts),
+        window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', refOpts)
+      ]),
+      dark: window.L.layerGroup([
+        window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', tileOpts),
+        window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', refOpts)
+      ])
     };
     var current = null;
     function themeNow() {

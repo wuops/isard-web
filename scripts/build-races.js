@@ -45,7 +45,7 @@ var esc = RaceDetail.esc;
 // Safe to embed inside <script> / <script type=ld+json>: neutralise `</`.
 function jsonInline(obj) { return JSON.stringify(obj).replace(/</g, '\\u003c'); }
 
-// Themed Leaflet map (CARTO Positron light / Dark Matter dark) initialised
+// Themed Leaflet map (Esri Light/Dark Gray Canvas basemaps) initialised
 // client-side from these data attributes by race-detail.js. No coords → no map.
 function mapEmbed(race) {
   var loc = race.location;

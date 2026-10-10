@@ -67,6 +67,14 @@
     <link rel="stylesheet" href="/css/header.css">
     <script src="/js/theme.js"></script>
     <style>
+        @font-face {
+            font-family: 'Black Han Sans';
+            src: url('/fonts/BlackHanSans-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -92,10 +100,22 @@
             align-items: center;
         }
 
+        .hero-wrap {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('/img/home/topo-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
         .app-icon {
             width: 80px;
             height: 80px;
             border-radius: 16px;
+            border: 2px solid #fff;
             margin-bottom: 20px;
         }
 
@@ -104,6 +124,7 @@
             font-weight: 700;
             margin-bottom: 24px;
             text-align: center;
+            color: #fff;
         }
 
         .tagline {
@@ -113,6 +134,7 @@
             text-align: center;
             margin-bottom: 40px;
             max-width: 580px;
+            color: #fff;
         }
 
         .home-about {
@@ -122,8 +144,9 @@
         }
 
         .home-about h2 {
-            font-size: 1.05rem;
-            font-weight: 700;
+            font-family: 'Black Han Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
             margin-bottom: 12px;
         }
 
@@ -197,7 +220,7 @@
 
         .hero-media-inner {
             width: 100%;
-            max-width: 220px;
+            max-width: 264px;
             aspect-ratio: 9 / 16;
             border-radius: 20px;
             overflow: hidden;
@@ -220,6 +243,171 @@
             align-items: center;
         }
 
+        .home-about p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            max-width: 480px;
+        }
+
+        .features {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 24px 0;
+        }
+
+        .feature-row {
+            width: 100%;
+            max-width: 960px;
+            display: flex;
+            align-items: center;
+            gap: 56px;
+            margin-bottom: 96px;
+        }
+
+        .feature-row--reverse {
+            flex-direction: row-reverse;
+        }
+
+        .feature-media {
+            flex: 1 1 0;
+            min-width: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .feature-media img {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 24px 60px var(--shadow);
+            display: block;
+        }
+
+        .feature-media img.device-shot {
+            max-width: 320px;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .feature-text {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+
+        .feature-eyebrow {
+            display: block;
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+
+        .feature-text h2 {
+            font-family: 'Black Han Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            line-height: 1.25;
+            margin-bottom: 14px;
+        }
+
+        .feature-text p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            max-width: 440px;
+        }
+
+        .sport-triptych {
+            width: 100%;
+            max-width: 960px;
+            text-align: center;
+            margin-bottom: 96px;
+        }
+
+        .sport-triptych h2 {
+            font-family: 'Black Han Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .sport-triptych > p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .sport-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .sport-card {
+            position: relative;
+            aspect-ratio: 3 / 4;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .sport-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sport-card span {
+            position: absolute;
+            left: 16px;
+            bottom: 16px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .mac-showcase {
+            width: 100%;
+            max-width: 960px;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .mac-showcase .feature-eyebrow {
+            display: inline-block;
+        }
+
+        .mac-showcase h2 {
+            font-family: 'Black Han Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .mac-showcase > p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto 32px;
+        }
+
+        .mac-showcase img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         .home-hubs {
             width: 100%;
             max-width: 580px;
@@ -227,8 +415,9 @@
         }
 
         .home-hubs h2 {
-            font-size: 1.05rem;
-            font-weight: 700;
+            font-family: 'Black Han Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
             margin: 24px 0 12px;
         }
 
@@ -281,14 +470,12 @@
             display: block;
         }
 
-        /* Apple guidance: white badge on dark backgrounds, black badge on light. */
+        /* Hero always sits on the dark topo background, regardless of theme — keep the white badge variant always. */
         .appstore-badge .badge-bg { fill: #ffffff; }
         .appstore-badge .badge-fg { fill: #000000; }
-        :root[data-theme="light"] .appstore-badge .badge-bg { fill: #000000; }
-        :root[data-theme="light"] .appstore-badge .badge-fg { fill: #ffffff; }
 
         footer {
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.22);
             padding: 24px 40px 80px;
             display: flex;
             justify-content: space-between;
@@ -487,6 +674,13 @@
 
             footer {
                 padding: 20px 24px 80px;
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-meta {
+                justify-content: center;
             }
 
             .cookie-content {
@@ -504,25 +698,103 @@
             }
 
             .hero-media-inner {
-                max-width: 170px;
+                max-width: 204px;
+            }
+
+            .features {
+                padding: 8px 16px 0;
+            }
+
+            .feature-row,
+            .feature-row--reverse {
+                flex-direction: column;
+                gap: 28px;
+                margin-bottom: 64px;
+            }
+
+            .feature-media img {
+                max-width: 220px;
+            }
+
+            .feature-media img.device-shot {
+                max-width: 230px;
+            }
+
+            .feature-text {
+                text-align: center;
+            }
+
+            .feature-text h2,
+            .sport-triptych h2,
+            .mac-showcase h2 {
+                font-size: 1.7rem;
+            }
+
+            .home-about h2,
+            .home-hubs h2 {
+                font-size: 1.3rem;
+            }
+
+            .feature-text p {
+                margin: 0 auto;
+            }
+
+            .sport-triptych {
+                margin-bottom: 64px;
+            }
+
+            .sport-grid {
+                gap: 10px;
+            }
+
+            .sport-card span {
+                font-size: 0.85rem;
+                left: 10px;
+                bottom: 10px;
+            }
+
+            .mac-showcase {
+                margin-bottom: 32px;
             }
         }
     
         .footer-meta {
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 6px;
-            text-align: right;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px 24px;
         }
 
         .footer-legal {
             font-size: 0.8rem;
             opacity: 0.7;
         }
+
+        .footer-social {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .footer-social a {
+            display: flex;
+            color: var(--text-muted);
+            transition: color 0.15s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+        }
 </style>
 </head>
 <body>
+    <div class="hero-wrap">
     <div class="container">
         <section class="hero">
             <div class="hero-media">
@@ -550,15 +822,96 @@
                 </div>
             </div>
         </section>
+    </div>
+    </div>
 
+    <div class="features">
+        <section class="feature-row feature-row--reverse">
+            <div class="feature-media">
+                <img class="device-shot" src="/img/home/tracking.png" alt="Mapa 3D de Apple Maps con una ruta y estadísticas de distancia, ritmo y desnivel" loading="lazy" width="335" height="700">
+            </div>
+            <div class="feature-text">
+                <span class="feature-eyebrow" data-i18n="ft_track_eyebrow">GPS de precisión</span>
+                <h2 data-i18n="ft_track_h2">Cada paso, cada metro, con precisión</h2>
+                <p data-i18n="ft_track_p">Registra running, trail, senderismo y ciclismo con GPS de alta precisión. Distancia, ritmo, velocidad y desnivel en tiempo real, sobre mapas 3D de Apple Maps.</p>
+            </div>
+        </section>
+
+        <section class="feature-row">
+            <div class="feature-media">
+                <img class="device-shot" src="/img/home/3dvideo.png" alt="Pantalla de exportación de vídeo 3D con vuelo de pájaro sobre una ruta" loading="lazy" width="335" height="700">
+            </div>
+            <div class="feature-text">
+                <span class="feature-eyebrow" data-i18n="ft_video_eyebrow">Vídeos 3D</span>
+                <h2 data-i18n="ft_video_h2">Revive tu ruta en una animación cinematográfica</h2>
+                <p data-i18n="ft_video_p">Convierte cualquier actividad en un vídeo 3D con vuelo de pájaro sobre tu recorrido. Expórtalo y compártelo donde quieras.</p>
+            </div>
+        </section>
+
+        <section class="feature-row feature-row--reverse">
+            <div class="feature-media">
+                <img class="device-shot" src="/img/home/cards.png" alt="Tarjeta compartible de una carrera matutina con foto, ruta y estadísticas" loading="lazy" width="335" height="700">
+            </div>
+            <div class="feature-text">
+                <span class="feature-eyebrow" data-i18n="ft_cards_eyebrow">Tarjetas</span>
+                <h2 data-i18n="ft_cards_h2">Comparte tus entrenamientos con estilo</h2>
+                <p data-i18n="ft_cards_p">Diseña tarjetas con tu foto, tu ruta y tus estadísticas. Elige entre varios diseños y fondos, y compártelas en tus redes en segundos.</p>
+            </div>
+        </section>
+
+        <section class="feature-row">
+            <div class="feature-media">
+                <img class="device-shot" src="/img/home/progress.png" alt="Pantalla de progreso de iSard con calendario de actividad y distribución por deporte" loading="lazy" width="335" height="700">
+            </div>
+            <div class="feature-text">
+                <span class="feature-eyebrow" data-i18n="ft_progress_eyebrow">Progreso</span>
+                <h2 data-i18n="ft_progress_h2">Tu evolución, siempre a la vista</h2>
+                <p data-i18n="ft_progress_p">Consulta tu calendario de actividad, la distribución por deporte y tus totales de siempre. Motivación basada en datos reales.</p>
+            </div>
+        </section>
+
+        <section class="feature-row feature-row--reverse">
+            <div class="feature-media">
+                <img src="/img/home/watch.jpg" alt="Apple Watch mostrando tiempo y distancia de una carrera con la app iSard" loading="lazy" width="506" height="900">
+            </div>
+            <div class="feature-text">
+                <span class="feature-eyebrow" data-i18n="ft_watch_eyebrow">Apple Watch</span>
+                <h2 data-i18n="ft_watch_h2">Tus métricas, directas a la muñeca</h2>
+                <p data-i18n="ft_watch_p">Consulta tiempo y distancia sin sacar el móvil del bolsillo, llueva o truene.</p>
+            </div>
+        </section>
+
+        <section class="sport-triptych">
+            <h2 data-i18n="sport_h2">Una app para cada aventura</h2>
+            <p data-i18n="sport_subtitle">Running, senderismo y ciclismo — todo en el mismo sitio.</p>
+            <div class="sport-grid">
+                <div class="sport-card">
+                    <img src="/img/home/sport-run.jpg" alt="Corredor de trail subiendo un sendero entre la niebla" loading="lazy" width="214" height="700">
+                    <span data-i18n="sport_run">Correr</span>
+                </div>
+                <div class="sport-card">
+                    <img src="/img/home/sport-hike.jpg" alt="Grupo de senderistas caminando por una cresta de montaña" loading="lazy" width="389" height="700">
+                    <span data-i18n="sport_hike">Caminar</span>
+                </div>
+                <div class="sport-card">
+                    <img src="/img/home/sport-cycle.jpg" alt="Ciclista rodando por un camino de gravilla" loading="lazy" width="393" height="700">
+                    <span data-i18n="sport_cycle">Pedalear</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="mac-showcase">
+            <span class="feature-eyebrow" data-i18n="mac_eyebrow">También en Mac</span>
+            <h2 data-i18n="mac_h2">Tus rutas, en la pantalla grande</h2>
+            <p data-i18n="mac_p">Revisa, edita y exporta tus actividades desde el Mac: mapas por satélite, gráficas de elevación y todo el detalle.</p>
+            <img src="/img/home/mac.jpg" alt="App de iSard para Mac mostrando un mapa por satélite, una ruta de senderismo y su gráfica de elevación" loading="lazy" width="1600" height="1005">
+        </section>
+    </div>
+
+    <div class="container">
         <section class="home-about" aria-labelledby="home-about-title">
-            <h2 id="home-about-title" data-i18n="about_title">¿Qué funciones ofrece la app de iSard?</h2>
-            <ul class="home-features">
-                <li data-i18n="f_record">Registro por GPS de running, trail, senderismo y ciclismo.</li>
-                <li data-i18n="f_cards">Tarjetas de entrenamiento y ruta para compartir.</li>
-                <li data-i18n="f_video">Vídeos de animación 3D que reproducen tus rutas.</li>
-                <li data-i18n="f_races">Calendario de carreras y alertas para España y Andorra.</li>
-            </ul>
+            <h2 id="home-about-title" data-i18n="races_h2">Descubre carreras cerca de ti</h2>
+            <p data-i18n="races_p">Calendario de carreras de running, trail, ciclismo y senderismo en España y Andorra. Crea alertas y no te pierdas ninguna.</p>
             <nav class="home-links" aria-label="iSard">
                 <a href="/race-calendar" data-i18n="cta_calendar">Ver calendario de carreras</a>
                 <a href="/race-alerts" data-i18n="cta_alerts">Crear alertas de carreras</a>
@@ -575,6 +928,11 @@
         <div class="footer-meta">
             <a href="/privacy" class="privacy-link" data-i18n="privacy">Política de Privacidad</a>
             <span class="footer-legal" data-i18n="footer_legal">iSard © 2026</span>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/isard.app/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c2.7 0 3.1 0 4.1.1 1 .1 1.7.2 2.3.5.6.2 1.1.6 1.6 1.1.5.5.8.9 1.1 1.6.2.6.4 1.3.5 2.3.1 1 .1 1.4.1 4.1s0 3.1-.1 4.1c-.1 1-.2 1.7-.5 2.3-.2.6-.6 1.1-1.1 1.6-.5.5-.9.8-1.6 1.1-.6.2-1.3.4-2.3.5-1 .1-1.4.1-4.1.1s-3.1 0-4.1-.1c-1-.1-1.7-.2-2.3-.5-.6-.2-1.1-.6-1.6-1.1-.5-.5-.8-.9-1.1-1.6-.2-.6-.4-1.3-.5-2.3-.1-1-.1-1.4-.1-4.1s0-3.1.1-4.1c.1-1 .2-1.7.5-2.3.2-.6.6-1.1 1.1-1.6.5-.5.9-.8 1.6-1.1.6-.2 1.3-.4 2.3-.5 1-.1 1.4-.1 4.1-.1zm0 1.8c-2.6 0-2.9 0-4 .1-.9.1-1.4.2-1.7.3-.4.2-.7.3-1 .6-.3.3-.5.6-.6 1-.1.3-.3.8-.3 1.7-.1 1.1-.1 1.4-.1 4s0 2.9.1 4c.1.9.2 1.4.3 1.7.2.4.3.7.6 1 .3.3.6.5 1 .6.3.1.8.3 1.7.3 1.1.1 1.4.1 4 .1s2.9 0 4-.1c.9-.1 1.4-.2 1.7-.3.4-.2.7-.3 1-.6.3-.3.5-.6.6-1 .1-.3.3-.8.3-1.7.1-1.1.1-1.4.1-4s0-2.9-.1-4c-.1-.9-.2-1.4-.3-1.7-.2-.4-.3-.7-.6-1-.3-.3-.6-.5-1-.6-.3-.1-.8-.3-1.7-.3-1.1-.1-1.4-.1-4-.1zm0 3.3a4.7 4.7 0 110 9.4 4.7 4.7 0 010-9.4zm0 1.8a2.9 2.9 0 100 5.8 2.9 2.9 0 000-5.8zm5.9-3.5a1.1 1.1 0 110 2.2 1.1 1.1 0 010-2.2z"/></svg></a>
+                <a href="https://www.tiktok.com/@isard.app" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 2h-3.1v13.4c0 1.6-1.3 2.9-2.9 2.9s-2.9-1.3-2.9-2.9 1.3-2.9 2.9-2.9c.3 0 .6 0 .9.1V9.4c-.3 0-.6-.1-.9-.1-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6V8.6c1.2.9 2.7 1.4 4.3 1.4V6.9c-2.4 0-4.3-1.9-4.3-4.3V2z"/></svg></a>
+                <a href="https://www.linkedin.com/company/isard-app/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.5V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.3-1.8 3.5 0 4.1 2.3 4.1 5.3v6.3zM5.3 7.4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM7 20.4H3.6V9H7v11.4z"/></svg></a>
+            </div>
         </div>
     </footer>
 
@@ -586,11 +944,31 @@
                 tagline: 'iSard es una app de running, senderismo y ciclismo que te permite registrar actividades deportivas, diseñar tarjetas compartibles y exportar vídeos de animación 3D de tus rutas.',
                 privacy: 'Política de Privacidad',
                 footer_legal: 'iSard © 2026',
-                about_title: '¿Qué funciones ofrece la app de iSard?',
-                f_record: 'Registro por GPS de running, trail, senderismo y ciclismo.',
-                f_cards: 'Tarjetas de entrenamiento y ruta para compartir.',
-                f_video: 'Vídeos de animación 3D que reproducen tus rutas.',
-                f_races: 'Calendario de carreras y alertas para España y Andorra.',
+                ft_track_eyebrow: 'GPS de precisión',
+                ft_track_h2: 'Cada paso, cada metro, con precisión',
+                ft_track_p: 'Registra running, trail, senderismo y ciclismo con GPS de alta precisión. Distancia, ritmo, velocidad y desnivel en tiempo real, sobre mapas 3D de Apple Maps.',
+                ft_video_eyebrow: 'Vídeos 3D',
+                ft_video_h2: 'Revive tu ruta en una animación cinematográfica',
+                ft_video_p: 'Convierte cualquier actividad en un vídeo 3D con vuelo de pájaro sobre tu recorrido. Expórtalo y compártelo donde quieras.',
+                ft_cards_eyebrow: 'Tarjetas',
+                ft_cards_h2: 'Comparte tus entrenamientos con estilo',
+                ft_cards_p: 'Diseña tarjetas con tu foto, tu ruta y tus estadísticas. Elige entre varios diseños y fondos, y compártelas en tus redes en segundos.',
+                ft_progress_eyebrow: 'Progreso',
+                ft_progress_h2: 'Tu evolución, siempre a la vista',
+                ft_progress_p: 'Consulta tu calendario de actividad, la distribución por deporte y tus totales de siempre. Motivación basada en datos reales.',
+                ft_watch_eyebrow: 'Apple Watch',
+                ft_watch_h2: 'Tus métricas, directas a la muñeca',
+                ft_watch_p: 'Consulta tiempo y distancia sin sacar el móvil del bolsillo, llueva o truene.',
+                sport_h2: 'Una app para cada aventura',
+                sport_subtitle: 'Running, senderismo y ciclismo — todo en el mismo sitio.',
+                sport_run: 'Correr',
+                sport_hike: 'Caminar',
+                sport_cycle: 'Pedalear',
+                mac_eyebrow: 'También en Mac',
+                mac_h2: 'Tus rutas, en la pantalla grande',
+                mac_p: 'Revisa, edita y exporta tus actividades desde el Mac: mapas por satélite, gráficas de elevación y todo el detalle.',
+                races_h2: 'Descubre carreras cerca de ti',
+                races_p: 'Calendario de carreras de running, trail, ciclismo y senderismo en España y Andorra. Crea alertas y no te pierdas ninguna.',
                 cta_calendar: 'Ver calendario de carreras',
                 cta_alerts: 'Crear alertas de carreras',
                 badge_top: 'Descárgala en el'
@@ -599,11 +977,31 @@
                 tagline: 'iSard és una app de running, senderisme i ciclisme que et permet registrar activitats esportives, dissenyar targetes compartibles i exportar vídeos d\'animació 3D de les teves rutes.',
                 privacy: 'Política de Privacitat',
                 footer_legal: 'iSard © 2026',
-                about_title: 'Quines funcions ofereix l\'app d\'iSard?',
-                f_record: 'Registre per GPS de running, trail, senderisme i ciclisme.',
-                f_cards: 'Targetes d\'entrenament i ruta per compartir.',
-                f_video: 'Vídeos d\'animació 3D que reprodueixen les teves rutes.',
-                f_races: 'Calendari de curses i alertes per a Espanya i Andorra.',
+                ft_track_eyebrow: 'GPS de precisió',
+                ft_track_h2: 'Cada pas, cada metre, amb precisió',
+                ft_track_p: 'Registra running, trail, senderisme i ciclisme amb GPS d\'alta precisió. Distància, ritme, velocitat i desnivell en temps real, sobre mapes 3D d\'Apple Maps.',
+                ft_video_eyebrow: 'Vídeos 3D',
+                ft_video_h2: 'Reviu la teva ruta en una animació cinematogràfica',
+                ft_video_p: 'Converteix qualsevol activitat en un vídeo 3D amb vol d\'ocell sobre el teu recorregut. Exporta\'l i comparteix-lo on vulguis.',
+                ft_cards_eyebrow: 'Targetes',
+                ft_cards_h2: 'Comparteix els teus entrenaments amb estil',
+                ft_cards_p: 'Dissenya targetes amb la teva foto, la teva ruta i les teves estadístiques. Tria entre diversos dissenys i fons, i comparteix-les a les xarxes en segons.',
+                ft_progress_eyebrow: 'Progrés',
+                ft_progress_h2: 'La teva evolució, sempre a la vista',
+                ft_progress_p: 'Consulta el teu calendari d\'activitat, la distribució per esport i els teus totals de sempre. Motivació basada en dades reals.',
+                ft_watch_eyebrow: 'Apple Watch',
+                ft_watch_h2: 'Les teves mètriques, directes al canell',
+                ft_watch_p: 'Consulta temps i distància sense treure el mòbil de la butxaca, plogui o faci sol.',
+                sport_h2: 'Una app per a cada aventura',
+                sport_subtitle: 'Running, senderisme i ciclisme — tot al mateix lloc.',
+                sport_run: 'Córrer',
+                sport_hike: 'Caminar',
+                sport_cycle: 'Pedalejar',
+                mac_eyebrow: 'També a Mac',
+                mac_h2: 'Les teves rutes, a la pantalla gran',
+                mac_p: 'Revisa, edita i exporta les teves activitats des del Mac: mapes per satèl·lit, gràfiques d\'elevació i tot el detall.',
+                races_h2: 'Descobreix curses a prop teu',
+                races_p: 'Calendari de curses de running, trail, ciclisme i senderisme a Espanya i Andorra. Crea alertes i no te\'n perdis cap.',
                 cta_calendar: 'Veure el calendari de curses',
                 cta_alerts: 'Crear alertes de curses',
                 badge_top: 'Baixa-la a l\''
@@ -612,11 +1010,31 @@
                 tagline: 'iSard is a running, hiking and cycling tracker app that lets you record workout activities, design shareable cards, and export replay 3D animation videos of your routes.',
                 privacy: 'Privacy Policy',
                 footer_legal: 'iSard © 2026',
-                about_title: 'What features does the iSard app offer?',
-                f_record: 'GPS recording for running, trail running, hiking and cycling.',
-                f_cards: 'Shareable workout and route cards.',
-                f_video: '3D animated videos that replay your routes.',
-                f_races: 'Race calendar and alerts for Spain and Andorra.',
+                ft_track_eyebrow: 'Precision GPS',
+                ft_track_h2: 'Every step, every metre, tracked precisely',
+                ft_track_p: 'Record running, trail running, hiking and cycling with high-precision GPS. Distance, pace, speed and elevation in real time, on 3D Apple Maps.',
+                ft_video_eyebrow: '3D videos',
+                ft_video_h2: 'Relive your route as a cinematic flyover',
+                ft_video_p: 'Turn any activity into a 3D flyover video of your route. Export it and share it wherever you like.',
+                ft_cards_eyebrow: 'Cards',
+                ft_cards_h2: 'Share your workouts in style',
+                ft_cards_p: 'Design cards with your photo, your route and your stats. Pick from several layouts and backgrounds, and share them in seconds.',
+                ft_progress_eyebrow: 'Progress',
+                ft_progress_h2: 'Your progress, always in view',
+                ft_progress_p: 'Check your activity calendar, your breakdown by sport, and your all-time totals. Motivation backed by real data.',
+                ft_watch_eyebrow: 'Apple Watch',
+                ft_watch_h2: 'Your stats, right on your wrist',
+                ft_watch_p: 'Check time and distance without reaching for your phone, rain or shine.',
+                sport_h2: 'One app for every adventure',
+                sport_subtitle: 'Running, hiking and cycling — all in one place.',
+                sport_run: 'Run',
+                sport_hike: 'Hike',
+                sport_cycle: 'Cycle',
+                mac_eyebrow: 'Also on Mac',
+                mac_h2: 'Your routes, on the big screen',
+                mac_p: 'Review, edit and export your activities from your Mac: satellite maps, elevation charts and all the detail.',
+                races_h2: 'Discover races near you',
+                races_p: 'Race calendar for running, trail, cycling and hiking in Spain and Andorra. Set up alerts and never miss one.',
                 cta_calendar: 'Browse the race calendar',
                 cta_alerts: 'Set up race alerts',
                 badge_top: 'Download on the'

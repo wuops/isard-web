@@ -1076,17 +1076,22 @@
         // alone doesn't stop it — explicitly clear the caption track via the
         // IFrame Player API instead (onReady isn't enough; it re-applies them
         // once playback actually starts, so also clear on the PLAYING event).
+        // ES/CA share one video; EN keeps its own.
+        var HERO_VIDEOS = { es: 'Ek5PkoyPTP0', ca: 'Ek5PkoyPTP0', en: 'G9hzAspsK_c' };
+        var heroPlayer = null;
+        var heroVideoId = HERO_VIDEOS[document.documentElement.lang] || HERO_VIDEOS.es;
+
         function onYouTubeIframeAPIReady() {
             var el = document.getElementById('hero-yt-player');
             if (!el) return;
-            new YT.Player('hero-yt-player', {
+            heroPlayer = new YT.Player('hero-yt-player', {
                 host: 'https://www.youtube-nocookie.com',
-                videoId: 'G9hzAspsK_c',
+                videoId: heroVideoId,
                 playerVars: {
                     autoplay: 1,
                     mute: 1,
                     loop: 1,
-                    playlist: 'G9hzAspsK_c',
+                    playlist: heroVideoId,
                     cc_load_policy: 0,
                     modestbranding: 1,
                     playsinline: 1,
@@ -1101,11 +1106,27 @@
                     onStateChange: function (e) {
                         if (e.data === YT.PlayerState.PLAYING) {
                             e.target.setOption('captions', 'track', {});
+                        } else if (e.data === YT.PlayerState.ENDED) {
+                            e.target.playVideo();
                         }
                     }
                 }
             });
         }
+
+        // The language switcher re-renders text in place without reloading
+        // the page, so swap the hero video too when ES/CA <-> EN changes.
+        var prevHeroLangHook = window.onLangChange;
+        window.onLangChange = function (lang) {
+            if (prevHeroLangHook) prevHeroLangHook(lang);
+            var nextVideoId = HERO_VIDEOS[lang] || HERO_VIDEOS.es;
+            if (nextVideoId === heroVideoId) return;
+            heroVideoId = nextVideoId;
+            if (heroPlayer && heroPlayer.loadVideoById) {
+                heroPlayer.loadVideoById(heroVideoId);
+                heroPlayer.mute();
+            }
+        };
     </script>
 </body>
 </html>
